@@ -68,14 +68,11 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             body: SingleChildScrollView(
               child: Center(
-                  child: ListView.builder(
-                      itemBuilder:
-                          FutureBuilder()
-                        )
-                      ), // This trailing comma makes auto-formatting nicer for build methods.
+                  child: Placeholder() // This trailing comma makes auto-formatting nicer for build methods.
             )
           )
-        );
+        )
+    );
   }
 }
 
