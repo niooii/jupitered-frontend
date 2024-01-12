@@ -1,0 +1,2841 @@
+{
+	"name": "Hewitt Wang",
+	"osis": "229385620",
+	"courses": [
+		{
+			"name": "App Development",
+			"grades": [
+				{
+					"category": "2023-2024",
+					"percent_grade": 100.0,
+					"fraction_grade": null,
+					"additional_info": null
+				},
+				{
+					"category": "Assessment",
+					"percent_grade": 100.0,
+					"fraction_grade": "235/235",
+					"additional_info": "60.0% of grade"
+				},
+				{
+					"category": "Midyear/Final",
+					"percent_grade": null,
+					"fraction_grade": null,
+					"additional_info": "10.0% of grade"
+				},
+				{
+					"category": "Participation",
+					"percent_grade": 100.0,
+					"fraction_grade": "30/30",
+					"additional_info": "15.0% of grade"
+				},
+				{
+					"category": "Homework",
+					"percent_grade": 100.0,
+					"fraction_grade": "505/505",
+					"additional_info": "15.0% of grade"
+				}
+			],
+			"assignments": [
+				{
+					"name": "Midyear Project (Source Code and Video)",
+					"date_due": "1/7",
+					"score": "/100",
+					"worth": 100,
+					"impact": "",
+					"category": "Midyear/Final"
+				},
+				{
+					"name": "Project - Midyear Project Design Document",
+					"date_due": "12/1",
+					"score": "/30",
+					"worth": 30,
+					"impact": "",
+					"category": "Assessment"
+				},
+				{
+					"name": "Lab: Movie and Movie Details (Navigation)",
+					"date_due": "12/1",
+					"score": "/20",
+					"worth": 20,
+					"impact": "",
+					"category": "Homework"
+				},
+				{
+					"name": "Project - Interactive Gestures App",
+					"date_due": "11/22",
+					"score": "50/50",
+					"worth": 50,
+					"impact": "",
+					"category": "Assessment"
+				},
+				{
+					"name": "Lab: Simple to-do App",
+					"date_due": "11/17",
+					"score": "30/30",
+					"worth": 30,
+					"impact": "",
+					"category": "Homework"
+				},
+				{
+					"name": "Participation",
+					"date_due": "11/15",
+					"score": "10/10",
+					"worth": 10,
+					"impact": "",
+					"category": "Participation"
+				},
+				{
+					"name": "Lab: Fun onTap and Alert Box App",
+					"date_due": "11/12",
+					"score": "20/20",
+					"worth": 20,
+					"impact": "",
+					"category": "Homework"
+				},
+				{
+					"name": "Project: Special Calculator App",
+					"date_due": "11/10",
+					"score": "50/50",
+					"worth": 50,
+					"impact": "",
+					"category": "Assessment"
+				},
+				{
+					"name": "Project Design Document - Gesture Interaction App",
+					"date_due": "11/9",
+					"score": "20/20",
+					"worth": 20,
+					"impact": "",
+					"category": "Assessment"
+				},
+				{
+					"name": "Lab: Swtich Control Widget",
+					"date_due": "11/8",
+					"score": "20/20",
+					"worth": 20,
+					"impact": "",
+					"category": "Homework"
+				},
+				{
+					"name": "Lab: Creating Custom Gestures (Lock and Key)",
+					"date_due": "11/3",
+					"score": "20/20",
+					"worth": 20,
+					"impact": "",
+					"category": "Homework"
+				},
+				{
+					"name": "Participation",
+					"date_due": "11/1",
+					"score": "10/10",
+					"worth": 10,
+					"impact": "",
+					"category": "Participation"
+				},
+				{
+					"name": "Lab: AppBar and Drawer with Scaffold",
+					"date_due": "10/22",
+					"score": "20/20",
+					"worth": 20,
+					"impact": "",
+					"category": "Homework"
+				},
+				{
+					"name": "Lab: Simple Calculator (Flutter)",
+					"date_due": "10/18",
+					"score": "20/20",
+					"worth": 20,
+					"impact": "",
+					"category": "Homework"
+				},
+				{
+					"name": "Lab - Hello, Flutter",
+					"date_due": "10/17",
+					"score": "20/20",
+					"worth": 20,
+					"impact": "",
+					"category": "Homework"
+				},
+				{
+					"name": "Classwork - Setup and test Flutter",
+					"date_due": "10/16",
+					"score": "20/20",
+					"worth": 20,
+					"impact": "",
+					"category": "Homework"
+				},
+				{
+					"name": "HW - threads concurrency vs parallelism",
+					"date_due": "10/9",
+					"score": "20/20",
+					"worth": 20,
+					"impact": "",
+					"category": "Homework"
+				},
+				{
+					"name": "Classwork - Bottle interface",
+					"date_due": "10/6",
+					"score": "20/20",
+					"worth": 20,
+					"impact": "",
+					"category": "Homework"
+				},
+				{
+					"name": "Classwork - Food truck app with interitance",
+					"date_due": "10/5",
+					"score": "20/20",
+					"worth": 20,
+					"impact": "",
+					"category": "Assessment"
+				},
+				{
+					"name": "Mini Project - Simple Library Management System",
+					"date_due": "10/5",
+					"score": "30/30",
+					"worth": 30,
+					"impact": "",
+					"category": "Assessment"
+				},
+				{
+					"name": "HW - sort and find",
+					"date_due": "10/4",
+					"score": "20/20",
+					"worth": 20,
+					"impact": "",
+					"category": "Homework"
+				},
+				{
+					"name": "Classwork - country map",
+					"date_due": "10/3",
+					"score": "20/20",
+					"worth": 20,
+					"impact": "",
+					"category": "Homework"
+				},
+				{
+					"name": "Classwork - setA and setB",
+					"date_due": "9/30",
+					"score": "20/20",
+					"worth": 20,
+					"impact": "",
+					"category": "Homework"
+				},
+				{
+					"name": "Participation",
+					"date_due": "9/29",
+					"score": "10/10",
+					"worth": 10,
+					"impact": "",
+					"category": "Participation"
+				},
+				{
+					"name": "HW - Task Manager",
+					"date_due": "9/29",
+					"score": "30/30",
+					"worth": 30,
+					"impact": "",
+					"category": "Assessment"
+				},
+				{
+					"name": "HW #1 - null or 42",
+					"date_due": "9/28",
+					"score": "10/10",
+					"worth": 10,
+					"impact": "",
+					"category": "Homework"
+				},
+				{
+					"name": "HW #2 - null aware names",
+					"date_due": "9/28",
+					"score": "10/10",
+					"worth": 10,
+					"impact": "",
+					"category": "Homework"
+				},
+				{
+					"name": "HW - Bank Account Management",
+					"date_due": "9/27",
+					"score": "20/20",
+					"worth": 20,
+					"impact": "",
+					"category": "Homework"
+				},
+				{
+					"name": "Classwork#1 / HW - User Authentication (Dart console)",
+					"date_due": "9/22",
+					"score": "30/30",
+					"worth": 30,
+					"impact": "",
+					"category": "Homework"
+				},
+				{
+					"name": "Quiz #1 - Dart methods and classes",
+					"date_due": "9/22",
+					"score": "35/35",
+					"worth": 35,
+					"impact": "",
+					"category": "Assessment"
+				},
+				{
+					"name": "Classwork #1 - House class (constructor and class review)",
+					"date_due": "9/21",
+					"score": "10/10",
+					"worth": 10,
+					"impact": "",
+					"category": "Homework"
+				},
+				{
+					"name": "Classwork/HW#1 - Student class",
+					"date_due": "9/20",
+					"score": "10/10",
+					"worth": 10,
+					"impact": "",
+					"category": "Homework"
+				},
+				{
+					"name": "Classwork/HW#2 - BxSciStudent class (inheritance and method",
+					"date_due": "9/20",
+					"score": "10/10",
+					"worth": 10,
+					"impact": "",
+					"category": "Homework"
+				},
+				{
+					"name": "Classwork #1 - Check prime with arrow syntax",
+					"date_due": "9/19",
+					"score": "10/10",
+					"worth": 10,
+					"impact": "",
+					"category": "Homework"
+				},
+				{
+					"name": "Classwork #2 - repeatTask with arrow syntax",
+					"date_due": "9/19",
+					"score": "10/10",
+					"worth": 10,
+					"impact": "",
+					"category": "Homework"
+				},
+				{
+					"name": "HW - Matrix calculator with anonymous functions",
+					"date_due": "9/18",
+					"score": "15/15",
+					"worth": 15,
+					"impact": "",
+					"category": "Homework"
+				},
+				{
+					"name": "HW - youAreWonderful (named parameter)",
+					"date_due": "9/15",
+					"score": "10/10",
+					"worth": 10,
+					"impact": "",
+					"category": "Homework"
+				},
+				{
+					"name": "HW - Simple conversion calculator",
+					"date_due": "9/15",
+					"score": "10/10",
+					"worth": 10,
+					"impact": "",
+					"category": "Homework"
+				},
+				{
+					"name": "Classwork - AudioState enum",
+					"date_due": "9/14",
+					"score": "10/10",
+					"worth": 10,
+					"impact": "",
+					"category": "Homework"
+				},
+				{
+					"name": "HW - Bell Schedule enum",
+					"date_due": "9/14",
+					"score": "10/10",
+					"worth": 10,
+					"impact": "",
+					"category": "Homework"
+				},
+				{
+					"name": "Classwork/HW #1 - String Name",
+					"date_due": "9/13",
+					"score": "10/10",
+					"worth": 10,
+					"impact": "",
+					"category": "Homework"
+				},
+				{
+					"name": "Classwork/HW#2 - Simple Calculator",
+					"date_due": "9/13",
+					"score": "10/10",
+					"worth": 10,
+					"impact": "",
+					"category": "Homework"
+				},
+				{
+					"name": "Classwork/HW#3 - Random Password",
+					"date_due": "9/13",
+					"score": "10/10",
+					"worth": 10,
+					"impact": "",
+					"category": "Homework"
+				},
+				{
+					"name": "HW - Dart program solve quadratic equations",
+					"date_due": "9/12",
+					"score": "15/15",
+					"worth": 15,
+					"impact": "",
+					"category": "Homework"
+				},
+				{
+					"name": "HW - App Design Basics",
+					"date_due": "9/11",
+					"score": "15/15",
+					"worth": 15,
+					"impact": "",
+					"category": "Homework"
+				}
+			]
+		},
+		{
+			"name": "English 12",
+			"grades": [
+				{
+					"category": "2023-2024",
+					"percent_grade": 90.0,
+					"fraction_grade": null,
+					"additional_info": null
+				},
+				{
+					"category": "Assessment",
+					"percent_grade": 89.3,
+					"fraction_grade": "268/300",
+					"additional_info": "60.0% of grade"
+				},
+				{
+					"category": "Engagement",
+					"percent_grade": 91.0,
+					"fraction_grade": "71/78",
+					"additional_info": "40.0% of grade"
+				}
+			],
+			"assignments": [
+				{
+					"name": "Personal Statement Draft #2",
+					"date_due": "10/2",
+					"score": "18/20",
+					"worth": 20,
+					"impact": "0.0%",
+					"category": "Assessment"
+				},
+				{
+					"name": "Summer Reading Discussion Questions",
+					"date_due": "9/11",
+					"score": "3/3",
+					"worth": 3,
+					"impact": "+0.1%",
+					"category": "Engagement"
+				},
+				{
+					"name": "Focused Free Write",
+					"date_due": "",
+					"score": "3/3",
+					"worth": 3,
+					"impact": "+0.1%",
+					"category": "Engagement"
+				},
+				{
+					"name": "College Application Dates, Deadlines and Questions",
+					"date_due": "",
+					"score": "2.8/3",
+					"worth": 3,
+					"impact": "0.0%",
+					"category": "Engagement"
+				},
+				{
+					"name": "Admissions 6-Piece Activity",
+					"date_due": "",
+					"score": "3/3",
+					"worth": 3,
+					"impact": "+0.1%",
+					"category": "Engagement"
+				},
+				{
+					"name": "\"Those Winter Sundays\" & \"Papa Who Wakes Up Tired \" Exer",
+					"date_due": "",
+					"score": "3/3",
+					"worth": 3,
+					"impact": "+0.1%",
+					"category": "Engagement"
+				},
+				{
+					"name": "Personal Statement Draft #1",
+					"date_due": "",
+					"score": "18/20",
+					"worth": 20,
+					"impact": "0.0%",
+					"category": "Assessment"
+				},
+				{
+					"name": "Peer workshop Engagement - Draft #1",
+					"date_due": "",
+					"score": "3/3",
+					"worth": 3,
+					"impact": "+0.1%",
+					"category": "Engagement"
+				},
+				{
+					"name": "Peer Review Engagement - Draft #2",
+					"date_due": "",
+					"score": "3/3",
+					"worth": 3,
+					"impact": "+0.1%",
+					"category": "Engagement"
+				},
+				{
+					"name": "Personal Statement Draft #3",
+					"date_due": "",
+					"score": "29/30",
+					"worth": 30,
+					"impact": "+0.5%",
+					"category": "Assessment"
+				},
+				{
+					"name": "Letter of Appreciation",
+					"date_due": "",
+					"score": "3/3",
+					"worth": 3,
+					"impact": "+0.1%",
+					"category": "Engagement"
+				},
+				{
+					"name": "Drafting Process Reflection",
+					"date_due": "",
+					"score": "3/3",
+					"worth": 3,
+					"impact": "+0.1%",
+					"category": "Engagement"
+				},
+				{
+					"name": "Supplementals Activity",
+					"date_due": "",
+					"score": "3/3",
+					"worth": 3,
+					"impact": "+0.1%",
+					"category": "Engagement"
+				},
+				{
+					"name": "Supplement Response",
+					"date_due": "",
+					"score": "9/10",
+					"worth": 10,
+					"impact": "0.0%",
+					"category": "Assessment"
+				},
+				{
+					"name": "Peer Review Workshop Overall",
+					"date_due": "",
+					"score": "10/10",
+					"worth": 10,
+					"impact": "+0.2%",
+					"category": "Assessment"
+				},
+				{
+					"name": "Formatting Overall",
+					"date_due": "",
+					"score": "10/10",
+					"worth": 10,
+					"impact": "+0.2%",
+					"category": "Assessment"
+				},
+				{
+					"name": "Festival of Dionysos, Oedipus Myth & Antigone Parados",
+					"date_due": "",
+					"score": "3/3",
+					"worth": 3,
+					"impact": "+0.1%",
+					"category": "Engagement"
+				},
+				{
+					"name": "Antigone Scenes 1&2",
+					"date_due": "",
+					"score": "3/3",
+					"worth": 3,
+					"impact": "+0.1%",
+					"category": "Engagement"
+				},
+				{
+					"name": "Scene III & Ode III",
+					"date_due": "",
+					"score": "3/3",
+					"worth": 3,
+					"impact": "+0.1%",
+					"category": "Engagement"
+				},
+				{
+					"name": "Haimon, & Creon - Leadership",
+					"date_due": "",
+					"score": "3/3",
+					"worth": 3,
+					"impact": "+0.1%",
+					"category": "Engagement"
+				},
+				{
+					"name": "Scene IV & Ode IV",
+					"date_due": "",
+					"score": "2.95/3",
+					"worth": 3,
+					"impact": "+0.1%",
+					"category": "Engagement"
+				},
+				{
+					"name": "Antigone Themes: Civics & Justice",
+					"date_due": "",
+					"score": "<i><bclass=\"red\">absent</b></i>/3",
+					"worth": 3,
+					"impact": "-1.5%",
+					"category": "Engagement"
+				},
+				{
+					"name": "Aristotle's Tragic Hero",
+					"date_due": "",
+					"score": "3/3",
+					"worth": 3,
+					"impact": "+0.1%",
+					"category": "Engagement"
+				},
+				{
+					"name": "Sophocles, Aristotle & Miller - Tragedy",
+					"date_due": "",
+					"score": "3/3",
+					"worth": 3,
+					"impact": "+0.1%",
+					"category": "Engagement"
+				},
+				{
+					"name": "Aristotle and the Golden Mean",
+					"date_due": "",
+					"score": "<i><bclass=\"red\">zero</b></i>/3",
+					"worth": 3,
+					"impact": "-1.5%",
+					"category": "Engagement"
+				},
+				{
+					"name": "Antigone Exam",
+					"date_due": "",
+					"score": "90/100",
+					"worth": 100,
+					"impact": "+0.2%",
+					"category": "Assessment"
+				},
+				{
+					"name": "Antigone Essay - Outlining",
+					"date_due": "",
+					"score": "3/3",
+					"worth": 3,
+					"impact": "+0.1%",
+					"category": "Engagement"
+				},
+				{
+					"name": "Antigone Essay",
+					"date_due": "",
+					"score": "84/100",
+					"worth": 100,
+					"impact": "-1.6%",
+					"category": "Assessment"
+				},
+				{
+					"name": "Antigone Review - Exam Creation & Circulation",
+					"date_due": "",
+					"score": "3/3",
+					"worth": 3,
+					"impact": "+0.1%",
+					"category": "Engagement"
+				},
+				{
+					"name": "Antigone on trial",
+					"date_due": "",
+					"score": "3/3",
+					"worth": 3,
+					"impact": "+0.1%",
+					"category": "Engagement"
+				},
+				{
+					"name": "1.1 Othello",
+					"date_due": "",
+					"score": "3/3",
+					"worth": 3,
+					"impact": "+0.1%",
+					"category": "Engagement"
+				},
+				{
+					"name": "Othello Exam - Acts I&II",
+					"date_due": "",
+					"score": "/100",
+					"worth": 100,
+					"impact": "",
+					"category": "Assessment"
+				},
+				{
+					"name": "Iago's 1.3 Soliloquy",
+					"date_due": "",
+					"score": "/3",
+					"worth": 3,
+					"impact": "",
+					"category": "Engagement"
+				},
+				{
+					"name": "Modernizing 1.3",
+					"date_due": "",
+					"score": "/3",
+					"worth": 3,
+					"impact": "",
+					"category": "Engagement"
+				},
+				{
+					"name": "2.1.1.215",
+					"date_due": "",
+					"score": "/3",
+					"worth": 3,
+					"impact": "",
+					"category": "Engagement"
+				},
+				{
+					"name": "Finishing Act II",
+					"date_due": "",
+					"score": "/3",
+					"worth": 3,
+					"impact": "",
+					"category": "Engagement"
+				},
+				{
+					"name": "Act III - Reputation and Jealousy",
+					"date_due": "",
+					"score": "/3",
+					"worth": 3,
+					"impact": "",
+					"category": "Engagement"
+				},
+				{
+					"name": "3.3 Sheet",
+					"date_due": "",
+					"score": "2.25/3",
+					"worth": 3,
+					"impact": "-0.3%",
+					"category": "Engagement"
+				},
+				{
+					"name": "Adaptations",
+					"date_due": "",
+					"score": "3/3",
+					"worth": 3,
+					"impact": "+0.1%",
+					"category": "Engagement"
+				}
+			]
+		},
+		{
+			"name": "Game Programming",
+			"grades": [
+				{
+					"category": "2023-2024",
+					"percent_grade": 99.7,
+					"fraction_grade": null,
+					"additional_info": null
+				},
+				{
+					"category": "Assessment",
+					"percent_grade": 100.0,
+					"fraction_grade": "150/150",
+					"additional_info": "60.0% of grade"
+				},
+				{
+					"category": "Midyear/Final",
+					"percent_grade": null,
+					"fraction_grade": null,
+					"additional_info": "10.0% of grade"
+				},
+				{
+					"category": "Participation",
+					"percent_grade": 100.0,
+					"fraction_grade": "30/30",
+					"additional_info": "15.0% of grade"
+				},
+				{
+					"category": "Homework",
+					"percent_grade": 98.4,
+					"fraction_grade": "369/375",
+					"additional_info": "15.0% of grade"
+				}
+			],
+			"assignments": [
+				{
+					"name": "Midyear Project (Source Code and Publish)",
+					"date_due": "1/7",
+					"score": "/100",
+					"worth": 100,
+					"impact": "",
+					"category": "Midyear/Final"
+				},
+				{
+					"name": "HW - Monty Hall (Probability Tree)",
+					"date_due": "12/3",
+					"score": "/20",
+					"worth": 20,
+					"impact": "",
+					"category": "Homework"
+				},
+				{
+					"name": "Classwork - Blind Robot (Markov Model)",
+					"date_due": "12/3",
+					"score": "/30",
+					"worth": 30,
+					"impact": "",
+					"category": "Homework"
+				},
+				{
+					"name": "HW - COVID Test (Bayes Rule)",
+					"date_due": "12/1",
+					"score": "/20",
+					"worth": 20,
+					"impact": "",
+					"category": "Homework"
+				},
+				{
+					"name": "Classwork - Proof by Induction (Question #2)",
+					"date_due": "11/30",
+					"score": "10/10",
+					"worth": 10,
+					"impact": "0.0%",
+					"category": "Homework"
+				},
+				{
+					"name": "Classwork - Proof by Induction (Question #3)",
+					"date_due": "11/30",
+					"score": "10/10",
+					"worth": 10,
+					"impact": "0.0%",
+					"category": "Homework"
+				},
+				{
+					"name": "Project #2 - Publish, Demo and Presentation",
+					"date_due": "11/24",
+					"score": "30/30",
+					"worth": 30,
+					"impact": "",
+					"category": "Assessment"
+				},
+				{
+					"name": "HW - Dishonest Casino (Hidden Markov Model)",
+					"date_due": "11/22",
+					"score": "24/30",
+					"worth": 30,
+					"impact": "-0.3%",
+					"category": "Homework"
+				},
+				{
+					"name": "Project #2 - 3D Treasure Hunt Game (Source Code Submission)",
+					"date_due": "11/17",
+					"score": "60/60",
+					"worth": 60,
+					"impact": "",
+					"category": "Assessment"
+				},
+				{
+					"name": "Participation",
+					"date_due": "11/15",
+					"score": "10/10",
+					"worth": 10,
+					"impact": "",
+					"category": "Participation"
+				},
+				{
+					"name": "Classwork - Harvard, Yale and Dartmouth (Markov Chain)",
+					"date_due": "11/6",
+					"score": "20/20",
+					"worth": 20,
+					"impact": "0.0%",
+					"category": "Homework"
+				},
+				{
+					"name": "Participation",
+					"date_due": "11/1",
+					"score": "10/10",
+					"worth": 10,
+					"impact": "",
+					"category": "Participation"
+				},
+				{
+					"name": "Lab: Raycast Reaction",
+					"date_due": "10/25",
+					"score": "30/30",
+					"worth": 30,
+					"impact": "0.0%",
+					"category": "Homework"
+				},
+				{
+					"name": "Lab: NPC Wandering",
+					"date_due": "10/23",
+					"score": "30/30",
+					"worth": 30,
+					"impact": "0.0%",
+					"category": "Homework"
+				},
+				{
+					"name": "Lab: Projectile and Raycast",
+					"date_due": "10/19",
+					"score": "30/30",
+					"worth": 30,
+					"impact": "0.0%",
+					"category": "Homework"
+				},
+				{
+					"name": "Lab: 3rd Person Controller",
+					"date_due": "10/16",
+					"score": "20/20",
+					"worth": 20,
+					"impact": "0.0%",
+					"category": "Homework"
+				},
+				{
+					"name": "Lab: Dancing Character (3D Animation)",
+					"date_due": "10/13",
+					"score": "20/20",
+					"worth": 20,
+					"impact": "0.0%",
+					"category": "Homework"
+				},
+				{
+					"name": "Project #1 Presentation",
+					"date_due": "10/11",
+					"score": "10/10",
+					"worth": 10,
+					"impact": "",
+					"category": "Assessment"
+				},
+				{
+					"name": "Project #1 - A Sky Full of Rotating Stars",
+					"date_due": "10/6",
+					"score": "50/50",
+					"worth": 50,
+					"impact": "",
+					"category": "Assessment"
+				},
+				{
+					"name": "Lab: Bowling (Collision Detection)",
+					"date_due": "10/5",
+					"score": "30/30",
+					"worth": 30,
+					"impact": "0.0%",
+					"category": "Homework"
+				},
+				{
+					"name": "Participation",
+					"date_due": "9/29",
+					"score": "10/10",
+					"worth": 10,
+					"impact": "",
+					"category": "Participation"
+				},
+				{
+					"name": "Lab: Terrain",
+					"date_due": "9/29",
+					"score": "30/30",
+					"worth": 30,
+					"impact": "0.0%",
+					"category": "Homework"
+				},
+				{
+					"name": "Lab: Building a graph",
+					"date_due": "9/25",
+					"score": "30/30",
+					"worth": 30,
+					"impact": "0.0%",
+					"category": "Homework"
+				},
+				{
+					"name": "Lab: Clock simulation (Catlike)",
+					"date_due": "9/19",
+					"score": "30/30",
+					"worth": 30,
+					"impact": "0.0%",
+					"category": "Homework"
+				},
+				{
+					"name": "Lab: Circle of Cubes",
+					"date_due": "9/15",
+					"score": "20/20",
+					"worth": 20,
+					"impact": "0.0%",
+					"category": "Homework"
+				},
+				{
+					"name": "Lab: 3x3x3 Rubik's Cube",
+					"date_due": "9/15",
+					"score": "20/20",
+					"worth": 20,
+					"impact": "0.0%",
+					"category": "Homework"
+				},
+				{
+					"name": "HW - Game Design Basics",
+					"date_due": "9/11",
+					"score": "15/15",
+					"worth": 15,
+					"impact": "0.0%",
+					"category": "Homework"
+				}
+			]
+		},
+		{
+			"name": "US Government",
+			"grades": [
+				{
+					"category": "2023-2024",
+					"percent_grade": 95.0,
+					"fraction_grade": null,
+					"additional_info": null
+				},
+				{
+					"category": "Assessment",
+					"percent_grade": 92.8,
+					"fraction_grade": "283/305",
+					"additional_info": "60.0% of grade"
+				},
+				{
+					"category": "Homework",
+					"percent_grade": 100.0,
+					"fraction_grade": "100/100",
+					"additional_info": "20.0% of grade"
+				},
+				{
+					"category": "Participation",
+					"percent_grade": 98.7,
+					"fraction_grade": "222/225",
+					"additional_info": "10.0% of grade"
+				},
+				{
+					"category": "Mid-Year",
+					"percent_grade": null,
+					"fraction_grade": null,
+					"additional_info": "5.0% of grade"
+				},
+				{
+					"category": "Final",
+					"percent_grade": null,
+					"fraction_grade": null,
+					"additional_info": "5.0% of grade"
+				}
+			],
+			"assignments": [
+				{
+					"name": "Citizens United",
+					"date_due": "12/22",
+					"score": "/20",
+					"worth": 20,
+					"impact": "",
+					"category": "Homework"
+				},
+				{
+					"name": "Trifold Campaign Brochure & Essay",
+					"date_due": "12/11",
+					"score": "/100",
+					"worth": 100,
+					"impact": "",
+					"category": "Assessment"
+				},
+				{
+					"name": "Classroom Participation",
+					"date_due": "12/5",
+					"score": "18/20",
+					"worth": 20,
+					"impact": "-0.1%",
+					"category": "Participation"
+				},
+				{
+					"name": "Reagan 1980 Campaign Narrative",
+					"date_due": "12/1",
+					"score": "5/5",
+					"worth": 5,
+					"impact": "+0.1%",
+					"category": "Assessment"
+				},
+				{
+					"name": "2024 ELECTIONS: Presentation",
+					"date_due": "11/27",
+					"score": "29/30",
+					"worth": 30,
+					"impact": "+0.3%",
+					"category": "Assessment"
+				},
+				{
+					"name": "TEST #2",
+					"date_due": "11/22",
+					"score": "94/100",
+					"worth": 100,
+					"impact": "+0.4%",
+					"category": "Assessment"
+				},
+				{
+					"name": "Group Review",
+					"date_due": "11/20",
+					"score": "30/30",
+					"worth": 30,
+					"impact": "0.0%",
+					"category": "Participation"
+				},
+				{
+					"name": "Passing Legislation",
+					"date_due": "11/13",
+					"score": "20/20",
+					"worth": 20,
+					"impact": "0.0%",
+					"category": "Participation"
+				},
+				{
+					"name": "Racial Gerrymandering",
+					"date_due": "11/10",
+					"score": "10/10",
+					"worth": 10,
+					"impact": "",
+					"category": "Homework"
+				},
+				{
+					"name": "USA & Capitals MAP",
+					"date_due": "11/2",
+					"score": "99/100",
+					"worth": 100,
+					"impact": "0.0%",
+					"category": "Participation"
+				},
+				{
+					"name": "Federalism",
+					"date_due": "11/1",
+					"score": "10/10",
+					"worth": 10,
+					"impact": "",
+					"category": "Homework"
+				},
+				{
+					"name": "2024 ELECTIONS: Organizer",
+					"date_due": "10/23",
+					"score": "38/40",
+					"worth": 40,
+					"impact": "+0.2%",
+					"category": "Assessment"
+				},
+				{
+					"name": "2024 ELECTIONS: Slide",
+					"date_due": "10/23",
+					"score": "29/30",
+					"worth": 30,
+					"impact": "+0.3%",
+					"category": "Assessment"
+				},
+				{
+					"name": "Triangular Organizer - Checks & Balances",
+					"date_due": "10/20",
+					"score": "20/20",
+					"worth": 20,
+					"impact": "",
+					"category": "Homework"
+				},
+				{
+					"name": "3 Branches / 3 Articles",
+					"date_due": "10/17",
+					"score": "20/20",
+					"worth": 20,
+					"impact": "0.0%",
+					"category": "Participation"
+				},
+				{
+					"name": "TEST #1",
+					"date_due": "10/11",
+					"score": "88/100",
+					"worth": 100,
+					"impact": "-1.6%",
+					"category": "Assessment"
+				},
+				{
+					"name": "Liberal vs Conservative @ USA",
+					"date_due": "10/4",
+					"score": "10/10",
+					"worth": 10,
+					"impact": "",
+					"category": "Homework"
+				},
+				{
+					"name": "Locke's 2nd Treatise",
+					"date_due": "9/26",
+					"score": "10/10",
+					"worth": 10,
+					"impact": "",
+					"category": "Homework"
+				},
+				{
+					"name": "Enlightenment Questions",
+					"date_due": "9/21",
+					"score": "10/10",
+					"worth": 10,
+					"impact": "",
+					"category": "Homework"
+				},
+				{
+					"name": "5 Enlightenment Philosophers",
+					"date_due": "9/20",
+					"score": "10/10",
+					"worth": 10,
+					"impact": "",
+					"category": "Homework"
+				},
+				{
+					"name": "Superpower (comment)",
+					"date_due": "9/17",
+					"score": "5/5",
+					"worth": 5,
+					"impact": "0.0%",
+					"category": "Participation"
+				},
+				{
+					"name": "Superpower (statement)",
+					"date_due": "9/15",
+					"score": "10/10",
+					"worth": 10,
+					"impact": "0.0%",
+					"category": "Participation"
+				},
+				{
+					"name": "Democracy problems - 2 videos",
+					"date_due": "9/15",
+					"score": "10/10",
+					"worth": 10,
+					"impact": "",
+					"category": "Homework"
+				},
+				{
+					"name": "Federalist #10",
+					"date_due": "9/15",
+					"score": "10/10",
+					"worth": 10,
+					"impact": "",
+					"category": "Homework"
+				},
+				{
+					"name": "Class Contract",
+					"date_due": "9/14",
+					"score": "5/5",
+					"worth": 5,
+					"impact": "0.0%",
+					"category": "Participation"
+				},
+				{
+					"name": "Google Classroom JOINED",
+					"date_due": "9/12",
+					"score": "5/5",
+					"worth": 5,
+					"impact": "0.0%",
+					"category": "Participation"
+				},
+				{
+					"name": "Personal Information",
+					"date_due": "9/12",
+					"score": "5/5",
+					"worth": 5,
+					"impact": "0.0%",
+					"category": "Participation"
+				},
+				{
+					"name": "QUEEN ELIZABETH II",
+					"date_due": "9/8",
+					"score": "5/5",
+					"worth": 5,
+					"impact": "0.0%",
+					"category": "Participation"
+				},
+				{
+					"name": "TEST #3",
+					"date_due": "1/17",
+					"score": "/100",
+					"worth": 100,
+					"impact": "",
+					"category": "Assessment"
+				}
+			]
+		},
+		{
+			"name": "AP Calculus AB",
+			"grades": [
+				{
+					"category": "2023-2024",
+					"percent_grade": 91.8,
+					"fraction_grade": null,
+					"additional_info": "class average 84.7%"
+				},
+				{
+					"category": "Assessment",
+					"percent_grade": 89.0,
+					"fraction_grade": "178/200",
+					"additional_info": "60.0% of grade"
+				},
+				{
+					"category": "Homework",
+					"percent_grade": 94.8,
+					"fraction_grade": "216.2/228",
+					"additional_info": "15.0% of grade"
+				},
+				{
+					"category": "Participation",
+					"percent_grade": 100.0,
+					"fraction_grade": "148/148",
+					"additional_info": "15.0% of grade"
+				},
+				{
+					"category": "Midterm/Final",
+					"percent_grade": null,
+					"fraction_grade": null,
+					"additional_info": "10.0% of grade"
+				}
+			],
+			"assignments": [
+				{
+					"name": "Midyear_Wed. Jan.24th_10:15-11:45an",
+					"date_due": "1/24",
+					"score": "/50",
+					"worth": 50,
+					"impact": "",
+					"category": "Midterm/Final"
+				},
+				{
+					"name": "HW#61:Riemann Sums_Midpoint and Trap",
+					"date_due": "1/9",
+					"score": "/2",
+					"worth": 2,
+					"impact": "",
+					"category": "Homework"
+				},
+				{
+					"name": "Class Participation:Jan.2-5",
+					"date_due": "1/6",
+					"score": "8/8",
+					"worth": 8,
+					"impact": "",
+					"category": "Participation"
+				},
+				{
+					"name": "Exam#5",
+					"date_due": "1/5",
+					"score": "/50",
+					"worth": 50,
+					"impact": "",
+					"category": "Assessment"
+				},
+				{
+					"name": "HW#58a:AP Classroom_Exam#5 Practice Questions",
+					"date_due": "1/5",
+					"score": "/10",
+					"worth": 10,
+					"impact": "",
+					"category": "Homework"
+				},
+				{
+					"name": "HW#58b:HW Corrections#46-58",
+					"date_due": "1/5",
+					"score": "10/10",
+					"worth": 10,
+					"impact": "0.0%",
+					"category": "Homework"
+				},
+				{
+					"name": "HW#60:Albert.io_LRAM and RRAM",
+					"date_due": "1/4",
+					"score": "/2",
+					"worth": 2,
+					"impact": "",
+					"category": "Homework"
+				},
+				{
+					"name": "HW#59:Riemann Sum_LRAM and RRAM",
+					"date_due": "1/3",
+					"score": "2/2",
+					"worth": 2,
+					"impact": "0.0%",
+					"category": "Homework"
+				},
+				{
+					"name": "Class Participation:Dec.18-22",
+					"date_due": "12/23",
+					"score": "10/10",
+					"worth": 10,
+					"impact": "",
+					"category": "Participation"
+				},
+				{
+					"name": "HW#58:Initial Value Problems",
+					"date_due": "12/21",
+					"score": "2/2",
+					"worth": 2,
+					"impact": "0.0%",
+					"category": "Homework"
+				},
+				{
+					"name": "HW#57:Antiderivative_Undoing the Chain",
+					"date_due": "12/20",
+					"score": "2/2",
+					"worth": 2,
+					"impact": "0.0%",
+					"category": "Homework"
+				},
+				{
+					"name": "HW#56:Antiderivative",
+					"date_due": "12/19",
+					"score": "2/2",
+					"worth": 2,
+					"impact": "0.0%",
+					"category": "Homework"
+				},
+				{
+					"name": "HW#56a:Exam#4 Corrections",
+					"date_due": "12/19",
+					"score": "2/2",
+					"worth": 2,
+					"impact": "0.0%",
+					"category": "Homework"
+				},
+				{
+					"name": "HW#55:L'Hopital's Rule",
+					"date_due": "12/18",
+					"score": "2/2",
+					"worth": 2,
+					"impact": "0.0%",
+					"category": "Homework"
+				},
+				{
+					"name": "Class Participation:Dec.11-15",
+					"date_due": "12/16",
+					"score": "10/10",
+					"worth": 10,
+					"impact": "",
+					"category": "Participation"
+				},
+				{
+					"name": "HW#54:Optimization Part3",
+					"date_due": "12/15",
+					"score": "<i><bclass=\"red\">zero</b></i>/2",
+					"worth": 2,
+					"impact": "-0.1%",
+					"category": "Homework"
+				},
+				{
+					"name": "HW#53:Optimization Part2",
+					"date_due": "12/14",
+					"score": "2/2",
+					"worth": 2,
+					"impact": "0.0%",
+					"category": "Homework"
+				},
+				{
+					"name": "HW#52:Optimization Part1",
+					"date_due": "12/13",
+					"score": "2/2",
+					"worth": 2,
+					"impact": "0.0%",
+					"category": "Homework"
+				},
+				{
+					"name": "HW#51:AP Practice of f(x),f'(x),and f''(x)",
+					"date_due": "12/12",
+					"score": "1.5/2",
+					"worth": 2,
+					"impact": "0.0%",
+					"category": "Homework"
+				},
+				{
+					"name": "HW#50:Interpreting the Graph of f\"",
+					"date_due": "12/11",
+					"score": "2/2",
+					"worth": 2,
+					"impact": "0.0%",
+					"category": "Homework"
+				},
+				{
+					"name": "Class Participation:Dec.4-8",
+					"date_due": "12/9",
+					"score": "10/10",
+					"worth": 10,
+					"impact": "",
+					"category": "Participation"
+				},
+				{
+					"name": "HW#49:Interpreting the Graph of f'",
+					"date_due": "12/8",
+					"score": "2/2",
+					"worth": 2,
+					"impact": "0.0%",
+					"category": "Homework"
+				},
+				{
+					"name": "HW#48:Curve Sketching Part2",
+					"date_due": "12/7",
+					"score": "2/2",
+					"worth": 2,
+					"impact": "0.0%",
+					"category": "Homework"
+				},
+				{
+					"name": "HW#47:Curve Sketching Part1",
+					"date_due": "12/6",
+					"score": "2/2",
+					"worth": 2,
+					"impact": "0.0%",
+					"category": "Homework"
+				},
+				{
+					"name": "HW#46:Second Derivative Test",
+					"date_due": "12/5",
+					"score": "2/2",
+					"worth": 2,
+					"impact": "0.0%",
+					"category": "Homework"
+				},
+				{
+					"name": "Class Participation:Nov.27-Dec.1",
+					"date_due": "12/2",
+					"score": "10/10",
+					"worth": 10,
+					"impact": "",
+					"category": "Participation"
+				},
+				{
+					"name": "Exam#4",
+					"date_due": "12/1",
+					"score": "46.5/50",
+					"worth": 50,
+					"impact": "+0.9%",
+					"category": "Assessment"
+				},
+				{
+					"name": "HW#45b:HW Corrections#37-45",
+					"date_due": "12/1",
+					"score": "9/10",
+					"worth": 10,
+					"impact": "0.0%",
+					"category": "Homework"
+				},
+				{
+					"name": "HW#44b:AP Classroom_Exam#4 Practice Questions",
+					"date_due": "12/1",
+					"score": "10/10",
+					"worth": 10,
+					"impact": "0.0%",
+					"category": "Homework"
+				},
+				{
+					"name": "HW#44a:Exam#3 Corrections",
+					"date_due": "11/30",
+					"score": "2/2",
+					"worth": 2,
+					"impact": "0.0%",
+					"category": "Homework"
+				},
+				{
+					"name": "HW#45:Concavity and Inflection Points",
+					"date_due": "11/30",
+					"score": "2/2",
+					"worth": 2,
+					"impact": "0.0%",
+					"category": "Homework"
+				},
+				{
+					"name": "HW#44:Mean Value Theorem",
+					"date_due": "11/29",
+					"score": "1.5/2",
+					"worth": 2,
+					"impact": "0.0%",
+					"category": "Homework"
+				},
+				{
+					"name": "HW#45a:Albert.io_Critical Points and Extrema",
+					"date_due": "11/28",
+					"score": "9.2/10",
+					"worth": 10,
+					"impact": "0.0%",
+					"category": "Homework"
+				},
+				{
+					"name": "HW#43:Rolle's Thm",
+					"date_due": "11/28",
+					"score": "2/2",
+					"worth": 2,
+					"impact": "0.0%",
+					"category": "Homework"
+				},
+				{
+					"name": "Class Participation:Nov.20-22",
+					"date_due": "11/25",
+					"score": "6/6",
+					"worth": 6,
+					"impact": "",
+					"category": "Participation"
+				},
+				{
+					"name": "HW#42:First Derivative Test",
+					"date_due": "11/22",
+					"score": "1.5/2",
+					"worth": 2,
+					"impact": "0.0%",
+					"category": "Homework"
+				},
+				{
+					"name": "HW#41:Extreme Values",
+					"date_due": "11/21",
+					"score": "2/2",
+					"worth": 2,
+					"impact": "0.0%",
+					"category": "Homework"
+				},
+				{
+					"name": "HW#40:Linear Approximation",
+					"date_due": "11/20",
+					"score": "2/2",
+					"worth": 2,
+					"impact": "0.0%",
+					"category": "Homework"
+				},
+				{
+					"name": "Class Participation:Nov.13-17",
+					"date_due": "11/18",
+					"score": "10/10",
+					"worth": 10,
+					"impact": "",
+					"category": "Participation"
+				},
+				{
+					"name": "HW#39:Related Rates_Prism_Circle_Trig_PartIII",
+					"date_due": "11/16",
+					"score": "2/2",
+					"worth": 2,
+					"impact": "0.0%",
+					"category": "Homework"
+				},
+				{
+					"name": "HW#38:Related Rates_Cone_Sim Triangle_PartII",
+					"date_due": "11/15",
+					"score": "1.5/2",
+					"worth": 2,
+					"impact": "0.0%",
+					"category": "Homework"
+				},
+				{
+					"name": "HW#37:Related Rates_Pythagorean_PartI",
+					"date_due": "11/14",
+					"score": "2/2",
+					"worth": 2,
+					"impact": "0.0%",
+					"category": "Homework"
+				},
+				{
+					"name": "Class Participation:Nov.6-10",
+					"date_due": "11/11",
+					"score": "8/8",
+					"worth": 8,
+					"impact": "",
+					"category": "Participation"
+				},
+				{
+					"name": "Exam#3",
+					"date_due": "11/10",
+					"score": "45.5/50",
+					"worth": 50,
+					"impact": "+0.4%",
+					"category": "Assessment"
+				},
+				{
+					"name": "HW#36a:AP Classroom_Exam#3 Practice Questions",
+					"date_due": "11/10",
+					"score": "10/10",
+					"worth": 10,
+					"impact": "0.0%",
+					"category": "Homework"
+				},
+				{
+					"name": "HW#36b:HW Corrections #26-36",
+					"date_due": "11/10",
+					"score": "7/10",
+					"worth": 10,
+					"impact": "-0.2%",
+					"category": "Homework"
+				},
+				{
+					"name": "HW#36:Applying Chain Rule for Implicit III",
+					"date_due": "11/9",
+					"score": "2/2",
+					"worth": 2,
+					"impact": "0.0%",
+					"category": "Homework"
+				},
+				{
+					"name": "HW#35:Apply Rules for Implicit Diff II",
+					"date_due": "11/8",
+					"score": "2/2",
+					"worth": 2,
+					"impact": "0.0%",
+					"category": "Homework"
+				},
+				{
+					"name": "HW#34:Implicit Differentiation",
+					"date_due": "11/6",
+					"score": "2/2",
+					"worth": 2,
+					"impact": "0.0%",
+					"category": "Homework"
+				},
+				{
+					"name": "Class Participation:Oct.30-Nov.3",
+					"date_due": "11/4",
+					"score": "10/10",
+					"worth": 10,
+					"impact": "",
+					"category": "Participation"
+				},
+				{
+					"name": "HW#33:Tangent and Normal Lines",
+					"date_due": "11/3",
+					"score": "2/2",
+					"worth": 2,
+					"impact": "0.0%",
+					"category": "Homework"
+				},
+				{
+					"name": "HW#32:Derivatives of Inverse Trig Functions",
+					"date_due": "11/2",
+					"score": "1.5/2",
+					"worth": 2,
+					"impact": "0.0%",
+					"category": "Homework"
+				},
+				{
+					"name": "HW#34a:Exam#2 Corrections",
+					"date_due": "11/2",
+					"score": "2/2",
+					"worth": 2,
+					"impact": "0.0%",
+					"category": "Homework"
+				},
+				{
+					"name": "HW#31:Derivative of Inverse Function at a Point",
+					"date_due": "11/1",
+					"score": "2/2",
+					"worth": 2,
+					"impact": "0.0%",
+					"category": "Homework"
+				},
+				{
+					"name": "HW#30:Derivatives of Inverse Functions",
+					"date_due": "10/31",
+					"score": "1.5/2",
+					"worth": 2,
+					"impact": "0.0%",
+					"category": "Homework"
+				},
+				{
+					"name": "Class Participation: Oct.24-27",
+					"date_due": "10/28",
+					"score": "10/10",
+					"worth": 10,
+					"impact": "",
+					"category": "Participation"
+				},
+				{
+					"name": "HW#29:Recognizing a Limit as a Derivative",
+					"date_due": "10/27",
+					"score": "2/2",
+					"worth": 2,
+					"impact": "0.0%",
+					"category": "Homework"
+				},
+				{
+					"name": "HW#28:Meaning of the Derivative",
+					"date_due": "10/26",
+					"score": "1.5/2",
+					"worth": 2,
+					"impact": "0.0%",
+					"category": "Homework"
+				},
+				{
+					"name": "HW#27:Higher Order Derivatives",
+					"date_due": "10/25",
+					"score": "2/2",
+					"worth": 2,
+					"impact": "0.0%",
+					"category": "Homework"
+				},
+				{
+					"name": "HW#26:Derivatives of Logarithms",
+					"date_due": "10/24",
+					"score": "2/2",
+					"worth": 2,
+					"impact": "0.0%",
+					"category": "Homework"
+				},
+				{
+					"name": "Class Participation:Oct.16-20",
+					"date_due": "10/21",
+					"score": "10/10",
+					"worth": 10,
+					"impact": "",
+					"category": "Participation"
+				},
+				{
+					"name": "Exam#2",
+					"date_due": "10/20",
+					"score": "42/50",
+					"worth": 50,
+					"impact": "-1.1%",
+					"category": "Assessment"
+				},
+				{
+					"name": "HW#25a:AP Classroom_Exam#2 Practice Questions",
+					"date_due": "10/20",
+					"score": "10/10",
+					"worth": 10,
+					"impact": "0.0%",
+					"category": "Homework"
+				},
+				{
+					"name": "HW#26a:HW Corrections#14-25",
+					"date_due": "10/20",
+					"score": "9/10",
+					"worth": 10,
+					"impact": "0.0%",
+					"category": "Homework"
+				},
+				{
+					"name": "HW#25:Derivatives of Exponentials",
+					"date_due": "10/19",
+					"score": "2/2",
+					"worth": 2,
+					"impact": "0.0%",
+					"category": "Homework"
+				},
+				{
+					"name": "HW#24:Chain Rule_Part II",
+					"date_due": "10/18",
+					"score": "2/2",
+					"worth": 2,
+					"impact": "0.0%",
+					"category": "Homework"
+				},
+				{
+					"name": "HW#23:Chain Rule_Part I",
+					"date_due": "10/17",
+					"score": "2/2",
+					"worth": 2,
+					"impact": "0.0%",
+					"category": "Homework"
+				},
+				{
+					"name": "HW#25b:Exam#1 Corrections",
+					"date_due": "10/17",
+					"score": "2/2",
+					"worth": 2,
+					"impact": "0.0%",
+					"category": "Homework"
+				},
+				{
+					"name": "HW#22:Quotient Rule",
+					"date_due": "10/16",
+					"score": "2/2",
+					"worth": 2,
+					"impact": "0.0%",
+					"category": "Homework"
+				},
+				{
+					"name": "Class Participation:Oct.10-13",
+					"date_due": "10/14",
+					"score": "8/8",
+					"worth": 8,
+					"impact": "",
+					"category": "Participation"
+				},
+				{
+					"name": "HW#21:Product Rule",
+					"date_due": "10/13",
+					"score": "2/2",
+					"worth": 2,
+					"impact": "0.0%",
+					"category": "Homework"
+				},
+				{
+					"name": "HW#20:Derivatives of Piecewise Functions",
+					"date_due": "10/12",
+					"score": "2/2",
+					"worth": 2,
+					"impact": "0.0%",
+					"category": "Homework"
+				},
+				{
+					"name": "HW#19:Derivatives Using Technology",
+					"date_due": "10/11",
+					"score": "2/2",
+					"worth": 2,
+					"impact": "0.0%",
+					"category": "Homework"
+				},
+				{
+					"name": "HW#18:Continuity and Differentiability",
+					"date_due": "10/10",
+					"score": "2/2",
+					"worth": 2,
+					"impact": "0.0%",
+					"category": "Homework"
+				},
+				{
+					"name": "Class Participation:Oct.2-6",
+					"date_due": "10/7",
+					"score": "10/10",
+					"worth": 10,
+					"impact": "",
+					"category": "Participation"
+				},
+				{
+					"name": "HW#17:Constant, Sum, and Power Rules",
+					"date_due": "10/6",
+					"score": "2/2",
+					"worth": 2,
+					"impact": "0.0%",
+					"category": "Homework"
+				},
+				{
+					"name": "HW#16:Definition of Derivative_Limit Definition",
+					"date_due": "10/5",
+					"score": "2/2",
+					"worth": 2,
+					"impact": "0.0%",
+					"category": "Homework"
+				},
+				{
+					"name": "HW#15:Derivative at a Point",
+					"date_due": "10/4",
+					"score": "2/2",
+					"worth": 2,
+					"impact": "0.0%",
+					"category": "Homework"
+				},
+				{
+					"name": "HW#14:Trig Limits",
+					"date_due": "10/3",
+					"score": "2/2",
+					"worth": 2,
+					"impact": "0.0%",
+					"category": "Homework"
+				},
+				{
+					"name": "Class Participation:Sept.26-29",
+					"date_due": "9/30",
+					"score": "8/8",
+					"worth": 8,
+					"impact": "",
+					"category": "Participation"
+				},
+				{
+					"name": "Exam#1",
+					"date_due": "9/29",
+					"score": "44/50",
+					"worth": 50,
+					"impact": "-0.2%",
+					"category": "Assessment"
+				},
+				{
+					"name": "HW#13a:AP Classroom Exam#1 Practice Questions",
+					"date_due": "9/29",
+					"score": "10/10",
+					"worth": 10,
+					"impact": "0.0%",
+					"category": "Homework"
+				},
+				{
+					"name": "HW#13b:HW Corrections_#1-13",
+					"date_due": "9/29",
+					"score": "10/10",
+					"worth": 10,
+					"impact": "0.0%",
+					"category": "Homework"
+				},
+				{
+					"name": "HW#13:Squeeze Theroem",
+					"date_due": "9/28",
+					"score": "2/2",
+					"worth": 2,
+					"impact": "0.0%",
+					"category": "Homework"
+				},
+				{
+					"name": "HW#12:Intermediate Value Thm",
+					"date_due": "9/27",
+					"score": "2/2",
+					"worth": 2,
+					"impact": "0.0%",
+					"category": "Homework"
+				},
+				{
+					"name": "HW#11:Continuity and Types of Discontinuities",
+					"date_due": "9/26",
+					"score": "2/2",
+					"worth": 2,
+					"impact": "0.0%",
+					"category": "Homework"
+				},
+				{
+					"name": "Class Participation:Sept.18-22",
+					"date_due": "9/23",
+					"score": "10/10",
+					"worth": 10,
+					"impact": "",
+					"category": "Participation"
+				},
+				{
+					"name": "HW#10:Limits of Composition",
+					"date_due": "9/22",
+					"score": "2/2",
+					"worth": 2,
+					"impact": "0.0%",
+					"category": "Homework"
+				},
+				{
+					"name": "HW#9:Limits at Infinity",
+					"date_due": "9/21",
+					"score": "2/2",
+					"worth": 2,
+					"impact": "0.0%",
+					"category": "Homework"
+				},
+				{
+					"name": "HW#8:Limits Analytically",
+					"date_due": "9/20",
+					"score": "2/2",
+					"worth": 2,
+					"impact": "0.0%",
+					"category": "Homework"
+				},
+				{
+					"name": "HW#7:Limits Algebraically",
+					"date_due": "9/19",
+					"score": "1.5/2",
+					"worth": 2,
+					"impact": "0.0%",
+					"category": "Homework"
+				},
+				{
+					"name": "HW#6:Limit Fails to Exist",
+					"date_due": "9/18",
+					"score": "2/2",
+					"worth": 2,
+					"impact": "0.0%",
+					"category": "Homework"
+				},
+				{
+					"name": "Class Participation:Sept.11-15",
+					"date_due": "9/16",
+					"score": "10/10",
+					"worth": 10,
+					"impact": "",
+					"category": "Participation"
+				},
+				{
+					"name": "HW#5:Limits Graphically",
+					"date_due": "9/15",
+					"score": "2/2",
+					"worth": 2,
+					"impact": "0.0%",
+					"category": "Homework"
+				},
+				{
+					"name": "HW#4:Limits Numerically",
+					"date_due": "9/14",
+					"score": "2/2",
+					"worth": 2,
+					"impact": "0.0%",
+					"category": "Homework"
+				},
+				{
+					"name": "HW#3:Unit Circle",
+					"date_due": "9/13",
+					"score": "2/2",
+					"worth": 2,
+					"impact": "0.0%",
+					"category": "Homework"
+				},
+				{
+					"name": "HW#2:Are you ready_Function",
+					"date_due": "9/12",
+					"score": "2/2",
+					"worth": 2,
+					"impact": "0.0%",
+					"category": "Homework"
+				},
+				{
+					"name": "HW#1:Are you ready_Algebra",
+					"date_due": "9/11",
+					"score": "2/2",
+					"worth": 2,
+					"impact": "0.0%",
+					"category": "Homework"
+				},
+				{
+					"name": "HW#00:Google Form/Supplies/Join AP/Course Expectaion",
+					"date_due": "9/8",
+					"score": "2/2",
+					"worth": 2,
+					"impact": "0.0%",
+					"category": "Homework"
+				}
+			]
+		},
+		{
+			"name": "Animal Behavior",
+			"grades": [
+				{
+					"category": "2023-2024",
+					"percent_grade": 84.0,
+					"fraction_grade": null,
+					"additional_info": null
+				},
+				{
+					"category": "Assessment",
+					"percent_grade": 70.0,
+					"fraction_grade": "35/50",
+					"additional_info": "50.0% of grade"
+				},
+				{
+					"category": "Lab Assignments",
+					"percent_grade": 98.9,
+					"fraction_grade": "89/90",
+					"additional_info": "25.0% of grade"
+				},
+				{
+					"category": "HW/Classwork/Participation",
+					"percent_grade": 97.1,
+					"fraction_grade": "199/205",
+					"additional_info": "25.0% of grade"
+				}
+			],
+			"assignments": [
+				{
+					"name": "Lab: Pigeonetics",
+					"date_due": "1/4",
+					"score": "10/10",
+					"worth": 10,
+					"impact": "0.0%",
+					"category": "Lab Assignments"
+				},
+				{
+					"name": "CW: My Octopus Teacher",
+					"date_due": "12/21",
+					"score": "10/10",
+					"worth": 10,
+					"impact": "0.0%",
+					"category": "HW/Classwork/Participation"
+				},
+				{
+					"name": "Parasites and behavior Article Summary (Assessment)",
+					"date_due": "12/21",
+					"score": "/20",
+					"worth": 20,
+					"impact": "",
+					"category": "Assessment"
+				},
+				{
+					"name": "CW 12/18: Octopus Article Abstract Summary",
+					"date_due": "12/18",
+					"score": "10/10",
+					"worth": 10,
+					"impact": "0.0%",
+					"category": "HW/Classwork/Participation"
+				},
+				{
+					"name": "Article choice: parasites and behavior project",
+					"date_due": "12/14",
+					"score": "10/10",
+					"worth": 10,
+					"impact": "0.0%",
+					"category": "HW/Classwork/Participation"
+				},
+				{
+					"name": "CW 12/8: Jewel Wasp Reading",
+					"date_due": "12/11",
+					"score": "<i><bclass=\"red\">missing</b></i>/10",
+					"worth": 10,
+					"impact": "-0.6%",
+					"category": "HW/Classwork/Participation"
+				},
+				{
+					"name": "Parasite/host manipulation posters + notes",
+					"date_due": "12/7",
+					"score": "10/10",
+					"worth": 10,
+					"impact": "0.0%",
+					"category": "Lab Assignments"
+				},
+				{
+					"name": "Lab: How Animals Use Sound to Communicate",
+					"date_due": "11/30",
+					"score": "10/10",
+					"worth": 10,
+					"impact": "0.0%",
+					"category": "Lab Assignments"
+				},
+				{
+					"name": "Fall Check-in Survey",
+					"date_due": "11/29",
+					"score": "5/5",
+					"worth": 5,
+					"impact": "0.0%",
+					"category": "HW/Classwork/Participation"
+				},
+				{
+					"name": "WS: Studying Elephant Communication",
+					"date_due": "11/27",
+					"score": "10/10",
+					"worth": 10,
+					"impact": "0.0%",
+					"category": "HW/Classwork/Participation"
+				},
+				{
+					"name": "WS: Alex the Parrot",
+					"date_due": "11/27",
+					"score": "10/10",
+					"worth": 10,
+					"impact": "0.0%",
+					"category": "HW/Classwork/Participation"
+				},
+				{
+					"name": "Reflection: Zoo Vet Center",
+					"date_due": "11/17",
+					"score": "5/5",
+					"worth": 5,
+					"impact": "0.0%",
+					"category": "Lab Assignments"
+				},
+				{
+					"name": "Sensory Bio Part 2: Creative Project",
+					"date_due": "11/13",
+					"score": "12/25",
+					"worth": 25,
+					"impact": "-11.0%",
+					"category": "Assessment"
+				},
+				{
+					"name": "Guest Speaker Reflection 11/3: Zarin Machanda",
+					"date_due": "11/7",
+					"score": "4/5",
+					"worth": 5,
+					"impact": "-0.1%",
+					"category": "HW/Classwork/Participation"
+				},
+				{
+					"name": "Sensory Bio Project Part 1: Moleunculus (due BEFORE class)",
+					"date_due": "11/6",
+					"score": "8/10",
+					"worth": 10,
+					"impact": "+1.3%",
+					"category": "Assessment"
+				},
+				{
+					"name": "Basic Info for Sensory Bio Project",
+					"date_due": "11/2",
+					"score": "10/10",
+					"worth": 10,
+					"impact": "0.0%",
+					"category": "HW/Classwork/Participation"
+				},
+				{
+					"name": "Survey: Animal Preferences for Sensory Biology Unit",
+					"date_due": "10/27",
+					"score": "5/5",
+					"worth": 5,
+					"impact": "0.0%",
+					"category": "HW/Classwork/Participation"
+				},
+				{
+					"name": "CW 10/25: Sensory Bio Reading + Qs",
+					"date_due": "10/27",
+					"score": "10/10",
+					"worth": 10,
+					"impact": "0.0%",
+					"category": "HW/Classwork/Participation"
+				},
+				{
+					"name": "Lab: Sensory Homunculus",
+					"date_due": "10/26",
+					"score": "10/10",
+					"worth": 10,
+					"impact": "0.0%",
+					"category": "Lab Assignments"
+				},
+				{
+					"name": "Absence 10/23: Dog Magnetoreception",
+					"date_due": "10/23",
+					"score": "10/10",
+					"worth": 10,
+					"impact": "0.0%",
+					"category": "HW/Classwork/Participation"
+				},
+				{
+					"name": "Absence 10/20: Sea Turtle Sex Determination",
+					"date_due": "10/20",
+					"score": "10/10",
+					"worth": 10,
+					"impact": "0.0%",
+					"category": "HW/Classwork/Participation"
+				},
+				{
+					"name": "CW 10/18: Survival of the friendliest video questions",
+					"date_due": "10/19",
+					"score": "10/10",
+					"worth": 10,
+					"impact": "0.0%",
+					"category": "HW/Classwork/Participation"
+				},
+				{
+					"name": "Lab: Citizen Science with Zooniverse",
+					"date_due": "10/19",
+					"score": "10/10",
+					"worth": 10,
+					"impact": "0.0%",
+					"category": "Lab Assignments"
+				},
+				{
+					"name": "CW 10/13: Dog/wolf reading and questions (due before class …",
+					"date_due": "10/18",
+					"score": "10/10",
+					"worth": 10,
+					"impact": "0.0%",
+					"category": "HW/Classwork/Participation"
+				},
+				{
+					"name": "Guest Speaker Reflection 10/16: Bronx Zoo Vet Dr. Jean Pare",
+					"date_due": "10/17",
+					"score": "5/5",
+					"worth": 5,
+					"impact": "0.0%",
+					"category": "HW/Classwork/Participation"
+				},
+				{
+					"name": "Lab Questions: Origami Bird Lab",
+					"date_due": "10/13",
+					"score": "9/10",
+					"worth": 10,
+					"impact": "-0.3%",
+					"category": "Lab Assignments"
+				},
+				{
+					"name": "Absence 10/6: Your Inner Wolf",
+					"date_due": "10/10",
+					"score": "10/10",
+					"worth": 10,
+					"impact": "0.0%",
+					"category": "HW/Classwork/Participation"
+				},
+				{
+					"name": "Zoo 10/5: Budgie Landing Reflection",
+					"date_due": "10/6",
+					"score": "5/5",
+					"worth": 5,
+					"impact": "0.0%",
+					"category": "Lab Assignments"
+				},
+				{
+					"name": "ASSESSMENT: Abstract summary",
+					"date_due": "10/5",
+					"score": "15/15",
+					"worth": 15,
+					"impact": "+6.4%",
+					"category": "Assessment"
+				},
+				{
+					"name": "Lab 9/28: Measuring meerkat behavior",
+					"date_due": "9/28",
+					"score": "5/5",
+					"worth": 5,
+					"impact": "0.0%",
+					"category": "Lab Assignments"
+				},
+				{
+					"name": "Lab: BioBlitz Species List",
+					"date_due": "9/27",
+					"score": "5/5",
+					"worth": 5,
+					"impact": "0.0%",
+					"category": "Lab Assignments"
+				},
+				{
+					"name": "Live Animal Ethograms",
+					"date_due": "9/27",
+					"score": "5/5",
+					"worth": 5,
+					"impact": "0.0%",
+					"category": "Lab Assignments"
+				},
+				{
+					"name": "CW: Citizen Science with eBird",
+					"date_due": "9/22",
+					"score": "10/10",
+					"worth": 10,
+					"impact": "0.0%",
+					"category": "HW/Classwork/Participation"
+				},
+				{
+					"name": "Form: Emergency Contact Info for Zoo Trips",
+					"date_due": "9/20",
+					"score": "10/10",
+					"worth": 10,
+					"impact": "0.0%",
+					"category": "HW/Classwork/Participation"
+				},
+				{
+					"name": "Zoo Permission Slip",
+					"date_due": "9/20",
+					"score": "10/10",
+					"worth": 10,
+					"impact": "0.0%",
+					"category": "HW/Classwork/Participation"
+				},
+				{
+					"name": "HW: Can ants count?",
+					"date_due": "9/20",
+					"score": "5/5",
+					"worth": 5,
+					"impact": "0.0%",
+					"category": "HW/Classwork/Participation"
+				},
+				{
+					"name": "Lab: Guilty Dog Case Study Part 3",
+					"date_due": "9/15",
+					"score": "5/5",
+					"worth": 5,
+					"impact": "0.0%",
+					"category": "Lab Assignments"
+				},
+				{
+					"name": "CW: Snowball Part 1 Worksheet",
+					"date_due": "9/14",
+					"score": "10/10",
+					"worth": 10,
+					"impact": "0.0%",
+					"category": "HW/Classwork/Participation"
+				},
+				{
+					"name": "HW: Intro Slide",
+					"date_due": "9/11",
+					"score": "5/5",
+					"worth": 5,
+					"impact": "0.0%",
+					"category": "HW/Classwork/Participation"
+				},
+				{
+					"name": "HW: Intro Survey",
+					"date_due": "9/8",
+					"score": "5/5",
+					"worth": 5,
+					"impact": "0.0%",
+					"category": "HW/Classwork/Participation"
+				}
+			]
+		},
+		{
+			"name": "Phys Ed",
+			"grades": [
+				{
+					"category": "2023-2024",
+					"percent_grade": 99.6,
+					"fraction_grade": null,
+					"additional_info": null
+				},
+				{
+					"category": "Assessment",
+					"percent_grade": 100.0,
+					"fraction_grade": "100/100",
+					"additional_info": "25.0% of grade"
+				},
+				{
+					"category": "Participation, Preparationn",
+					"percent_grade": 99.5,
+					"fraction_grade": "3780/3800",
+					"additional_info": "75.0% of grade"
+				}
+			],
+			"assignments": [
+				{
+					"name": "09/13/23 Unit 1 Start",
+					"date_due": "",
+					"score": "100/100",
+					"worth": 100,
+					"impact": "0.0%",
+					"category": "Participation, Preparationn"
+				},
+				{
+					"name": "09/15/23",
+					"date_due": "",
+					"score": "100/100",
+					"worth": 100,
+					"impact": "0.0%",
+					"category": "Participation, Preparationn"
+				},
+				{
+					"name": "09/19/23",
+					"date_due": "",
+					"score": "/100",
+					"worth": 100,
+					"impact": "0.0%",
+					"category": "Participation, Preparationn"
+				},
+				{
+					"name": "09/20/23",
+					"date_due": "",
+					"score": "100/100",
+					"worth": 100,
+					"impact": "0.0%",
+					"category": "Participation, Preparationn"
+				},
+				{
+					"name": "09/22/23",
+					"date_due": "",
+					"score": "100/100",
+					"worth": 100,
+					"impact": "0.0%",
+					"category": "Participation, Preparationn"
+				},
+				{
+					"name": "09/26/23",
+					"date_due": "",
+					"score": "100/100",
+					"worth": 100,
+					"impact": "0.0%",
+					"category": "Participation, Preparationn"
+				},
+				{
+					"name": "09/27/23",
+					"date_due": "",
+					"score": "100/100",
+					"worth": 100,
+					"impact": "0.0%",
+					"category": "Participation, Preparationn"
+				},
+				{
+					"name": "09/29/23",
+					"date_due": "",
+					"score": "/100",
+					"worth": 100,
+					"impact": "",
+					"category": "Participation, Preparationn"
+				},
+				{
+					"name": "10/03/23",
+					"date_due": "",
+					"score": "100/100",
+					"worth": 100,
+					"impact": "0.0%",
+					"category": "Participation, Preparationn"
+				},
+				{
+					"name": "3 v 3 Basketball Assessment",
+					"date_due": "",
+					"score": "100/100",
+					"worth": 100,
+					"impact": "+0.1%",
+					"category": "Assessment"
+				},
+				{
+					"name": "10/04/23",
+					"date_due": "",
+					"score": "100/100",
+					"worth": 100,
+					"impact": "0.0%",
+					"category": "Participation, Preparationn"
+				},
+				{
+					"name": "10/06/23",
+					"date_due": "",
+					"score": "/100",
+					"worth": 100,
+					"impact": "",
+					"category": "Participation, Preparationn"
+				},
+				{
+					"name": "10/10/23",
+					"date_due": "",
+					"score": "100/100",
+					"worth": 100,
+					"impact": "0.0%",
+					"category": "Participation, Preparationn"
+				},
+				{
+					"name": "10/11/23",
+					"date_due": "",
+					"score": "100/100",
+					"worth": 100,
+					"impact": "0.0%",
+					"category": "Participation, Preparationn"
+				},
+				{
+					"name": "10/13/23",
+					"date_due": "",
+					"score": "100/100",
+					"worth": 100,
+					"impact": "0.0%",
+					"category": "Participation, Preparationn"
+				},
+				{
+					"name": "10/17/23",
+					"date_due": "",
+					"score": "100/100",
+					"worth": 100,
+					"impact": "0.0%",
+					"category": "Participation, Preparationn"
+				},
+				{
+					"name": "10/18/23",
+					"date_due": "",
+					"score": "100/100",
+					"worth": 100,
+					"impact": "0.0%",
+					"category": "Participation, Preparationn"
+				},
+				{
+					"name": "10/20/23",
+					"date_due": "",
+					"score": "100/100",
+					"worth": 100,
+					"impact": "0.0%",
+					"category": "Participation, Preparationn"
+				},
+				{
+					"name": "10/24/23",
+					"date_due": "",
+					"score": "100/100",
+					"worth": 100,
+					"impact": "0.0%",
+					"category": "Participation, Preparationn"
+				},
+				{
+					"name": "10/25/23",
+					"date_due": "",
+					"score": "100/100",
+					"worth": 100,
+					"impact": "0.0%",
+					"category": "Participation, Preparationn"
+				},
+				{
+					"name": "10/26/23",
+					"date_due": "",
+					"score": "/100",
+					"worth": 100,
+					"impact": "",
+					"category": "Participation, Preparationn"
+				},
+				{
+					"name": "10/31/23",
+					"date_due": "",
+					"score": "100/100",
+					"worth": 100,
+					"impact": "0.0%",
+					"category": "Participation, Preparationn"
+				},
+				{
+					"name": "11/01/23",
+					"date_due": "",
+					"score": "/100",
+					"worth": 100,
+					"impact": "",
+					"category": "Participation, Preparationn"
+				},
+				{
+					"name": "11/03/23",
+					"date_due": "",
+					"score": "100/100",
+					"worth": 100,
+					"impact": "0.0%",
+					"category": "Participation, Preparationn"
+				},
+				{
+					"name": "11/08/23",
+					"date_due": "",
+					"score": "100/100",
+					"worth": 100,
+					"impact": "0.0%",
+					"category": "Participation, Preparationn"
+				},
+				{
+					"name": "11/10/23",
+					"date_due": "",
+					"score": "100/100",
+					"worth": 100,
+					"impact": "0.0%",
+					"category": "Participation, Preparationn"
+				},
+				{
+					"name": "Unit 3- Hand-Eye Coordination",
+					"date_due": "",
+					"score": "/100",
+					"worth": 100,
+					"impact": "",
+					"category": "Assessment"
+				},
+				{
+					"name": "11/14/23-Fitnessgram Start",
+					"date_due": "",
+					"score": "80/100",
+					"worth": 100,
+					"impact": "-0.4%",
+					"category": "Participation, Preparationn"
+				},
+				{
+					"name": "11/15/23",
+					"date_due": "",
+					"score": "100/100",
+					"worth": 100,
+					"impact": "0.0%",
+					"category": "Participation, Preparationn"
+				},
+				{
+					"name": "11/17/23",
+					"date_due": "",
+					"score": "100/100",
+					"worth": 100,
+					"impact": "0.0%",
+					"category": "Participation, Preparationn"
+				},
+				{
+					"name": "11/21/23-Height and weight",
+					"date_due": "",
+					"score": "/100",
+					"worth": 100,
+					"impact": "",
+					"category": "Participation, Preparationn"
+				},
+				{
+					"name": "11/22/23-Height and weight",
+					"date_due": "",
+					"score": "/100",
+					"worth": 100,
+					"impact": "",
+					"category": "Participation, Preparationn"
+				},
+				{
+					"name": "11/28/23",
+					"date_due": "",
+					"score": "100/100",
+					"worth": 100,
+					"impact": "0.0%",
+					"category": "Participation, Preparationn"
+				},
+				{
+					"name": "11/29/23",
+					"date_due": "",
+					"score": "100/100",
+					"worth": 100,
+					"impact": "0.0%",
+					"category": "Participation, Preparationn"
+				},
+				{
+					"name": "12/01/23",
+					"date_due": "",
+					"score": "100/100",
+					"worth": 100,
+					"impact": "0.0%",
+					"category": "Participation, Preparationn"
+				},
+				{
+					"name": "12/05/23",
+					"date_due": "",
+					"score": "100/100",
+					"worth": 100,
+					"impact": "0.0%",
+					"category": "Participation, Preparationn"
+				},
+				{
+					"name": "12/06/23- Climate Action Day",
+					"date_due": "",
+					"score": "100/100",
+					"worth": 100,
+					"impact": "0.0%",
+					"category": "Participation, Preparationn"
+				},
+				{
+					"name": "12/08/23",
+					"date_due": "",
+					"score": "100/100",
+					"worth": 100,
+					"impact": "0.0%",
+					"category": "Participation, Preparationn"
+				},
+				{
+					"name": "12/12/23",
+					"date_due": "",
+					"score": "100/100",
+					"worth": 100,
+					"impact": "0.0%",
+					"category": "Participation, Preparationn"
+				},
+				{
+					"name": "12/13/23",
+					"date_due": "",
+					"score": "100/100",
+					"worth": 100,
+					"impact": "0.0%",
+					"category": "Participation, Preparationn"
+				},
+				{
+					"name": "12/15/23",
+					"date_due": "",
+					"score": "100/100",
+					"worth": 100,
+					"impact": "0.0%",
+					"category": "Participation, Preparationn"
+				},
+				{
+					"name": "12/19/23",
+					"date_due": "",
+					"score": "100/100",
+					"worth": 100,
+					"impact": "0.0%",
+					"category": "Participation, Preparationn"
+				},
+				{
+					"name": "12/20/23",
+					"date_due": "",
+					"score": "100/100",
+					"worth": 100,
+					"impact": "0.0%",
+					"category": "Participation, Preparationn"
+				},
+				{
+					"name": "01/02/24",
+					"date_due": "",
+					"score": "100/100",
+					"worth": 100,
+					"impact": "0.0%",
+					"category": "Participation, Preparationn"
+				},
+				{
+					"name": "01/03/24",
+					"date_due": "",
+					"score": "100/100",
+					"worth": 100,
+					"impact": "0.0%",
+					"category": "Participation, Preparationn"
+				},
+				{
+					"name": "01/05/24",
+					"date_due": "",
+					"score": "100/100",
+					"worth": 100,
+					"impact": "0.0%",
+					"category": "Participation, Preparationn"
+				}
+			]
+		}
+	]
+}
