@@ -17,7 +17,3 @@ class Course {
   Course(this.name, this.teacher, this.assignments, catMap)
       : cats = JsonDecoder().convert(catMap);
 }
-
-class CourseDetails {}
-
-class CourseTile {}
