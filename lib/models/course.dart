@@ -4,7 +4,7 @@ import 'package:jupiter_frontend/models/assignment.dart';
 
 import 'dart:convert';
 
-import 'package:jupiter_frontend/widgets/assigment.dart';
+import 'package:jupiter_frontend/models/assigbment.dart';
 
 class Course {
   List<Assignment> assignments;
