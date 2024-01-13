@@ -45,6 +45,8 @@ dependencies:
   lottie: ^3.0.0
   http: ^1.1.2
   flutter_hsvcolor_picker: ^1.5.0
+  gap: ^3.0.1
+  path: ^1.8.3
 
 dev_dependencies:
   flutter_test:
@@ -71,6 +73,7 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/userdata.json
+    - assets/images/jupiter-transparent.png
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 

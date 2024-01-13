@@ -3,8 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:jupiter_frontend/models/assignment.dart';
 
 import 'dart:convert';
-
-import 'package:jupiter_frontend/models/assigbment.dart';
+import 'package:jupiter_frontend/models/assignment.dart';
 
 class Course {
   List<Assignment> assignments;

@@ -22,4 +22,8 @@ class User {
     file.writeAsStringSync(JsonEncoder().convert({"username": username, "password": password}));
     
   }
+
+  get getUsername => username;
+  get getPassword => password;
+
 }
