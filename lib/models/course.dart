@@ -24,22 +24,4 @@ class Course {
     }
   }
   // wip
-  // sort grades by category, add them up, divide by weight, return all of the categories added together
-  double getGrade() {
-    List<double> catGrades = [];
-    for (var cat in cats.keys) {
-      double catGrade = 0;
-      double? catWeight = cats[cat];
-
-      // horribly inefficient
-
-      for (var assignment in assignments) {
-        if (assignment.cat == cat) {
-          catGrade += assignment.getPercent();
-        }
-      }
-      catGrades.add(catGrade / ((catWeight ?? 100) / 6));
-    }
-    return catGrades.reduce((a, b) => a + b);
-  }
 }

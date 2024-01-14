@@ -7,6 +7,7 @@ import 'package:jupiter_frontend/pages/loading_screen.dart';
 import 'package:jupiter_frontend/services/api_helper.dart';
 
 import 'package:jupiter_frontend/models/user.dart';
+import 'package:jupiter_frontend/services/sqlite_helper.dart';
 import 'package:lottie/lottie.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -49,9 +50,7 @@ class _LoginScreenState extends State<LoginScreen> {
       appBar: AppBar(
         title: Text(
           "Login Page",
-          style: TextStyle(
-            color: Theme.of(context).colorScheme.onPrimary
-          ),
+          style: TextStyle(color: Theme.of(context).colorScheme.onPrimary),
         ),
         backgroundColor: Theme.of(context).colorScheme.primary,
       ),
@@ -72,10 +71,10 @@ class _LoginScreenState extends State<LoginScreen> {
               padding: EdgeInsets.symmetric(horizontal: 15),
               child: TextField(
                 decoration: InputDecoration(
-                  errorText: _invalidOsis ? osisError : null,
-                  border: OutlineInputBorder(),
-                  labelText: 'Osis',
-                  hintText: 'Your 9-digit osis number.'),
+                    errorText: _invalidOsis ? osisError : null,
+                    border: OutlineInputBorder(),
+                    labelText: 'Osis',
+                    hintText: 'Your 9-digit osis number.'),
                 controller: _osisController,
               ),
             ),
@@ -85,10 +84,10 @@ class _LoginScreenState extends State<LoginScreen> {
               child: TextField(
                 obscureText: true,
                 decoration: InputDecoration(
-                  errorText: _wrongPassword ? "Incorrect password." : null,
-                  border: OutlineInputBorder(),
-                  labelText: 'Password',
-                  hintText: 'Your jupiter password.'),
+                    errorText: _wrongPassword ? "Incorrect password." : null,
+                    border: OutlineInputBorder(),
+                    labelText: 'Password',
+                    hintText: 'Your jupiter password.'),
                 controller: _passwordController,
               ),
             ),
@@ -125,12 +124,10 @@ class _LoginScreenState extends State<LoginScreen> {
                 onPressed: () {
                   // validation layers
                   if (_osisController.text.length != 9) {
-                    setState(
-                      () {
-                        _invalidOsis = true;
-                        osisError = "Invalid osis entry.";
-                      }
-                    );
+                    setState(() {
+                      _invalidOsis = true;
+                      osisError = "Invalid osis entry.";
+                    });
                     return;
                   }
 
@@ -140,38 +137,47 @@ class _LoginScreenState extends State<LoginScreen> {
                   _invalidOsis = false;
                   _wrongPassword = false;
 
-                  var res = ApiHelper.getInstance().then((value) => value.validateInfo(_osisController.text, _passwordController.text));
+                  var res = ApiHelper.getInstance().then((value) =>
+                      value.validateInfo(
+                          _osisController.text, _passwordController.text));
 
                   errorCallback(String responseString) {
-                    if(responseString.contains("Could not find that student ID")) {
-                      setState(
-                        () {
-                          _invalidOsis = true;
-                          osisError = "Could not find osis.";
-                        }
-                      );
-                    } else if(responseString.contains("That password is wrong")) {
-                      setState(
-                        () {
-                          _wrongPassword = true;
-                        }
-                      );
+                    if (responseString
+                        .contains("Could not find that student ID")) {
+                      setState(() {
+                        _invalidOsis = true;
+                        osisError = "Could not find osis.";
+                      });
+                    } else if (responseString
+                        .contains("That password is wrong")) {
+                      setState(() {
+                        _wrongPassword = true;
+                      });
                     }
                   }
 
-                  // TODO! DO STUFF HERE I GUESS IDK 
-                  successCallback() {
+                  // TODO! DO STUFF HERE I GUESS IDK
+                  successCallback() async {
                     if (widget._rememberMe) {
-                      u.saveUser(_osisController.text, _passwordController.text);
+                      u.saveUser(
+                          _osisController.text, _passwordController.text);
                     }
+                    await ApiHelper.getInstance().then((APIval) => APIval
+                            .getAssignments(
+                                _osisController.text, _passwordController.text)
+                        .then((responseval) => {
+                              DBHelper.getInstance().then((DBvalue) => {
+                                    DBvalue.storeApiResponse(responseval.body)
+                                        .whenComplete(() => print("done"))
+                                  })
+                            }));
                   }
 
                   Navigator.push(context, MaterialPageRoute(
                     builder: (context) {
                       return LoadingPage(res, errorCallback, successCallback);
                     },
-                  )
-                  );
+                  ));
                 },
                 child: Text(
                   'Login',

@@ -31,7 +31,7 @@ class _CourseDetailsState extends State<CourseDetails> {
         children: [
           Text(widget.course.name),
           Text(widget.course.teacher),
-          Text("${widget.course.getGrade().toString()}%"),
+          Text("${widget.course.ave.toString()}%"),
           Expanded(
             child: ListView.builder(
               itemCount: widget.course.assignments.length,
@@ -60,7 +60,7 @@ class _CourseTileState extends State<CourseTile> {
     return ListTile(
       title: Text(widget.course.name),
       subtitle: Text(widget.course.teacher),
-      trailing: Text(widget.course.getGrade().toString() + "%"),
+      trailing: Text("${widget.course.ave.toString()}%"),
       onTap: () {
         Navigator.push(
           context,

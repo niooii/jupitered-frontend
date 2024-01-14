@@ -5,7 +5,8 @@ import 'package:jupiter_frontend/pages/login_screen.dart';
 import 'package:lottie/lottie.dart';
 
 class LoadingPage extends StatelessWidget {
-  LoadingPage(this.login, this.errorCallback, this.successCallback, {super.key});
+  LoadingPage(this.login, this.errorCallback, this.successCallback,
+      {super.key});
   Future login;
   Function errorCallback;
   Function successCallback;
@@ -19,18 +20,19 @@ class LoadingPage extends StatelessWidget {
         errorCallback(value.body);
         Navigator.pop(context);
       } else {
-        successCallback();
-        // Navigator.pop(context);
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(builder: (context) => HomePage()),
-        );
+        successCallback().whenComplete(() {
+          // Navigator.pop(context);
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(builder: (context) => HomePage()),
+          );
+        });
       }
     });
 
     return Scaffold(
       body: Center(
-        child: Lottie.asset("assets/lottiefiles/paperplane.json") ,
+        child: Lottie.asset("assets/lottiefiles/paperplane.json"),
       ),
     );
   }

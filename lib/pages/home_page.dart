@@ -3,6 +3,7 @@
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:jupiter_frontend/models/course.dart';
 import 'package:jupiter_frontend/services/sqlite_helper.dart';
 import 'package:jupiter_frontend/widgets/course.dart';
 
@@ -13,7 +14,7 @@ import 'package:jupiter_frontend/widgets/drawer.dart';
 class HomePage extends StatefulWidget {
   HomePage({super.key});
 
-  static List<CourseTile> courses = [];
+  List<CourseTile> courses = [];
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -27,10 +28,10 @@ class _HomePageState extends State<HomePage> {
     DBHelper.getInstance().then((value) => {
           name = value.getName,
           value.getCourses().then((value) => {
-                HomePage.courses = value.map((e) => CourseTile(e)).toList(),
+                widget.courses = value.map((e) => CourseTile(e)).toList(),
                 AppDrawer.courses = value.map((e) => CourseTile(e)).toList(),
+                setState(() {})
               }),
-          setState(() {})
         });
 
     super.initState();
@@ -38,6 +39,16 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    List<Widget> widgets = [
+      CourseTile(Course("Loading...", "Loading...", [], 0.0, {}))
+    ];
+    if (widget.courses.isNotEmpty) {
+      widgets.addAll(widget.courses);
+    }
+    for (CourseTile course in widget.courses) {
+      print(course.course.name);
+    }
+
     return SafeArea(
         child: Scaffold(
             drawer: AppDrawer(),
@@ -47,8 +58,6 @@ class _HomePageState extends State<HomePage> {
                   style: TextStyle(
                       color: Theme.of(context).colorScheme.onPrimary)),
             ),
-            body: ListView(
-              children: [...HomePage.courses],
-            )));
+            body: ListView(children: widgets)));
   }
 }

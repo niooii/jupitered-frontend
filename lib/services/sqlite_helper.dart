@@ -17,7 +17,6 @@ class DBHelper {
 
   get instance => _instance;
   get getName {
-    ;
     return name;
   }
 
@@ -34,6 +33,11 @@ class DBHelper {
           """
             CREATE TABLE courses (
               course_name TEXT NOT NULL
+              teacher TEXT NOT NULL
+              missing INTEGER NOT NULL
+              graded INTEGER NOT NULL
+              ungraded INTEGER NOT NULL
+              total INTEGER NOT NULL 
             );
           """,
         );
@@ -67,23 +71,38 @@ class DBHelper {
 
   Future<List<Course>> getCourses() async {
     List<Course> courses = [];
-    List<Map<String, dynamic>> courseMap = await db.query("courses");
+    List<Map<String, dynamic>> courseMapList = await db.query("courses");
+    Map<String, dynamic> courseMap = courseMapList[0];
+    print("courseMapList");
+    for (var course in courseMapList) {
+      print(course);
+    }
+    print("courseMap");
+    for (var course in courseMap.entries) {
+      print(course);
+    }
 
-    for (var course in courseMap) {
+    for (var course in courseMapList) {
       List<Assignment> assingments =
           await getAssignments(course["course_name"]);
-      List<Map<String, dynamic>> catMap = await db
-          .query("course_grades where course_name = ${course["course_name"]}");
-      courses.add(new Course(course["course_name"], "teacher", assingments,
-          catMap[0]["Course Average"]["percent_grade"], catMap[0]));
+      List<Map<String, dynamic>> catMap = await db.query("course_grades");
+      print(catMap);
+
+      courses.add(Course(
+          course["course_name"],
+          "teacher",
+          assingments,
+          catMap[0]["grades"][0]["Course Average"]["percent_grade"],
+          catMap[0]));
     }
     return courses;
   }
 
   Future<List<Assignment>> getAssignments(String course) async {
     List<Assignment> assignments = [];
-    List<Map<String, dynamic>> assignmentMap =
-        await db.query("assignments where course_name = $course");
+    List<Map<String, dynamic>> assignmentMap = await db.rawQuery(
+        "SELECT * FROM assignments WHERE course_name = 'App Development'");
+
     for (var assignment in assignmentMap) {
       assignments.add(Assignment.fromMap(assignment));
     }
@@ -102,9 +121,17 @@ class DBHelper {
   Future<int> storeApiResponse(String json) async {
     try {
       var data = JsonDecoder().convert(json);
+      print(
+          "storeApiResponse: ${data["courses"][0]["grades"][0]["percent_grade"]}");
       name = data["name"];
       for (var course in data["courses"]) {
-        db.insert("courses", {"course_name": course["name"]});
+        db.insert("courses", {
+          "course_name": course["name"],
+          "teacher": course["teacher"],
+          "missing": course["num_missing"],
+          "graded": course["num_graded"],
+          "ungraded": course["num_ungraded"],
+        });
         for (var grade in course["grades"]) {
           db.insert("course_grades", {
             "course_name": course["name"],

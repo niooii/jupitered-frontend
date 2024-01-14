@@ -1,6 +1,6 @@
 class Assignment {
   String name;
-  DateTime duedate;
+  DateTime? duedate;
 
   double? grade;
   double maxGrade;
@@ -16,12 +16,12 @@ class Assignment {
   factory Assignment.fromMap(Map<String, dynamic> map) {
     return Assignment(
         map["name"],
-        DateTime.parse(map["date_due"]),
+        DateTime.tryParse(map["date_due"]) ?? DateTime.now(),
         double.tryParse(map["score"]) ?? 0,
-        double.parse(map["worth"]),
+        double.tryParse(map["worth"] ?? "0") ?? 0,
         double.tryParse(map["impact"]) ?? 0,
         map["category"],
-        double.parse(map["weight"]));
+        double.parse(map["weight"] ?? "0"));
   }
 
   // {
