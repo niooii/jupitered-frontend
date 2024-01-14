@@ -2,10 +2,13 @@ import 'package:flutter/material.dart';
 
 import 'package:jupiter_frontend/pages/home_page.dart';
 import 'package:jupiter_frontend/pages/login_screen.dart';
+import 'package:lottie/lottie.dart';
 
 class LoadingPage extends StatelessWidget {
-  LoadingPage(this.login, {super.key});
+  LoadingPage(this.login, this.errorCallback, this.successCallback, {super.key});
   Future login;
+  Function errorCallback;
+  Function successCallback;
 
   @override
   Widget build(BuildContext context) {
@@ -13,11 +16,10 @@ class LoadingPage extends StatelessWidget {
 
     login.then((value) {
       if (value.statusCode != 200) {
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => LoginScreen()),
-        );
+        errorCallback(value.body);
+        Navigator.pop(context);
       } else {
+        successCallback();
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(builder: (context) => HomePage()),
@@ -27,7 +29,7 @@ class LoadingPage extends StatelessWidget {
 
     return Scaffold(
       body: Center(
-        child: CircularProgressIndicator(color: color),
+        child: Lottie.asset("assets/lottiefiles/paperplane.json") ,
       ),
     );
   }

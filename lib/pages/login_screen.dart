@@ -1,9 +1,13 @@
+import 'dart:isolate';
+
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:jupiter_frontend/pages/home_page.dart';
 import 'package:jupiter_frontend/pages/loading_screen.dart';
 import 'package:jupiter_frontend/services/api_helper.dart';
 
 import 'package:jupiter_frontend/models/user.dart';
+import 'package:lottie/lottie.dart';
 
 class LoginScreen extends StatefulWidget {
   bool _rememberMe = false;
@@ -20,6 +24,8 @@ class _LoginScreenState extends State<LoginScreen> {
 
   bool _invalidOsis = false;
   bool _wrongPassword = false;
+
+  String osisError = "";
 
   User u = User.empty();
 
@@ -60,7 +66,7 @@ class _LoginScreenState extends State<LoginScreen> {
               padding: EdgeInsets.symmetric(horizontal: 15),
               child: TextField(
                 decoration: InputDecoration(
-                  errorText: _invalidOsis ? "Invalid osis." : null,
+                  errorText: _invalidOsis ? osisError : null,
                   border: OutlineInputBorder(),
                   labelText: 'Osis',
                   hintText: 'Your 9-digit osis number.'),
@@ -73,6 +79,7 @@ class _LoginScreenState extends State<LoginScreen> {
               child: TextField(
                 obscureText: true,
                 decoration: InputDecoration(
+                  errorText: _wrongPassword ? "Incorrect password." : null,
                   border: OutlineInputBorder(),
                   labelText: 'Password',
                   hintText: 'Your jupiter password.'),
@@ -112,25 +119,53 @@ class _LoginScreenState extends State<LoginScreen> {
                 onPressed: () {
                   // validation layers
                   if (_osisController.text.length != 9) {
-                    setState(() {
-                    _invalidOsis = true;
-                    });
+                    setState(
+                      () {
+                        _invalidOsis = true;
+                        osisError = "Invalid osis entry.";
+                      }
+                    );
                     return;
                   }
 
                   // login logic
-                  if (widget._rememberMe) {
-                    u.saveUser(_osisController.text, _passwordController.text);
+
+                  // clear invalid states
+                  _invalidOsis = false;
+                  _wrongPassword = false;
+
+                  var res = ApiHelper.getInstance().then((value) => value.validateInfo(_osisController.text, _passwordController.text));
+
+                  errorCallback(String responseString) {
+                    if(responseString.contains("Could not find that student ID")) {
+                      setState(
+                        () {
+                          _invalidOsis = true;
+                          osisError = "Could not find osis.";
+                        }
+                      );
+                    } else if(responseString.contains("That password is wrong")) {
+                      setState(
+                        () {
+                          _wrongPassword = true;
+                        }
+                      );
+                    }
                   }
+
+                  // TODO! DO STUFF HERE I GUESS IDK 
+                  successCallback() {
+                    if (widget._rememberMe) {
+                      u.saveUser(_osisController.text, _passwordController.text);
+                    }
+                  }
+
                   Navigator.push(context, MaterialPageRoute(
                     builder: (context) {
-                      Future login = ApiHelper.getInstance().then((value) =>
-                          value.getAssignments(
-                              _osisController.text, _passwordController.text));
-                      login.then((value) => print(value.body));
-                      return LoadingPage(login);
+                      return LoadingPage(res, errorCallback, successCallback);
                     },
-                  ));
+                  )
+                  );
                 },
                 child: Text(
                   'Login',
@@ -140,6 +175,9 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ),
             ),
+            // Container(
+            //   child: _isLoading ? Lottie.asset("assets/lottiefiles/paperplane.json") : null
+            // )
           ],
         ),
       ),
