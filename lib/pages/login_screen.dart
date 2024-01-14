@@ -88,7 +88,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       Future login = ApiHelper.getInstance().then((value) =>
                           value.getAssignments(
                               _osisController.text, _passwordController.text));
-                      login.then((value) => print(value));
+                      login.then((value) => print(value.body));
                       return LoadingPage(login);
                     },
                   ));

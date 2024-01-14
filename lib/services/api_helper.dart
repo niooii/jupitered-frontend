@@ -7,7 +7,10 @@ class ApiHelper {
 
   ApiHelper._() {
     // no ddos thanks i will prob host it somewhere else later maybe perhaps
+    // test endpoint
+    // _endpoint = Uri.parse("https://jsonplaceholder.typicode.com/users");
     _endpoint = Uri.parse("http://96.246.237.185:9090/jupiter");
+    //
   }
 
   // ? why is this async???
@@ -17,13 +20,10 @@ class ApiHelper {
     return _instance!;
   }
 
-  Future<Map<String, dynamic>> getAssignments(String user, String pass) async {
+  getAssignments(String user, String pass) async {
     JsonDecoder decoder = const JsonDecoder();
-    var response = await http.get(_endpoint, headers: {
-      "osis": user,
-      "password": pass,
-    });
-    return decoder.convert(response.body);
+    var response = await http.get(_endpoint);
+    return response;
   }
 
   static testLoadingScreen() async {
