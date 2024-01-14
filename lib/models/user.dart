@@ -53,6 +53,16 @@ class User {
         JsonEncoder().convert({"username": user, "password": pass ?? ""}));
   }
 
+  // void clearUser(String user, String? pass) async {
+  //   File file = await _localFile;
+  //   // print files in current directory
+  //   if (!file.existsSync()) {
+  //     file.createSync();
+  //   }
+
+  //   file.
+  // }
+
   get getUsername => username;
   get getPassword => password;
 
