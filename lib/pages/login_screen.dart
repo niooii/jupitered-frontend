@@ -3,6 +3,8 @@ import 'package:gap/gap.dart';
 import 'package:jupiter_frontend/pages/loading_screen.dart';
 import 'package:jupiter_frontend/services/api_helper.dart';
 
+import 'package:jupiter_frontend/models/user.dart';
+
 class LoginScreen extends StatefulWidget {
   bool _rememberMe = false;
 
@@ -15,6 +17,21 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _osisController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+
+  User u = User.empty();
+
+  @override
+  void initState() {
+    u.loadUserData().whenComplete(() {
+      if (u.getUsername != "") {
+        _osisController.text = u.getUsername;
+        _passwordController.text = u.getPassword;
+        widget._rememberMe = true;
+      }
+      setState(() {});
+    });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -63,8 +80,9 @@ class _LoginScreenState extends State<LoginScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Checkbox(
-                  checkColor: Colors.white,
-                  // fillColor: MaterialStateProperty.resolveWith(getColor),
+                  checkColor: Theme.of(context).colorScheme.onSecondary,
+                  fillColor: MaterialStateProperty.all<Color>(
+                      Theme.of(context).colorScheme.secondary),
                   value: widget._rememberMe,
                   onChanged: (bool? value) {
                     setState(() {
@@ -72,7 +90,11 @@ class _LoginScreenState extends State<LoginScreen> {
                     });
                   },
                 ),
-                Text("Remember me")
+                Text("Remember Me",
+                    style: TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold,
+                        color: Theme.of(context).colorScheme.onBackground))
               ],
             ),
             const Gap(10),
@@ -80,9 +102,13 @@ class _LoginScreenState extends State<LoginScreen> {
               height: 50,
               width: 250,
               decoration: BoxDecoration(
-                  color: Colors.blue, borderRadius: BorderRadius.circular(20)),
+                  color: Theme.of(context).colorScheme.primary,
+                  borderRadius: BorderRadius.circular(20)),
               child: TextButton(
                 onPressed: () {
+                  if (widget._rememberMe) {
+                    u.saveUser(_osisController.text, _passwordController.text);
+                  }
                   Navigator.push(context, MaterialPageRoute(
                     builder: (context) {
                       Future login = ApiHelper.getInstance().then((value) =>
@@ -93,9 +119,11 @@ class _LoginScreenState extends State<LoginScreen> {
                     },
                   ));
                 },
-                child: const Text(
+                child: Text(
                   'Login',
-                  style: TextStyle(color: Colors.white, fontSize: 25),
+                  style: TextStyle(
+                      color: Theme.of(context).colorScheme.onPrimary,
+                      fontSize: 25),
                 ),
               ),
             ),
