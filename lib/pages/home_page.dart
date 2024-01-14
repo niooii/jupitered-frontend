@@ -28,6 +28,7 @@ class _HomePageState extends State<HomePage> {
           name = value.getName,
           value.getCourses().then((value) => {
                 HomePage.courses = value.map((e) => CourseTile(e)).toList(),
+                AppDrawer.courses = value.map((e) => CourseTile(e)).toList(),
               }),
           setState(() {})
         });
