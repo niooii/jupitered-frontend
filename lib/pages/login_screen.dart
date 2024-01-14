@@ -52,23 +52,21 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
             ),
             const Gap(10),
-            Container(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Checkbox(
-                    checkColor: Colors.white,
-                    // fillColor: MaterialStateProperty.resolveWith(getColor),
-                    value: widget._rememberMe,
-                    onChanged: (bool? value) {
-                      setState(() {
-                        widget._rememberMe = value!;
-                      });
-                    },
-                  ),
-                  Text("Remember me")
-                ],
-              )
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Checkbox(
+                  checkColor: Colors.white,
+                  // fillColor: MaterialStateProperty.resolveWith(getColor),
+                  value: widget._rememberMe,
+                  onChanged: (bool? value) {
+                    setState(() {
+                      widget._rememberMe = value!;
+                    });
+                  },
+                ),
+                Text("Remember me")
+              ],
             ),
             const Gap(10),
             Container(

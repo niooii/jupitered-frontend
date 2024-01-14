@@ -24,11 +24,9 @@ class DBHelper {
           """
             CREATE TABLE course_grades (
               course_name TEXT NOT NULL,
-              name TEXT NOT NULL,
-              date_due TEXT,
-              score TEXT,
-              impact TEXT,
-              category TEXT NOT NULL
+              percent_grade REAL,
+              fraction_grade TEXT,
+              additional_info TEXT
             ),
           """,
         );
@@ -58,5 +56,9 @@ class DBHelper {
 
     return _instance!;
   }
+
+  Future<int> storeApiResponse() {
+    
+  }
   
-}
+} 
