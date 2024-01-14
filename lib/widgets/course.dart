@@ -23,14 +23,15 @@ class _CourseDetailsState extends State<CourseDetails> {
         child: Scaffold(
       drawer: AppDrawer(),
       appBar: AppBar(
-        title: Text(widget.course.name),
+        title: Text(widget.course.name,
+            style: TextStyle(color: Theme.of(context).colorScheme.onPrimary)),
         backgroundColor: Theme.of(context).colorScheme.primary,
       ),
       body: Column(
         children: [
           Text(widget.course.name),
           Text(widget.course.teacher),
-          Text(widget.course.getGrade().toString() + "%"),
+          Text("${widget.course.getGrade().toString()}%"),
           Expanded(
             child: ListView.builder(
               itemCount: widget.course.assignments.length,

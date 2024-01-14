@@ -20,7 +20,21 @@ class AppDrawer extends StatelessWidget {
             decoration: BoxDecoration(
               color: Theme.of(context).colorScheme.primary,
             ),
-            child: const Text('Calisto')),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Text(
+                  'Callisto',
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.onPrimary,
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  textAlign: TextAlign.center,
+                )
+              ],
+            )),
         const Gap(gap),
         ListTile(
           leading: const Icon(Icons.home),
@@ -29,7 +43,7 @@ class AppDrawer extends StatelessWidget {
             Navigator.pop(context);
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => const HomePage()),
+              MaterialPageRoute(builder: (context) => HomePage()),
             );
           },
         ),

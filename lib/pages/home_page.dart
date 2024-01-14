@@ -3,11 +3,14 @@
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:jupiter_frontend/widgets/course.dart';
 
 import 'package:jupiter_frontend/widgets/drawer.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+  HomePage({super.key});
+
+  static List<CourseTile> courses = [];
 
   @override
   Widget build(BuildContext context) {
@@ -18,6 +21,8 @@ class HomePage extends StatelessWidget {
               backgroundColor: Theme.of(context).colorScheme.primary,
               title: const Text('Home'),
             ),
-            body: const Placeholder()));
+            body: ListView(
+              children: [...courses],
+            )));
   }
 }

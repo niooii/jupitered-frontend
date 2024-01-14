@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:jupiter_frontend/pages/home_page.dart';
-import 'package:jupiter_frontend/pages/login_screen.dart';
-import 'package:catppuccin_flutter/catppuccin_flutter.dart';
 
+import 'package:jupiter_frontend/pages/login_screen.dart';
+
+import 'package:catppuccin_flutter/catppuccin_flutter.dart';
 import 'package:jupiter_frontend/pages/theme_page.dart';
 
 // test import
@@ -46,9 +46,9 @@ class _JupiterFrontendAppState extends State<JupiterFrontendApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Callisto',
       theme: _theme,
-      home: HomePage(),
+      home: LoginScreen(),
       //     LoginScreen(
       //   key: key,
       // ),

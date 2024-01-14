@@ -11,16 +11,17 @@ class Course {
   String name;
   String teacher;
 
-  Map<String, double> cats;
+  // marked as late because of compiler error
+  late Map<String, double> cats;
 
-  Course(this.name, this.teacher, this.assignments, catMap) {
+  Course(this.name, this.teacher, this.assignments, catMap) : cats = {} {
     cats = {};
     for (var cat in catMap.keys) {
       cats[cat] = double.parse(catMap[cat]);
     }
   }
   // wip
-  // sort grades by category, add them up, divide by weight
+  // sort grades by category, add them up, divide by weight, return all of the categories added together
   double getGrade() {
     List<double> catGrades = [];
     for (var cat in cats.keys) {

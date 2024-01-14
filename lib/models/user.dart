@@ -8,8 +8,8 @@ class User {
   String? password;
 
   User(this.username, [this.password]);
-  
-  void LoadUser(String saved) {
+
+  void loadUser(String saved) {
     rootBundle.loadString("assets/userdata.json").then((value) {
       var data = JsonDecoder().convert(value);
       username = data["username"];
@@ -17,13 +17,12 @@ class User {
     });
   }
 
-  void saveUser(){
+  void saveUser() {
     File file = File("assets/userdata.json");
-    file.writeAsStringSync(JsonEncoder().convert({"username": username, "password": password}));
-    
+    file.writeAsStringSync(
+        JsonEncoder().convert({"username": username, "password": password}));
   }
 
   get getUsername => username;
   get getPassword => password;
-
 }
