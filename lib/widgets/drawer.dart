@@ -1,10 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:jupiter_frontend/pages/home_page.dart';
+import 'package:jupiter_frontend/pages/login_screen.dart';
 import 'package:jupiter_frontend/widgets/course.dart';
 
 import 'package:jupiter_frontend/pages/theme_page.dart';
 
+// TODO!
+class CallistoListTile extends StatelessWidget {
+  const CallistoListTile({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Placeholder();
+  }
+}
 class AppDrawer extends StatelessWidget {
   static List<CourseTile> courses = [];
   static const double gap = 5;
@@ -14,7 +24,7 @@ class AppDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      child: Column(
+      child: ListView(
       children: [
         DrawerHeader(
             decoration: BoxDecoration(
@@ -41,7 +51,7 @@ class AppDrawer extends StatelessWidget {
           title: const Text('Home'),
           onTap: () {
             Navigator.pop(context);
-            Navigator.push(
+            Navigator.pushReplacement(
               context,
               MaterialPageRoute(builder: (context) => HomePage()),
             );
@@ -54,7 +64,8 @@ class AppDrawer extends StatelessWidget {
           leading: const Icon(Icons.palette),
           title: const Text('Theme'),
           onTap: () {
-            Navigator.push(
+            Navigator.pop(context);
+            Navigator.pushReplacement(
               context,
               MaterialPageRoute(builder: (context) => ThemePage()),
             );
@@ -64,16 +75,19 @@ class AppDrawer extends StatelessWidget {
           child: Align(
             alignment: Alignment.bottomCenter,
             child: ListTile(
-            leading: const Icon(Icons.home),
-            title: const Text('Log out'),
-            onTap: () {
-              Navigator.pop(context);
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => HomePage()),
-              );
-            },
-          ),
+              splashColor: Theme.of(context).colorScheme.error,
+              leading: const Icon(Icons.keyboard_arrow_left),
+              title: const Text('Log out'),
+              onTap: () {
+                // TODO! handle some other logic here regarding user and remember me. 
+                // EG: when user clicks logout, remember me should be unchecked. 
+                Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (BuildContext context){
+                  return LoginScreen();
+                }), (r){
+                  return false;
+                });
+              },
+            ),
           ),
         )
         

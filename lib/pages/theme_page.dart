@@ -3,6 +3,7 @@ import 'package:catppuccin_flutter/catppuccin_flutter.dart';
 import 'package:flutter/material.dart';
 
 import "package:flutter_hsvcolor_picker/flutter_hsvcolor_picker.dart";
+import 'package:gap/gap.dart';
 
 import 'package:jupiter_frontend/jupiter_frontend.dart' as app;
 import 'package:jupiter_frontend/widgets/Drawer.dart';
@@ -71,6 +72,7 @@ class _ThemePageState extends State<ThemePage> {
             body: Center(
               child: ListView(
                 children: [
+                  const Gap(10),
                   const Center(
                       child: Text("Presets",
                           style: TextStyle(

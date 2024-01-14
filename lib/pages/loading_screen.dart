@@ -20,6 +20,7 @@ class LoadingPage extends StatelessWidget {
         Navigator.pop(context);
       } else {
         successCallback();
+        // Navigator.pop(context);
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(builder: (context) => HomePage()),
