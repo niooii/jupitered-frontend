@@ -3,6 +3,7 @@
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:jupiter_frontend/services/sqlite_helper.dart';
 import 'package:jupiter_frontend/widgets/course.dart';
 
 import 'package:jupiter_frontend/models/user.dart';
@@ -23,11 +24,13 @@ class _HomePageState extends State<HomePage> {
 
   @override
   void initState() {
-    User u = User.empty();
-    u.loadUserData().then((value) {
-      name = u.getUsername;
-      setState(() {});
-    });
+    DBHelper.getInstance().then((value) => {
+          name = value.getName,
+          value.getCourses().then((value) => {
+                HomePage.courses = value.map((e) => CourseTile(e)).toList(),
+              }),
+          setState(() {})
+        });
 
     super.initState();
   }

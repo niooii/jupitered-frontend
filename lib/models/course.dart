@@ -11,10 +11,13 @@ class Course {
   String name;
   String teacher;
 
+  double ave;
+
   // marked as late because of compiler error
   late Map<String, double> cats;
 
-  Course(this.name, this.teacher, this.assignments, catMap) : cats = {} {
+  Course(this.name, this.teacher, this.assignments, this.ave, catMap)
+      : cats = {} {
     cats = {};
     for (var cat in catMap.keys) {
       cats[cat] = double.parse(catMap[cat]);
