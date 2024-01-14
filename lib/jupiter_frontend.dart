@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jupiter_frontend/pages/home_page.dart';
 import 'package:jupiter_frontend/pages/login_screen.dart';
 import 'package:catppuccin_flutter/catppuccin_flutter.dart';
 
@@ -47,7 +48,7 @@ class _JupiterFrontendAppState extends State<JupiterFrontendApp> {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: _theme,
-      home: ThemePage(),
+      home: HomePage(),
       //     LoginScreen(
       //   key: key,
       // ),

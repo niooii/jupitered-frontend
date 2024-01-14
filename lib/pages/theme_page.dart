@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import "package:flutter_hsvcolor_picker/flutter_hsvcolor_picker.dart";
 
 import 'package:jupiter_frontend/jupiter_frontend.dart' as app;
+import 'package:jupiter_frontend/widgets/Drawer.dart';
 
 class ThemePage extends StatefulWidget {
   const ThemePage({super.key});
@@ -54,6 +55,7 @@ class _ThemePageState extends State<ThemePage> {
 
     return SafeArea(
         child: Scaffold(
+            drawer: AppDrawer(),
             appBar: AppBar(
               title: const Text("Change the theme"),
               backgroundColor: Theme.of(context).colorScheme.primary,
