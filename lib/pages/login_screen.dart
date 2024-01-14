@@ -18,6 +18,9 @@ class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _osisController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
+  bool _invalidOsis = false;
+  bool _wrongPassword = false;
+
   User u = User.empty();
 
   @override
@@ -57,9 +60,10 @@ class _LoginScreenState extends State<LoginScreen> {
               padding: EdgeInsets.symmetric(horizontal: 15),
               child: TextField(
                 decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: 'Osis',
-                    hintText: 'Your 9-digit osis number.'),
+                  errorText: _invalidOsis ? "Invalid osis." : null,
+                  border: OutlineInputBorder(),
+                  labelText: 'Osis',
+                  hintText: 'Your 9-digit osis number.'),
                 controller: _osisController,
               ),
             ),
@@ -69,9 +73,9 @@ class _LoginScreenState extends State<LoginScreen> {
               child: TextField(
                 obscureText: true,
                 decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: 'Password',
-                    hintText: 'Your jupiter password.'),
+                  border: OutlineInputBorder(),
+                  labelText: 'Password',
+                  hintText: 'Your jupiter password.'),
                 controller: _passwordController,
               ),
             ),
@@ -106,6 +110,15 @@ class _LoginScreenState extends State<LoginScreen> {
                   borderRadius: BorderRadius.circular(20)),
               child: TextButton(
                 onPressed: () {
+                  // validation layers
+                  if (_osisController.text.length != 9) {
+                    setState(() {
+                    _invalidOsis = true;
+                    });
+                    return;
+                  }
+
+                  // login logic
                   if (widget._rememberMe) {
                     u.saveUser(_osisController.text, _passwordController.text);
                   }
