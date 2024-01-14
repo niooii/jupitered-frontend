@@ -85,12 +85,12 @@ class _ThemePageState extends State<ThemePage> {
                           ThemeData theme = ThemeData(
                             primaryColor: const Color(0xffe9c46a),
                             colorScheme: ColorScheme(
-                              primary: flavor.base,
+                              primary: flavor.crust,
                               onPrimary: flavor.text,
                               secondary: flavor.mantle,
                               onSecondary: flavor.subtext0,
                               background: flavor.base,
-                              onBackground: flavor.subtext0,
+                              onBackground: flavor.text,
                               surface: flavor.surface0,
                               onSurface: flavor.overlay0,
                               brightness: Brightness.light,
@@ -180,7 +180,12 @@ class _ColorTileState extends State<ColorTile> {
           _showDialog(context);
         },
       ),
-      title: Text(widget.name),
+      title: Text(
+        widget.name,
+        style: TextStyle(
+          color: Theme.of(context).colorScheme.onBackground
+        ),
+      ),
     );
   }
 }
