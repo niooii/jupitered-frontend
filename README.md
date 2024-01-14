@@ -1,6 +1,6 @@
 # Callisto
 
-A sane open-source frontend for jupiter written in flutter.
+A sane, native, open-source frontend for jupiter written in flutter.
 
 FEATURES:
 
