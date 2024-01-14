@@ -9,7 +9,7 @@ class ApiHelper {
     // no ddos thanks i will prob host it somewhere else later maybe perhaps
     // test endpoint
     // _endpoint = Uri.parse("https://jsonplaceholder.typicode.com/users");
-    _endpoint = Uri.parse("http://96.246.237.185:9090/jupiter");
+    // _endpoint = Uri.http()
     //
   }
 
@@ -21,8 +21,10 @@ class ApiHelper {
   }
 
   getAssignments(String user, String pass) async {
-    JsonDecoder decoder = const JsonDecoder();
-    var response = await http.get(_endpoint);
+    // JsonDecoder decoder = const JsonDecoder();
+    var response = await http.get(Uri.http(
+        "96.246.237.185:9090", "/jupiter", {"osis": user, "password": pass}));
+    print(response.statusCode);
     return response;
   }
 

@@ -19,7 +19,9 @@ class HomePage extends StatelessWidget {
             drawer: AppDrawer(),
             appBar: AppBar(
               backgroundColor: Theme.of(context).colorScheme.primary,
-              title: const Text('Home'),
+              title: Text('Home',
+                  style: TextStyle(
+                      color: Theme.of(context).colorScheme.onPrimary)),
             ),
             body: ListView(
               children: [...courses],
