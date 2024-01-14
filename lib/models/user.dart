@@ -40,7 +40,6 @@ class User {
       setUsername = data["username"];
       setPassword = data["password"];
     }
-    print("loaded user data, username: $username, password: $password");
   }
 
   void saveUser(String user, String? pass) async {
