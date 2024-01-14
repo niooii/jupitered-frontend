@@ -10,23 +10,20 @@ class LoadingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Color color = Theme.of(context).colorScheme.primary;
-    
-    login.then((value) {
-    if (value.response.statusCode != 200) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => LoginScreen()),
-      );
 
-    } else {
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => HomePage()),
-      );
-    }
+    login.then((value) {
+      if (value.response.statusCode != 200) {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => LoginScreen()),
+        );
+      } else {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => HomePage()),
+        );
+      }
     });
-    }
-      
 
     return Scaffold(
       body: Center(
