@@ -14,7 +14,7 @@ class AppDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-        child: ListView(
+      child: Column(
       children: [
         DrawerHeader(
             decoration: BoxDecoration(
@@ -59,8 +59,26 @@ class AppDrawer extends StatelessWidget {
               MaterialPageRoute(builder: (context) => ThemePage()),
             );
           },
+        ),
+        Expanded(
+          child: Align(
+            alignment: Alignment.bottomCenter,
+            child: ListTile(
+            leading: const Icon(Icons.home),
+            title: const Text('Log out'),
+            onTap: () {
+              Navigator.pop(context);
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => HomePage()),
+              );
+            },
+          ),
+          ),
         )
+        
       ],
-    ));
+    ),
+    );
   }
 }
