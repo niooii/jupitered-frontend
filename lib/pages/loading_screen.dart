@@ -12,13 +12,13 @@ class LoadingPage extends StatelessWidget {
     final Color color = Theme.of(context).colorScheme.primary;
 
     login.then((value) {
-      if (value.response.statusCode != 200) {
+      if (value.statusCode != 200) {
         Navigator.push(
           context,
           MaterialPageRoute(builder: (context) => LoginScreen()),
         );
       } else {
-        Navigator.push(
+        Navigator.pushReplacement(
           context,
           MaterialPageRoute(builder: (context) => HomePage()),
         );

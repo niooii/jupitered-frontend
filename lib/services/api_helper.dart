@@ -28,6 +28,14 @@ class ApiHelper {
     return response;
   }
 
+  validateInfo(String user, String pass) async {
+    // JsonDecoder decoder = const JsonDecoder();
+    var response = await http.get(Uri.http(
+        "96.246.237.185:9090", "/login_jupiter", {"osis": user, "password": pass}));
+    print(response.statusCode);
+    return response;
+  }
+
   static testLoadingScreen() async {
     // wait 2 seconds
     return Future.delayed(Duration(seconds: 2));
