@@ -7,78 +7,7 @@ import "package:flutter_hsvcolor_picker/flutter_hsvcolor_picker.dart";
 import 'package:jupiter_frontend/jupiter_frontend.dart' as app;
 import 'package:jupiter_frontend/widgets/Drawer.dart';
 
-// TODO: define presets, currently using random colors
-ThemeData latte = ThemeData(
-  primaryColor: const Color(0xffe9c46a),
-  colorScheme: ColorScheme(
-    primary: const Color(0xffe9c46a),
-    onPrimary: const Color(0xff264653),
-    secondary: const Color(0xff2a9d8f),
-    onSecondary: const Color(0xffe9c46a),
-    background: const Color(0xffe9c46a),
-    onBackground: const Color(0xff264653),
-    surface: const Color(0xff264653),
-    onSurface: const Color(0xffe9c46a),
-    brightness: Brightness.light,
-    error: Colors.red,
-    onError: Colors.white,
-  ),
-  useMaterial3: true,
-);
-
-ThemeData frappe = ThemeData(
-  primaryColor: const Color(0xff264653),
-  colorScheme: ColorScheme(
-    primary: const Color(0xff264653),
-    onPrimary: const Color(0xffe9c46a),
-    secondary: const Color(0xffe9c46a),
-    onSecondary: const Color(0xff264653),
-    background: const Color(0xffe9c46a),
-    onBackground: const Color(0xff264653),
-    surface: const Color(0xff264653),
-    onSurface: const Color(0xffe9c46a),
-    brightness: Brightness.light,
-    error: Colors.red,
-    onError: Colors.white,
-  ),
-  useMaterial3: true,
-);
-
-ThemeData macchiato = ThemeData(
-  primaryColor: const Color(0xff2a9d8f),
-  colorScheme: ColorScheme(
-    primary: const Color(0xff2a9d8f),
-    onPrimary: const Color(0xffe9c46a),
-    secondary: const Color(0xffe9c46a),
-    onSecondary: const Color(0xff2a9d8f),
-    background: const Color(0xffe9c46a),
-    onBackground: const Color(0xff2a9d8f),
-    surface: const Color(0xff2a9d8f),
-    onSurface: const Color(0xffe9c46a),
-    brightness: Brightness.light,
-    error: Colors.red,
-    onError: Colors.white,
-  ),
-  useMaterial3: true,
-);
-
-ThemeData mocha = ThemeData(
-  primaryColor: const Color(0xffe76f51),
-  colorScheme: ColorScheme(
-    primary: const Color(0xffe76f51),
-    onPrimary: const Color(0xff264653),
-    secondary: const Color(0xff264653),
-    onSecondary: const Color(0xffe76f51),
-    background: const Color(0xffe76f51),
-    onBackground: const Color(0xff264653),
-    surface: const Color(0xff264653),
-    onSurface: const Color(0xffe76f51),
-    brightness: Brightness.light,
-    error: Colors.red,
-    onError: Colors.white,
-  ),
-  useMaterial3: true,
-);
+var catppuccinThemes = [(catppuccin.latte, "Latte"), (catppuccin.frappe, "Frappé"), (catppuccin.macchiato, "Macchiato"), (catppuccin.mocha, "Mocha")];
 
 class ThemePage extends StatefulWidget {
   const ThemePage({super.key});
@@ -124,6 +53,8 @@ class _ThemePageState extends State<ThemePage> {
       "onBackground": colorScheme.onBackground,
       "surface": colorScheme.surface,
       "onSurface": colorScheme.onSurface,
+      "error": colorScheme.error,
+      "onError": colorScheme.onError,
     };
     List<ColorTile> tiles =
         schemeColors.entries.map((e) => ColorTile(e.value, e.key)).toList();
@@ -146,29 +77,36 @@ class _ThemePageState extends State<ThemePage> {
                               fontSize: 20, fontWeight: FontWeight.bold))),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      TextButton(
-                          onPressed: () {
-                            app.JupiterFrontendApp.getState().setTheme(latte);
-                          },
-                          child: const Text("Latte")),
-                      TextButton(
-                          onPressed: () {
-                            app.JupiterFrontendApp.getState().setTheme(frappe);
-                          },
-                          child: const Text("Frappé")),
-                      TextButton(
-                          onPressed: () {
-                            app.JupiterFrontendApp.getState()
-                                .setTheme(macchiato);
-                          },
-                          child: const Text("Macchiato")),
-                      TextButton(
-                          onPressed: () {
-                            app.JupiterFrontendApp.getState().setTheme(mocha);
-                          },
-                          child: const Text("Mocha")),
-                    ],
+                    children: catppuccinThemes.map((data) {
+                      Flavor flavor = data.$1;
+                      String flavorName = data.$2;
+                      return TextButton(
+                        onPressed: () {
+                          ThemeData theme = ThemeData(
+                            primaryColor: const Color(0xffe9c46a),
+                            colorScheme: ColorScheme(
+                              primary: flavor.base,
+                              onPrimary: flavor.text,
+                              secondary: flavor.mantle,
+                              onSecondary: flavor.subtext0,
+                              background: flavor.base,
+                              onBackground: flavor.subtext0,
+                              surface: flavor.surface0,
+                              onSurface: flavor.overlay0,
+                              brightness: Brightness.light,
+                              error: flavor.red,
+                              onError: flavor.rosewater,
+                            ),
+                            useMaterial3: true,
+                          );
+                          app.JupiterFrontendApp.getState().setTheme(theme);
+                        },
+                        child: Text(
+                          flavorName,
+                          style: TextStyle(color: Theme.of(context).colorScheme.onBackground),
+                          ),
+                      );
+                    }).toList(),
                   ),
                   ...tiles
                 ],
