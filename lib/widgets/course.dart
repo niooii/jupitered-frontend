@@ -23,7 +23,6 @@ class _CourseDetailsState extends State<CourseDetails> {
         child: Scaffold(
       drawer: AppDrawer(),
       appBar: AppBar(
-        subtitle: Text(widget.course.teacher),
         title: Text(widget.course.name),
         backgroundColor: Theme.of(context).colorScheme.primary,
       ),

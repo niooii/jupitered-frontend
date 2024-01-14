@@ -1,4 +1,5 @@
 // this should just be a page of statistics tbh
+//  ? list view or single child scroll view?
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
