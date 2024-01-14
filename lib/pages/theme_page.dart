@@ -35,8 +35,8 @@ class _ThemePageState extends State<ThemePage> {
         surface: tiles[6].color,
         onSurface: tiles[7].color,
         brightness: Brightness.light,
-        error: Colors.red,
-        onError: Colors.white,
+        error: tiles[8].color,
+        onError: tiles[9].color,
       ),
       useMaterial3: true,
     );
