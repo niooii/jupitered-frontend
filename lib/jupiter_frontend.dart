@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:jupiter_frontend/pages/login_screen.dart';
 
 import 'package:catppuccin_flutter/catppuccin_flutter.dart';
+import 'package:jupiter_frontend/pages/main_screen.dart';
 import 'package:jupiter_frontend/pages/theme_page.dart';
 
 // test import
@@ -46,6 +47,7 @@ class _JupiterFrontendAppState extends State<JupiterFrontendApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Callisto',
       theme: _theme,
       home: LoginScreen(),
