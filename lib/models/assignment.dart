@@ -16,9 +16,9 @@ class Assignment {
   factory Assignment.fromMap(Map<String, dynamic> map) {
     return Assignment(
         map["name"],
-        DateTime.tryParse(map["date_due"]) ?? DateTime.now(),
-        double.tryParse(map["score"]) ?? 0,
-        double.tryParse(map["worth"] ?? "0") ?? 0,
+        parseDate(map["date_due"]),
+        parseScore(map["score"]),
+        parseMaxScore(map["score"]),
         double.tryParse(map["impact"]) ?? 0,
         map["category"],
         double.parse(map["weight"] ?? "0"));
@@ -32,9 +32,61 @@ class Assignment {
   // 	"impact": "",
   // 	"category": "Midyear/Final"
   // },
+  static double parseMaxScore(String score) {
+    if (score == "absent") {
+      return 0;
+    }
+    if (score == "zero") {
+      return 0;
+    }
+    return double.parse(score.split("/")[1]);
+  }
+
+  static double parseScore(String score) {
+    if (score == "absent") {
+      return 0;
+    }
+    if (score == "zero") {
+      return 0;
+    }
+    return double.tryParse(score.split("/")[0]) ?? 0;
+  }
+
+  static DateTime parseDate(String dd) {
+    var da = dd.split("/");
+    // print(da);
+    // print(da.length);
+    if (da.length != 2) {
+      return DateTime.now();
+    }
+    if (da[1].contains("-")) {
+      da[1] = da[1].split("-")[0];
+    }
+    // print("we made it pass the guard case boys");
+    int month = int.parse(da[0]);
+    int day = int.parse(da[1]);
+    int year;
+
+    if (DateTime.now().month > 9) {
+      if (month < 9) {
+        year = DateTime.now().year + 1;
+      } else {
+        year = DateTime.now().year;
+      }
+    } else {
+      if (month > 9) {
+        year = DateTime.now().year - 1;
+      } else {
+        year = DateTime.now().year;
+      }
+    }
+    return DateTime(year, month, day);
+  }
 
   double getPercent() {
-    return grade ?? 0 / maxGrade;
+    // print(
+    // "grade: $grade, maxGrade: $maxGrade = ${((grade ?? 0) / maxGrade) * 100}");
+    return ((grade ?? 0) / maxGrade) * 100;
   }
 
   String getFractionalGrade() {
@@ -42,6 +94,6 @@ class Assignment {
   }
 
   double getWeightedGrade() {
-    return grade ?? 0 * weight;
+    return (grade ?? 0) * weight;
   }
 }

@@ -87,18 +87,23 @@ class DBHelper {
       return courses;
     }
 
-    Map<String, dynamic> courseMap = courseMapList[0];
-    print("cml: $courseMapList");
+    // print("cml: $courseMapList");
     for (int i = 0; i < courseMapList.length; i++) {
       var course = courseMapList[i];
       List<Assignment> assingments =
           await getAssignments(course["course_name"]);
-      List<Map<String, dynamic>> catMap = await db.query("course_grades",
-          where: "course_name = ?", whereArgs: [course["course_name"]]);
-      print(catMap);
+      await db.query("course_grades",
+          where: "course_name = ?",
+          whereArgs: [course["course_name"]]).then((catMap) {
+        print('catMap = ${catMap[0]["percent_grade"]}');
 
-      courses.add(Course(
-          course["course_name"], course["teacher"], assingments, 0, catMap));
+        courses.add(Course(
+            course["course_name"],
+            course["teacher"],
+            assingments,
+            double.tryParse(catMap[0]["percent_grade"].toString()) ?? 0,
+            catMap));
+      });
     }
     return courses;
   }
@@ -109,6 +114,7 @@ class DBHelper {
         .rawQuery('SELECT * FROM assignments WHERE course_name = ?', [course]);
 
     for (var assignment in assignmentMap) {
+      // print(" assigment = $assignment");
       assignments.add(Assignment.fromMap(assignment));
     }
     return assignments;
@@ -120,7 +126,7 @@ class DBHelper {
       // print("data: ${data["courses"][1]}");
       // print("storeApiResponse: ${data["courses"]}");
       name = data["name"];
-      print(data["courses"].length);
+      // print(data["courses"].length);
       await db.transaction((txn) async {
         for (int i = 0; i < data["courses"].length; i++) {
           var course = data["courses"][i];
@@ -136,7 +142,7 @@ class DBHelper {
               "ungraded": course["num_ungraded"],
               "total": course["num_total"]
             });
-            print("inserting ${course["name"]}");
+            // print("inserting ${course["name"]}");
           } else {
             await txn.update(
                 "courses",
@@ -150,7 +156,35 @@ class DBHelper {
                 },
                 where: "course_name = ?",
                 whereArgs: [course["name"]]);
-            print("updating ${course["name"]}");
+            // print("updating ${course["name"]}");
+          }
+
+          for (var category in course["grades"]) {
+            var existingCategories = await txn.query("course_grades",
+                where: "course_name = ? AND category = ?",
+                whereArgs: [course["name"], category["category"]]);
+
+            if (existingCategories.isEmpty) {
+              await txn.insert("course_grades", {
+                "course_name": course["name"],
+                "category": category["category"],
+                "percent_grade": category["percent_grade"],
+                "fraction_grade": category["fraction_grade"],
+                "additional_info": category["additional_info"]
+              });
+            } else {
+              await txn.update(
+                  "course_grades",
+                  {
+                    "course_name": course["name"],
+                    "category": category["category"],
+                    "percent_grade": category["percent_grade"],
+                    "fraction_grade": category["fraction_grade"],
+                    "additional_info": category["additional_info"]
+                  },
+                  where: "course_name = ? AND category = ?",
+                  whereArgs: [course["name"], category["category"]]);
+            }
           }
 
           for (var assignment in course["assignments"]) {
@@ -184,7 +218,7 @@ class DBHelper {
           }
         }
       });
-      print("help");
+      // print("help");
     } catch (e) {
       print(e);
       return 0;

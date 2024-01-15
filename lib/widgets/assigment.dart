@@ -35,8 +35,10 @@ class AssignmentDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return SafeArea(
+        child: Scaffold(
       appBar: AppBar(
+        backgroundColor: Theme.of(context).colorScheme.primary,
         title: Text(
           assignment.name,
           style: TextStyle(color: Theme.of(context).colorScheme.onPrimary),
@@ -66,6 +68,6 @@ class AssignmentDetails extends StatelessWidget {
                   color: Theme.of(context).colorScheme.onBackground)),
         ]),
       ),
-    );
+    ));
   }
 }
