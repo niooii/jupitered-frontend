@@ -31,13 +31,13 @@ class DBHelper {
   }
 
   Future<void> initDB() async {
-    clearDB();
+    // clearDB();
 
     _instance?.loadName();
 
     String path = await getDatabasesPath();
     db = await openDatabase(
-      join(path, 'users_demo.db'),
+      join(path, 'users.db'),
       onCreate: (database, version) async {
         await database.execute(
           """
