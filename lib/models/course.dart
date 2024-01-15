@@ -14,14 +14,11 @@ class Course {
   double ave;
 
   // marked as late because of compiler error
-  late Map<String, double> cats;
+  List<Map<String, dynamic>> cats;
 
-  Course(this.name, this.teacher, this.assignments, this.ave, catMap)
-      : cats = {} {
-    cats = {};
-    for (var cat in catMap.keys) {
-      cats[cat] = double.parse(catMap[cat]);
-    }
-  }
-  // wip
+  Course(this.name, this.teacher, this.assignments, this.ave, this.cats);
 }
+
+
+  // wip
+

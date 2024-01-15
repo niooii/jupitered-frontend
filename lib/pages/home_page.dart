@@ -25,13 +25,11 @@ class _HomePageState extends State<HomePage> {
 
   @override
   void initState() {
-    DBHelper.getInstance().then((value) => {
-          name = value.getName,
-          value.getCourses().then((value) => {
-                widget.courses = value.map((e) => CourseTile(e)).toList(),
-                AppDrawer.courses = value.map((e) => CourseTile(e)).toList(),
-                setState(() {})
-              }),
+    name = DBHelper.getInstance().getName;
+    DBHelper.getInstance().getCourses().then((value) => {
+          widget.courses = value.map((e) => CourseTile(e)).toList(),
+          AppDrawer.courses = value.map((e) => CourseTile(e)).toList(),
+          setState(() {})
         });
 
     super.initState();
@@ -40,7 +38,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     List<Widget> widgets = [
-      CourseTile(Course("Loading...", "Loading...", [], 0.0, {}))
+      // CourseTile(Course("Loading...", "Loading...", [], 0.0, [{}]))
     ];
     if (widget.courses.isNotEmpty) {
       widgets.addAll(widget.courses);

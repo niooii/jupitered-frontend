@@ -37,16 +37,34 @@ class AssignmentDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(assignment.name),
+        title: Text(
+          assignment.name,
+          style: TextStyle(color: Theme.of(context).colorScheme.onPrimary),
+        ),
       ),
-      body: Column(
-        children: [
-          Text(assignment.name),
-          Text(assignment.duedate.toString()),
-          Text(assignment.getFractionalGrade()),
-          Text(assignment.impact.toString()),
-          Text(assignment.cat),
-        ],
+      body: Center(
+        child: Column(children: [
+          Text(assignment.name,
+              style: TextStyle(
+                  fontSize: 23,
+                  color: Theme.of(context).colorScheme.onBackground)),
+          Text(assignment.duedate.toString(),
+              style: TextStyle(
+                  fontSize: 20,
+                  color: Theme.of(context).colorScheme.onBackground)),
+          Text(assignment.getFractionalGrade(),
+              style: TextStyle(
+                  fontSize: 20,
+                  color: Theme.of(context).colorScheme.onBackground)),
+          Text(assignment.impact.toString(),
+              style: TextStyle(
+                  fontSize: 20,
+                  color: Theme.of(context).colorScheme.onBackground)),
+          Text(assignment.cat,
+              style: TextStyle(
+                  fontSize: 20,
+                  color: Theme.of(context).colorScheme.onBackground)),
+        ]),
       ),
     );
   }

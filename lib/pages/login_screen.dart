@@ -166,10 +166,10 @@ class _LoginScreenState extends State<LoginScreen> {
                             .getAssignments(
                                 _osisController.text, _passwordController.text)
                         .then((responseval) => {
-                              DBHelper.getInstance().then((DBvalue) => {
-                                    DBvalue.storeApiResponse(responseval.body)
-                                        .whenComplete(() => print("done"))
-                                  })
+                              DBHelper.getInstance()
+                                  .storeApiResponse(responseval.body)
+                                  .then((value) =>
+                                      print("response saved?: ${value == 1}")),
                             }));
                   }
 
@@ -187,9 +187,6 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ),
             ),
-            // Container(
-            //   child: _isLoading ? Lottie.asset("assets/lottiefiles/paperplane.json") : null
-            // )
           ],
         ),
       ),

@@ -4,6 +4,8 @@
 	"courses": [
 		{
 			"name": "US Government",
+			"teacher_name": "RF Massimi",
+			"place_and_time": "Period 1, rm. 308",
 			"num_missing": 1,
 			"num_graded": 23,
 			"num_ungraded": 1,
@@ -245,6 +247,8 @@
 		},
 		{
 			"name": "App Development",
+			"teacher_name": "Wendy Qiu",
+			"place_and_time": "Period 2, rm. 6",
 			"num_missing": 0,
 			"num_graded": 42,
 			"num_ungraded": 3,
@@ -646,6 +650,8 @@
 		},
 		{
 			"name": "Game Programming",
+			"teacher_name": "Wendy Qiu",
+			"place_and_time": "Period 4, rm. 6",
 			"num_missing": 0,
 			"num_graded": 23,
 			"num_ungraded": 4,
@@ -903,6 +909,8 @@
 		},
 		{
 			"name": "AP Calculus AB",
+			"teacher_name": "Suzana Jung",
+			"place_and_time": "Period 5, rm. 108",
 			"num_missing": 0,
 			"num_graded": 93,
 			"num_ungraded": 12,
@@ -1784,6 +1792,8 @@
 		},
 		{
 			"name": "Neuroscience",
+			"teacher_name": "Dr Gensert",
+			"place_and_time": "Period 7-T8, rm. 331",
 			"num_missing": 1,
 			"num_graded": 12,
 			"num_ungraded": 7,
@@ -1985,6 +1995,8 @@
 		},
 		{
 			"name": "Phys Ed",
+			"teacher_name": "Daniel Collins",
+			"place_and_time": "Period M8-R8-W8, rm. GYM",
 			"num_missing": 0,
 			"num_graded": 39,
 			"num_ungraded": 8,
@@ -2390,6 +2402,8 @@
 		},
 		{
 			"name": "AP English Lit 12",
+			"teacher_name": "Nick McConnell",
+			"place_and_time": "Period 9, rm. 208",
 			"num_missing": 2,
 			"num_graded": 41,
 			"num_ungraded": 1,
