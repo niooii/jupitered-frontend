@@ -165,8 +165,8 @@ class _LoginScreenState extends State<LoginScreen> {
                     await ApiHelper.getInstance().then((APIval) => APIval
                             .getAssignments(
                                 _osisController.text, _passwordController.text)
-                        .then((responseval) => {
-                              DBHelper.getInstance()
+                        .then((responseval) async => {
+                              await DBHelper.getInstance()
                                   .storeApiResponse(responseval.body)
                                   .then((value) =>
                                       print("response saved?: ${value == 1}")),

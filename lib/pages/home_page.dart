@@ -44,7 +44,7 @@ class _HomePageState extends State<HomePage> {
       widgets.addAll(widget.courses);
     }
     for (CourseTile course in widget.courses) {
-      print(course.course.name);
+      // print(course.course.name);
     }
 
     return SafeArea(

@@ -31,7 +31,7 @@ class DBHelper {
   }
 
   Future<void> initDB() async {
-    // clearDB();
+    clearDB();
 
     _instance?.loadName();
 
@@ -82,25 +82,23 @@ class DBHelper {
   Future<List<Course>> getCourses() async {
     List<Course> courses = [];
     List<Map<String, dynamic>> courseMapList = await db.query("courses");
-    Map<String, dynamic> courseMap = courseMapList[0];
-    // print("courseMapList");
-    for (var course in courseMapList) {
-      // print(course);
-    }
-    // print("courseMap");
-    for (var course in courseMap.entries) {
-      // print(course);
+
+    if (courseMapList.isEmpty) {
+      return courses;
     }
 
-    for (var course in courseMapList) {
+    Map<String, dynamic> courseMap = courseMapList[0];
+    print("cml: $courseMapList");
+    for (int i = 0; i < courseMapList.length; i++) {
+      var course = courseMapList[i];
       List<Assignment> assingments =
           await getAssignments(course["course_name"]);
       List<Map<String, dynamic>> catMap = await db.query("course_grades",
           where: "course_name = ?", whereArgs: [course["course_name"]]);
-      // print(catMap[0]);
+      print(catMap);
 
-      courses.add(Course(course["course_name"], course["teacher"], assingments,
-          catMap[0]["percent_grade"], catMap));
+      courses.add(Course(
+          course["course_name"], course["teacher"], assingments, 0, catMap));
     }
     return courses;
   }
@@ -122,69 +120,47 @@ class DBHelper {
       // print("data: ${data["courses"][1]}");
       // print("storeApiResponse: ${data["courses"]}");
       name = data["name"];
-      // print(data["courses"].length);
-      for (int i = 0; i < data["courses"].length; i++) {
-        // print("course: ${data["courses"][i]}");
-        await db.query("courses",
-            where: "course_name = ?",
-            whereArgs: [data["courses"][i]["name"]]).then((val) {
-          if (val.isEmpty) {
-            db.insert("courses", {
-              "course_name": data["courses"][i]["name"],
-              "teacher": data["courses"][i]["teacher_name"],
-              "missing": data["courses"][i]["num_missing"],
-              "graded": data["courses"][i]["num_graded"],
-              "ungraded": data["courses"][i]["num_ungraded"],
-              "total": data["courses"][i]["num_total"]
-            });
-          } else {
-            db.update("courses", {
-              "course_name": data["courses"][i]["name"],
-              "teacher": data["courses"][i]["teacher_name"],
-              "missing": data["courses"][i]["num_missing"],
-              "graded": data["courses"][i]["num_graded"],
-              "ungraded": data["courses"][i]["num_ungraded"],
-              "total": data["courses"][i]["num_total"]
-            });
-          }
-        });
-        for (var grade in data["courses"][i]["grades"]) {
-          await db.query("course_grades",
-              where: "course_name = ? AND category = ?",
-              whereArgs: [
-                data["courses"][i]["name"],
-                grade["category"]
-              ]).then((val) {
-            if (val.isEmpty) {
-              db.insert("course_grades", {
-                "course_name": data["courses"][i]["name"],
-                "category": grade["category"],
-                "percent_grade": grade["percent_grade"],
-                "fraction_grade": grade["fraction_grade"],
-                "additional_info": grade["additional_info"]
-              });
-            } else {
-              db.update("course_grades", {
-                "course_name": data["courses"][i]["name"],
-                "category": grade["category"],
-                "percent_grade": grade["percent_grade"],
-                "fraction_grade": grade["fraction_grade"],
-                "additional_info": grade["additional_info"]
-              });
-            }
-          });
-        }
+      print(data["courses"].length);
+      await db.transaction((txn) async {
+        for (int i = 0; i < data["courses"].length; i++) {
+          var course = data["courses"][i];
+          var existingCourses = await txn.query("courses",
+              where: "course_name = ?", whereArgs: [course["name"]]);
 
-        for (var assignment in data["courses"][i]["assignments"]) {
-          await db.query("assignments",
-              where: "course_name = ? AND name = ?",
-              whereArgs: [
-                data["courses"][i]["name"],
-                assignment["name"]
-              ]).then((val) {
-            if (val.isEmpty) {
-              db.insert("assignments", {
-                "course_name": data["courses"][i]["name"],
+          if (existingCourses.isEmpty) {
+            await txn.insert("courses", {
+              "course_name": course["name"],
+              "teacher": course["teacher_name"],
+              "missing": course["num_missing"],
+              "graded": course["num_graded"],
+              "ungraded": course["num_ungraded"],
+              "total": course["num_total"]
+            });
+            print("inserting ${course["name"]}");
+          } else {
+            await txn.update(
+                "courses",
+                {
+                  "course_name": course["name"],
+                  "teacher": course["teacher_name"],
+                  "missing": course["num_missing"],
+                  "graded": course["num_graded"],
+                  "ungraded": course["num_ungraded"],
+                  "total": course["num_total"]
+                },
+                where: "course_name = ?",
+                whereArgs: [course["name"]]);
+            print("updating ${course["name"]}");
+          }
+
+          for (var assignment in course["assignments"]) {
+            var existingAssignments = await txn.query("assignments",
+                where: "course_name = ? AND name = ?",
+                whereArgs: [course["name"], assignment["name"]]);
+
+            if (existingAssignments.isEmpty) {
+              await txn.insert("assignments", {
+                "course_name": course["name"],
                 "name": assignment["name"],
                 "date_due": assignment["date_due"],
                 "score": assignment["score"],
@@ -192,18 +168,22 @@ class DBHelper {
                 "category": assignment["category"]
               });
             } else {
-              db.update("assignments", {
-                "course_name": data["courses"][i]["name"],
-                "name": assignment["name"],
-                "date_due": assignment["date_due"],
-                "score": assignment["score"],
-                "impact": assignment["impact"],
-                "category": assignment["category"]
-              });
+              await txn.update(
+                  "assignments",
+                  {
+                    "course_name": course["name"],
+                    "name": assignment["name"],
+                    "date_due": assignment["date_due"],
+                    "score": assignment["score"],
+                    "impact": assignment["impact"],
+                    "category": assignment["category"]
+                  },
+                  where: "course_name = ? AND name = ?",
+                  whereArgs: [course["name"], assignment["name"]]);
             }
-          });
+          }
         }
-      }
+      });
       print("help");
     } catch (e) {
       print(e);
@@ -243,9 +223,9 @@ class DBHelper {
     if (file.existsSync()) {
       String s = file.readAsStringSync();
       name = s;
-      print("name: $name");
+      // print("name: $name");
     } else {
-      print("name not found");
+      // print("name not found");
     }
   }
 
