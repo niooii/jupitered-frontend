@@ -1,35 +1,19 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:jupiter_frontend/pages/home_page.dart';
+import 'package:jupiter_frontend/widgets/compound/stats_view.dart';
 import 'package:jupiter_frontend/pages/login_screen.dart';
 import 'package:jupiter_frontend/pages/main_screen.dart';
-import 'package:jupiter_frontend/pages/settings_page.dart';
-import 'package:jupiter_frontend/widgets/callisto_drawer_option.dart';
-import 'package:jupiter_frontend/widgets/course.dart';
+import 'package:jupiter_frontend/pages/settings_screen.dart';
+import 'package:jupiter_frontend/widgets/scaffold_components/drawer_tile.dart';
 
 import 'package:jupiter_frontend/pages/theme_page.dart';
 
-// TODO!
-class CallistoListTile extends StatelessWidget {
-  const CallistoListTile({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Placeholder();
-  }
-}
-
-class CallistoDrawer extends StatelessWidget {
-  static List<CourseTile> courses = [];
-
-  static setCourses(List<CourseTile> cts) {
-    courses = cts;
-  }
+class CDrawer extends StatelessWidget {
 
   static const double gap = 5;
 
-  const CallistoDrawer({super.key});
+  const CDrawer({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -46,10 +30,10 @@ class CallistoDrawer extends StatelessWidget {
             thickness: 0.5,
             color: Theme.of(context).colorScheme.onBackground
           ),
+          // const Gap(gap),
+          // ...courses,
           const Gap(gap),
-          ...courses,
-          const Gap(gap),
-          CallistoDrawerOption(
+          CDrawerTile(
             icon: const Icon(CupertinoIcons.home), 
             splashColor: Theme.of(context).colorScheme.surface, 
             redirectPage: MainScreen(), 
@@ -66,13 +50,13 @@ class CallistoDrawer extends StatelessWidget {
                     thickness: 0.5,
                     color: Theme.of(context).colorScheme.onBackground
                   ),
-                  CallistoDrawerOption(
+                  CDrawerTile(
                     icon: const Icon(Icons.settings_outlined),
                     splashColor: Theme.of(context).colorScheme.surface,
-                    redirectPage: const SettingsPage(),
+                    redirectPage: const SettingsScreen(),
                     text: "Settings",
                   ),
-                  CallistoDrawerOption(
+                  CDrawerTile(
                     icon: const Icon(Icons.keyboard_arrow_left),
                     splashColor: Theme.of(context).colorScheme.error,
                     hoverColor: Theme.of(context).colorScheme.error,

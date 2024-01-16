@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:jupiter_frontend/widgets/callisto_text.dart';
+import 'package:jupiter_frontend/widgets/general/callisto_text.dart';
 
-class CourseStatContainer extends StatelessWidget {
+class CourseStatDisplay extends StatelessWidget {
   final String courseName;
   final String courseInfo;
   final int missing;
@@ -10,7 +10,7 @@ class CourseStatContainer extends StatelessWidget {
   final int total;
   final double padding;
 
-  CourseStatContainer({required this.courseName, required this.courseInfo, required this.missing, required this.ungraded, required this.graded, required this.total, this.padding = 16.0});
+  CourseStatDisplay({required this.courseName, required this.courseInfo, required this.missing, required this.ungraded, required this.graded, required this.total, this.padding = 16.0});
 
   @override
   Widget build(BuildContext context) {

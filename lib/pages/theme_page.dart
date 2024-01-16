@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hsvcolor_picker/flutter_hsvcolor_picker.dart';
 import 'package:gap/gap.dart';
 import 'package:jupiter_frontend/jupiter_frontend.dart' as app;
-import 'package:jupiter_frontend/widgets/callisto_drawer.dart';
+import 'package:jupiter_frontend/widgets/scaffold_components/drawer.dart';
 
 var catppuccinThemes = [
   (catppuccin.latte, "Latte"),

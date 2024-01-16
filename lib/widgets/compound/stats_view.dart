@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:jupiter_frontend/models/course.dart';
 import 'package:jupiter_frontend/services/cache.dart';
-import 'package:jupiter_frontend/services/sqlite_helper.dart';
-import 'package:jupiter_frontend/widgets/callisto_text.dart';
-import 'package:jupiter_frontend/widgets/course_stat_container.dart';
+import 'package:jupiter_frontend/services/db_manager.dart';
+import 'package:jupiter_frontend/widgets/general/callisto_text.dart';
+import 'package:jupiter_frontend/widgets/info_display/course_stat_container.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -17,7 +17,7 @@ class HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<List<Course>>(
-      future: DBHelper.getInstance().getCourses(),
+      future: CDbManager.getInstance().getCourses(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(
@@ -34,7 +34,7 @@ class HomePageState extends State<HomePage> {
           int totalUngraded = 0;
           int totalGraded = 0;
 
-          List<CourseStatContainer> courseWidgets = List.empty(growable: true);
+          List<CourseStatDisplay> courseWidgets = List.empty(growable: true);
 
           for(Course c in courses) {
             total += c.totalAssignments;
@@ -42,7 +42,7 @@ class HomePageState extends State<HomePage> {
             totalUngraded += c.ungradedAssignments;
             totalGraded += c.gradedAssignments;
 
-            courseWidgets.add(CourseStatContainer(
+            courseWidgets.add(CourseStatDisplay(
               courseName: c.name,
               courseInfo: c.placeAndTime,
               missing: c.missingAssignments,
@@ -60,7 +60,7 @@ class HomePageState extends State<HomePage> {
                 children: [
                   const Gap(15),
                   const CallistoText("Welcome back,", size: 20, weight: FontWeight.bold),
-                  CallistoText(CallistoCache().name, size: 35, weight: FontWeight.bold),
+                  CallistoText(CCache().name, size: 35, weight: FontWeight.bold),
                   CallistoText("Total: ${total}", size: 20),
                   CallistoText("Missing: ${totalGraded}", size: 20),
                   CallistoText("Ungraded: ${totalUngraded}", size: 20),

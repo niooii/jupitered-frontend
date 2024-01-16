@@ -2,12 +2,11 @@ import 'dart:isolate';
 
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:jupiter_frontend/pages/courses_page.dart';
 import 'package:jupiter_frontend/pages/loading_screen.dart';
-import 'package:jupiter_frontend/services/api_helper.dart';
+import 'package:jupiter_frontend/services/api_manager.dart';
 
 import 'package:jupiter_frontend/models/user.dart';
-import 'package:jupiter_frontend/services/sqlite_helper.dart';
+import 'package:jupiter_frontend/services/db_manager.dart';
 import 'package:lottie/lottie.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -135,7 +134,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     _invalidOsis = false;
                     _wrongPassword = false;
 
-                    var res = ApiHelper.getInstance().then(
+                    var res = CApiManager.getInstance().then(
                       (value) =>
                         value.validateInfo(
                             _osisController.text, _passwordController.text)
@@ -162,11 +161,11 @@ class _LoginScreenState extends State<LoginScreen> {
                         u.saveUser(
                             _osisController.text, _passwordController.text);
                       }
-                      await ApiHelper.getInstance().then((APIval) => APIval
+                      await CApiManager.getInstance().then((APIval) => APIval
                               .getAssignments(
                                   _osisController.text, _passwordController.text)
                           .then((responseval) async => {
-                                await DBHelper.getInstance()
+                                await CDbManager.getInstance()
                                     .storeApiResponse(responseval.body)
                                     .then((value) =>
                                         print("response saved?: ${value == 1}")),

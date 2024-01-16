@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 
-import 'package:jupiter_frontend/pages/courses_page.dart';
 import 'package:jupiter_frontend/pages/login_screen.dart';
 import 'package:jupiter_frontend/pages/main_screen.dart';
 import 'package:jupiter_frontend/services/cache.dart';
-import 'package:jupiter_frontend/services/sqlite_helper.dart';
+import 'package:jupiter_frontend/services/db_manager.dart';
 import 'package:lottie/lottie.dart';
 
 class LoadingPage extends StatelessWidget {
@@ -24,8 +23,8 @@ class LoadingPage extends StatelessWidget {
       } else {
         successCallback().whenComplete(() {
           // grab the data and put it into global cache
-          DBHelper.getInstance().getCourses().then((courseList) => {
-            CallistoCache().cacheCourses(courseList)
+          CDbManager.getInstance().getCourses().then((courseList) => {
+            CCache().cacheCourses(courseList)
           });
           // caching OSIS and NAME are handled in DBHELPER::storeAPIRespones
           // main screen

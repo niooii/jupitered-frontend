@@ -1,11 +1,11 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
-class ApiHelper {
-  static ApiHelper? _instance;
+class CApiManager {
+  static CApiManager? _instance;
   static late Uri _endpoint;
 
-  ApiHelper._() {
+  CApiManager._() {
     // no ddos thanks i will prob host it somewhere else later maybe perhaps
     // test endpoint
     // _endpoint = Uri.parse("https://jsonplaceholder.typicode.com/users");
@@ -14,8 +14,8 @@ class ApiHelper {
   }
 
   // ? why is this async???
-  static Future<ApiHelper> getInstance() async {
-    _instance ??= ApiHelper._();
+  static Future<CApiManager> getInstance() async {
+    _instance ??= CApiManager._();
 
     return _instance!;
   }

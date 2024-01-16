@@ -1,11 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:jupiter_frontend/pages/courses_page.dart';
-import 'package:jupiter_frontend/pages/settings_page.dart';
-import 'package:jupiter_frontend/pages/home_page.dart';
-import 'package:jupiter_frontend/pages/theme_page.dart';
-import 'package:jupiter_frontend/widgets/callisto_app_bar.dart';
-import 'package:jupiter_frontend/widgets/callisto_drawer.dart';
+import 'package:jupiter_frontend/widgets/compound/stats_view.dart';
+import 'package:jupiter_frontend/widgets/scaffold_components/appbar.dart';
+import 'package:jupiter_frontend/widgets/scaffold_components/drawer.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
 class MainScreen extends StatefulWidget {
@@ -52,9 +48,9 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: CallistoAppBar(title: "Callisto"),
-      drawer: CallistoDrawer(),
+    return const Scaffold(
+      appBar: CAppBar(title: "Callisto"),
+      drawer: CDrawer(),
       body: HomePage()
     );
     // return PersistentTabView(

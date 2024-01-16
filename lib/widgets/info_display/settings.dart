@@ -1,7 +1,7 @@
 import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 
-class SettingsOption extends StatelessWidget {
+class CSettingsTile extends StatelessWidget {
   final Widget redirectPage;
   final Icon icon;
   final String label;
@@ -19,7 +19,7 @@ class SettingsOption extends StatelessWidget {
     );
   }
 
-  SettingsOption(this.label, this.icon, this.redirectPage, {Key? key})
+  CSettingsTile(this.label, this.icon, this.redirectPage, {Key? key})
       : super(key: key);
 
   @override

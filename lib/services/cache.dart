@@ -2,16 +2,16 @@
 
 import '../models/course.dart';
 
-class CallistoCache {
-  static CallistoCache? _instance;
+class CCache {
+  static CCache? _instance;
   late String osis;
   late String name;
   late List<Course> cachedCourses;
 
-  CallistoCache._();
+  CCache._();
 
-  factory CallistoCache() {
-    _instance ??= CallistoCache._();
+  factory CCache() {
+    _instance ??= CCache._();
     return _instance!;
   }
 

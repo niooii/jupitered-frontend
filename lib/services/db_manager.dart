@@ -11,16 +11,16 @@ import 'package:jupiter_frontend/models/assignment.dart';
 import 'package:jupiter_frontend/models/course.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 
-class DBHelper {
-  static DBHelper? _instance = DBHelper._();
+class CDbManager {
+  static CDbManager? _instance = CDbManager._();
   static late Database db;
 
-  DBHelper._() {
+  CDbManager._() {
     _instance = this;
     initDB().whenComplete(() => print("DATABASE HAS BEEN INITIALIZED!!"));
   }
 
-  static DBHelper getInstance() {
+  static CDbManager getInstance() {
     return _instance!;
   }
 
@@ -122,8 +122,8 @@ class DBHelper {
     try {
       var data = JsonDecoder().convert(json);
       
-      CallistoCache().cacheName(data["name"]);
-      CallistoCache().cacheOsis(data["osis"]);
+      CCache().cacheName(data["name"]);
+      CCache().cacheOsis(data["osis"]);
 
       await db.transaction((txn) async {
         for (int i = 0; i < data["courses"].length; i++) {

@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:jupiter_frontend/widgets/callisto_text.dart';
+import 'package:jupiter_frontend/widgets/general/callisto_text.dart';
 
-class CallistoDrawerOption extends StatelessWidget {
+class CDrawerTile extends StatelessWidget {
   final Icon icon;
   final Color splashColor;
   final Color? hoverColor;
   final Widget redirectPage;
   final String text;
 
-  const CallistoDrawerOption({
+  const CDrawerTile({
     super.key,
     required this.icon,
     required this.splashColor,
@@ -25,14 +25,6 @@ class CallistoDrawerOption extends StatelessWidget {
       leading: icon,
       title: CallistoText(text, size: 17),
       onTap: () {
-
-        if (context.widget.toStringShort() == redirectPage.toStringShort()) {
-          Navigator.pop(context);
-          return;
-        }
-
-        print(redirectPage.toStringShort());
-        print(context.widget.toStringShort());
 
         Navigator.pushAndRemoveUntil(context,
             MaterialPageRoute(builder: (BuildContext context) {
