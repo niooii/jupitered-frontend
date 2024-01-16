@@ -89,7 +89,6 @@ class CDbManager {
     for (int i = 0; i < courseMapList.length; i++) {
       var course = courseMapList[i];
       List<Assignment> assignments = await getAssignments(course["course_name"]);
-      print(course);
       await db.query("course_grades", where: "course_name = ?", whereArgs: [course["course_name"]]).then((catMap) {
         courses.add(Course(
           course["course_name"],
@@ -215,7 +214,7 @@ class CDbManager {
         }
       });
     } catch (e) {
-      print(e);
+      print("Exception: $e");
       return 0;
     }
     return 1;
@@ -224,24 +223,6 @@ class CDbManager {
   Future<String> get _namePath async {
     final directory = await getApplicationDocumentsDirectory();
     return directory.path;
-  }
-
-  Future<File> get _nameFile async {
-    final path = await _namePath;
-    File f = File('$path/name.txt');
-    if (!f.existsSync()) {
-      f.createSync();
-    }
-    return f;
-  }
-
-  Future<void> saveName(String name) async {
-    File file = await _nameFile;
-    if (!file.existsSync()) {
-      file.createSync();
-    }
-
-    file.writeAsStringSync(name);
   }
 
   // Future<void> loadName() async {

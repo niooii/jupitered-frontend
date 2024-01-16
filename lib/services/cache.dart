@@ -27,4 +27,12 @@ class CCache {
     this.name = name;
   }
 
+  void loadCacheFromDisk() {
+
+  }
+
+  void writeCacheToDisk() {
+    
+  }
+
 }

@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:jupiter_frontend/models/assignment.dart';
 
 import 'dart:convert';
-import 'package:jupiter_frontend/models/assignment.dart';
 
+// !!!! https://docs.flutter.dev/data-and-backend/serialization/json#code-generation docs
 class Course {
   List<Assignment> assignments;
 
@@ -23,7 +23,4 @@ class Course {
 
   Course(this.name, this.teacher, this.placeAndTime, this.missingAssignments, this.ungradedAssignments, this.gradedAssignments, this.totalAssignments, this.assignments, this.ave, this.cats);
 }
-
-
-  // wip
 
