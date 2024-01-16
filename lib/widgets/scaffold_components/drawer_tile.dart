@@ -7,6 +7,8 @@ class CDrawerTile extends StatelessWidget {
   final Color? hoverColor;
   final Widget redirectPage;
   final String text;
+  // if not, then u can press back etc
+  final bool isCorePage;
 
   const CDrawerTile({
     super.key,
@@ -14,7 +16,8 @@ class CDrawerTile extends StatelessWidget {
     required this.splashColor,
     this.hoverColor,
     required this.redirectPage,
-    required this.text
+    required this.text,
+    this.isCorePage = true
   });
 
   @override
@@ -25,13 +28,19 @@ class CDrawerTile extends StatelessWidget {
       leading: icon,
       title: CallistoText(text, size: 17),
       onTap: () {
-
-        Navigator.pushAndRemoveUntil(context,
+        if(isCorePage) {
+          Navigator.pushAndRemoveUntil(context,
             MaterialPageRoute(builder: (BuildContext context) {
           return redirectPage;
-        }), (r) {
-          return false;
-        });
+          }), (r) {
+            return false;
+          });
+        } else {
+          Navigator.pop(context);
+          Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
+            return redirectPage;
+          }));
+        }
       },
     );
   }

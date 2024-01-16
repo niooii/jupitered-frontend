@@ -15,12 +15,12 @@ class CAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       backgroundColor: Theme.of(context).colorScheme.primary,
-      title: CallistoText(title, size: 30),
+      title: FittedBox(
+        child: CallistoText(title, size: 30),
+      ),
       actions: [
         Icon(Icons.info_outline),
         Gap(15),
-        Icon(Icons.message),
-        Gap(15)
       ],
     );
   }

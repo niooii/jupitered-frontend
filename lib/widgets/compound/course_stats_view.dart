@@ -4,16 +4,18 @@ import 'package:jupiter_frontend/models/course.dart';
 import 'package:jupiter_frontend/services/cache.dart';
 import 'package:jupiter_frontend/services/db_manager.dart';
 import 'package:jupiter_frontend/widgets/general/callisto_text.dart';
-import 'package:jupiter_frontend/widgets/info_display/course_stat_container.dart';
+import 'package:jupiter_frontend/widgets/info_display/course_stats_display.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+const List<String> sortByLabels = ["Grade (Highest)", "Grade (Lowest)", "Alphabetical"];
+
+class StatsView extends StatefulWidget {
+  const StatsView({super.key});
   
   @override
-  State<HomePage> createState() => HomePageState();
+  State<StatsView> createState() => StatsViewState();
 }
 
-class HomePageState extends State<HomePage> {
+class StatsViewState extends State<StatsView> {
   @override
   Widget build(BuildContext context) {
     // gather statistics
@@ -31,12 +33,7 @@ class HomePageState extends State<HomePage> {
       totalGraded += c.gradedAssignments;
 
       courseWidgets.add(CourseStatDisplay(
-        courseName: c.name,
-        courseInfo: c.placeAndTime,
-        missing: c.missingAssignments,
-        ungraded: c.ungradedAssignments,
-        graded: c.gradedAssignments,
-        total: c.totalAssignments,
+        course: c,
         )
       );
     }
@@ -44,7 +41,7 @@ class HomePageState extends State<HomePage> {
     return ListView(
       children: [
         Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
+          // crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             const Gap(15),
             const CallistoText("Welcome back,", size: 20, weight: FontWeight.bold),
@@ -55,6 +52,27 @@ class HomePageState extends State<HomePage> {
             CallistoText("Missing: ${totalMissing}", size: 20),
           ],
         ),
+        Padding(
+          padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
+          child: CallistoText("Sort by:", size: 10),
+        ),
+       SizedBox(
+        width: 200,  // Set the width as per your requirements
+        child: DropdownButton(
+          // alignment: Alignment.centerLeft,
+          underline: Container(
+            height: 2,
+            color: Colors.deepPurpleAccent,
+          ),
+          items: sortByLabels.map((String s) {
+            return DropdownMenuItem(
+              value: s,
+              child: CallistoText(s, size: 10)
+            );
+          }).toList(),
+          onChanged: (v) => print(v)
+        ),
+      ),
         ...courseWidgets
       ],
     );

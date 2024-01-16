@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:jupiter_frontend/widgets/compound/stats_view.dart';
+import 'package:jupiter_frontend/widgets/compound/course_stats_view.dart';
 import 'package:jupiter_frontend/widgets/scaffold_components/appbar.dart';
 import 'package:jupiter_frontend/widgets/scaffold_components/drawer.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
@@ -51,7 +51,7 @@ class _MainScreenState extends State<MainScreen> {
     return const Scaffold(
       appBar: CAppBar(title: "Callisto"),
       drawer: CDrawer(),
-      body: HomePage()
+      body: StatsView()
     );
     // return PersistentTabView(
     //     context,

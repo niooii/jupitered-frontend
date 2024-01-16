@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:jupiter_frontend/widgets/compound/stats_view.dart';
+import 'package:jupiter_frontend/widgets/compound/course_stats_view.dart';
 import 'package:jupiter_frontend/pages/login_screen.dart';
 import 'package:jupiter_frontend/pages/main_screen.dart';
 import 'package:jupiter_frontend/pages/settings_screen.dart';
@@ -57,6 +57,7 @@ class CDrawer extends StatelessWidget {
                     splashColor: Theme.of(context).colorScheme.surface,
                     redirectPage: const SettingsScreen(),
                     text: "Settings",
+                    isCorePage: false,
                   ),
                   CDrawerTile(
                     icon: const Icon(Icons.keyboard_arrow_left),

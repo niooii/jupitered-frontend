@@ -21,7 +21,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        drawer: CDrawer(),
+        // drawer: CDrawer(),
         appBar: CAppBar(title: "Settings"),
         body: Column(
           children: [
