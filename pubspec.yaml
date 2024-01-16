@@ -50,6 +50,7 @@ dependencies:
   persistent_bottom_nav_bar: ^5.0.2
   sqflite_common_ffi: ^2.3.1
   json_annotation: ^4.8.1
+  shared_preferences: ^2.2.2
 
 dev_dependencies:
   flutter_test:

@@ -50,6 +50,9 @@ class _JupiterFrontendAppState extends State<JupiterFrontendApp> {
       debugShowCheckedModeBanner: false,
       title: 'Callisto',
       theme: _theme,
+      // TODO!
+      // if auto login from shared preferences (changable in settings) is true, go to main screen directly. if CCache().loadCacheFromDisk returns false,
+      // fetch data. if it cant fetch data (no internet or api down), redirect user to an error screen and explain. 
       home: LoginScreen(),
       //     LoginScreen(
       //   key: key,
