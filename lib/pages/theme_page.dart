@@ -1,17 +1,20 @@
 import 'package:catppuccin_flutter/catppuccin_flutter.dart';
-
 import 'package:flutter/material.dart';
-
-import "package:flutter_hsvcolor_picker/flutter_hsvcolor_picker.dart";
+import 'package:flutter_hsvcolor_picker/flutter_hsvcolor_picker.dart';
 import 'package:gap/gap.dart';
-
 import 'package:jupiter_frontend/jupiter_frontend.dart' as app;
-import 'package:jupiter_frontend/widgets/Drawer.dart';
+import 'package:jupiter_frontend/widgets/callisto_drawer.dart';
 
-var catppuccinThemes = [(catppuccin.latte, "Latte"), (catppuccin.frappe, "Frappé"), (catppuccin.macchiato, "Macchiato"), (catppuccin.mocha, "Mocha")];
+var catppuccinThemes = [
+  (catppuccin.latte, "Latte"),
+  (catppuccin.frappe, "Frappé"),
+  (catppuccin.macchiato, "Macchiato"),
+  (catppuccin.mocha, "Mocha")
+];
 
 class ThemePage extends StatefulWidget {
   const ThemePage({super.key});
+
   static ThemeData getTheme(BuildContext context) {
     return Theme.of(context);
   }
@@ -61,66 +64,76 @@ class _ThemePageState extends State<ThemePage> {
         schemeColors.entries.map((e) => ColorTile(e.value, e.key)).toList();
 
     return SafeArea(
-        child: Scaffold(
-            drawer: AppDrawer(),
-            appBar: AppBar(
-              title: Text("Change the Theme",
-                  style: TextStyle(
-                      color: Theme.of(context).colorScheme.onPrimary)),
-              backgroundColor: Theme.of(context).colorScheme.primary,
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text(
+            "Change the Theme",
+            style: TextStyle(
+              color: Theme.of(context).colorScheme.onPrimary,
             ),
-            body: Center(
-              child: ListView(
-                children: [
-                  const Gap(10),
-                  const Center(
-                      child: Text("Presets",
-                          style: TextStyle(
-                              fontSize: 20, fontWeight: FontWeight.bold))),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: catppuccinThemes.map((data) {
-                      Flavor flavor = data.$1;
-                      String flavorName = data.$2;
-                      return TextButton(
-                        onPressed: () {
-                          ThemeData theme = ThemeData(
-                            primaryColor: const Color(0xffe9c46a),
-                            colorScheme: ColorScheme(
-                              primary: flavor.crust,
-                              onPrimary: flavor.text,
-                              secondary: flavor.mantle,
-                              onSecondary: flavor.subtext0,
-                              background: flavor.base,
-                              onBackground: flavor.text,
-                              surface: flavor.surface0,
-                              onSurface: flavor.overlay0,
-                              brightness: Brightness.light,
-                              error: flavor.red,
-                              onError: flavor.rosewater,
-                            ),
-                            useMaterial3: true,
-                          );
-                          app.JupiterFrontendApp.getState().setTheme(theme);
-                        },
-                        child: Text(
-                          flavorName,
-                          style: TextStyle(color: Theme.of(context).colorScheme.onBackground),
-                          ),
-                      );
-                    }).toList(),
-                  ),
-                  ...tiles
-                ],
+          ),
+          backgroundColor: Theme.of(context).colorScheme.primary,
+        ),
+        body: Center(
+          child: ListView(
+            children: [
+              const Gap(10),
+              const Center(
+                child: Text(
+                  "Presets",
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),
               ),
-            ),
-            floatingActionButton: FloatingActionButton(
-              onPressed: () {
-                app.JupiterFrontendApp.getState().setTheme(newTheme(tiles));
-                // Navigator.pop(context);
-              },
-              child: Icon(Icons.check),
-            )));
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: catppuccinThemes.map((data) {
+                  Flavor flavor = data.$1;
+                  String flavorName = data.$2;
+                  return TextButton(
+                    onPressed: () {
+                      ThemeData theme = ThemeData(
+                        primaryColor: const Color(0xffe9c46a),
+                        colorScheme: ColorScheme(
+                          primary: flavor.crust,
+                          onPrimary: flavor.subtext0,
+                          secondary: flavor.mantle,
+                          onSecondary: flavor.subtext1,
+                          tertiary: flavor.surface0,
+                          onTertiary: flavor.text,
+                          background: flavor.base,
+                          onBackground: flavor.text,
+                          surface: flavor.surface0,
+                          onSurface: flavor.text,
+                          brightness: Brightness.light,
+                          error: flavor.red,
+                          onError: flavor.teal,
+                        ),
+                        useMaterial3: true,
+                      );
+                      app.JupiterFrontendApp.getState().setTheme(theme);
+                    },
+                    child: Text(
+                      flavorName,
+                      style: TextStyle(
+                        color: Theme.of(context).colorScheme.onBackground,
+                      ),
+                    ),
+                  );
+                }).toList(),
+              ),
+              ...tiles
+            ],
+          ),
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            app.JupiterFrontendApp.getState().setTheme(newTheme(tiles));
+            // Navigator.pop(context);
+          },
+          child: Icon(Icons.check),
+        ),
+      ),
+    );
   }
 }
 
@@ -136,32 +149,35 @@ class ColorTile extends StatefulWidget {
 class _ColorTileState extends State<ColorTile> {
   _showDialog(BuildContext context) {
     showDialog(
-        context: context,
-        builder: (context) {
-          return AlertDialog(
-            title: Text("Pick a color"),
-            content: SingleChildScrollView(
-              child: Container(
-                  height: 400,
-                  width: 400,
-                  child: ColorPicker(
-                    color: widget.color,
-                    onChanged: (value) {
-                      widget.color = value;
-                      setState(() {});
-                    },
-                    initialPicker: Picker.wheel,
-                  )),
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text("Pick a color"),
+          content: SingleChildScrollView(
+            child: Container(
+              height: 400,
+              width: 400,
+              child: ColorPicker(
+                color: widget.color,
+                onChanged: (value) {
+                  widget.color = value;
+                  setState(() {});
+                },
+                initialPicker: Picker.wheel,
+              ),
             ),
-            actions: [
-              TextButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  child: Text("Done"))
-            ],
-          );
-        });
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: Text("Done"),
+            ),
+          ],
+        );
+      },
+    );
   }
 
   @override
@@ -175,7 +191,10 @@ class _ColorTileState extends State<ColorTile> {
             color: widget.color,
             borderRadius: BorderRadius.circular(5),
             border: Border.all(
-                color: Colors.grey, width: 1.75, style: BorderStyle.solid),
+              color: Colors.grey,
+              width: 1.75,
+              style: BorderStyle.solid,
+            ),
           ),
         ),
         onTap: () {
@@ -185,7 +204,7 @@ class _ColorTileState extends State<ColorTile> {
       title: Text(
         widget.name,
         style: TextStyle(
-          color: Theme.of(context).colorScheme.onBackground
+          color: Theme.of(context).colorScheme.onBackground,
         ),
       ),
     );

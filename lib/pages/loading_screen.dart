@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 
-import 'package:jupiter_frontend/pages/home_page.dart';
+import 'package:jupiter_frontend/pages/courses_page.dart';
 import 'package:jupiter_frontend/pages/login_screen.dart';
 import 'package:jupiter_frontend/pages/main_screen.dart';
 import 'package:lottie/lottie.dart';
 
 class LoadingPage extends StatelessWidget {
-  LoadingPage(this.login, this.errorCallback, this.successCallback,
-      {super.key});
+  LoadingPage(this.login, this.errorCallback, this.successCallback, {super.key});
   Future login;
   Function errorCallback;
   Function successCallback;
@@ -22,10 +21,9 @@ class LoadingPage extends StatelessWidget {
         Navigator.pop(context);
       } else {
         successCallback().whenComplete(() {
-          // Navigator.pop(context);
           Navigator.pushReplacement(
             context,
-            MaterialPageRoute(builder: (context) => MainScreen()),
+            MaterialPageRoute(builder: (context) => const MainScreen()),
           );
         });
       }

@@ -1,10 +1,10 @@
 import 'dart:async';
-import 'package:path/path.dart';
-import 'package:sqflite/sqflite.dart';
 import 'dart:convert';
-
-import 'package:path_provider/path_provider.dart';
 import 'dart:io';
+
+import 'package:path/path.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:sqflite/sqflite.dart';
 
 import 'package:jupiter_frontend/models/assignment.dart';
 import 'package:jupiter_frontend/models/course.dart';
@@ -15,35 +15,33 @@ class DBHelper {
 
   String name = "";
 
-  // get instance => _instance;
-  get getName {
-    return name;
-  }
-
   DBHelper._() {
     _instance = this;
-    initDB()
-        .whenComplete(() => print("DATAABASE HAS BEEN INTIAILIZED!!@! ! !! "));
+    initDB().whenComplete(() => print("DATABASE HAS BEEN INITIALIZED!!"));
   }
 
   static DBHelper getInstance() {
     return _instance!;
   }
 
-  Future<void> initDB() async {
-    // clearDB();
+  get getName {
+    return name;
+  }
 
+  Future<void> initDB() async {
     _instance?.loadName();
 
     String path = await getDatabasesPath();
     db = await openDatabase(
       join(path, 'users.db'),
       onCreate: (database, version) async {
+        
         await database.execute(
           """
             CREATE TABLE courses (
               course_name TEXT NOT NULL,
               teacher TEXT NOT NULL,
+              place_and_time TEXT NOT NULL,
               missing INTEGER NOT NULL,
               graded INTEGER NOT NULL,
               ungraded INTEGER NOT NULL,
@@ -87,22 +85,23 @@ class DBHelper {
       return courses;
     }
 
-    // print("cml: $courseMapList");
     for (int i = 0; i < courseMapList.length; i++) {
       var course = courseMapList[i];
-      List<Assignment> assingments =
-          await getAssignments(course["course_name"]);
-      await db.query("course_grades",
-          where: "course_name = ?",
-          whereArgs: [course["course_name"]]).then((catMap) {
-        print('catMap = ${catMap[0]["percent_grade"]}');
-
+      List<Assignment> assignments = await getAssignments(course["course_name"]);
+      print(course);
+      await db.query("course_grades", where: "course_name = ?", whereArgs: [course["course_name"]]).then((catMap) {
         courses.add(Course(
-            course["course_name"],
-            course["teacher"],
-            assingments,
-            double.tryParse(catMap[0]["percent_grade"].toString()) ?? 0,
-            catMap));
+          course["course_name"],
+          course["teacher"],
+          course["place_and_time"],
+          course["missing"],
+          course["ungraded"],
+          course["graded"],
+          course["total"],
+          assignments,
+          double.tryParse(catMap[0]["percent_grade"].toString()) ?? 0,
+          catMap,
+        ));
       });
     }
     return courses;
@@ -110,11 +109,9 @@ class DBHelper {
 
   Future<List<Assignment>> getAssignments(String course) async {
     List<Assignment> assignments = [];
-    List<Map<String, dynamic>> assignmentMap = await db
-        .rawQuery('SELECT * FROM assignments WHERE course_name = ?', [course]);
+    List<Map<String, dynamic>> assignmentMap = await db.rawQuery('SELECT * FROM assignments WHERE course_name = ?', [course]);
 
     for (var assignment in assignmentMap) {
-      // print(" assigment = $assignment");
       assignments.add(Assignment.fromMap(assignment));
     }
     return assignments;
@@ -123,46 +120,42 @@ class DBHelper {
   Future<int> storeApiResponse(String json) async {
     try {
       var data = JsonDecoder().convert(json);
-      // print("data: ${data["courses"][1]}");
-      // print("storeApiResponse: ${data["courses"]}");
       name = data["name"];
-      // print(data["courses"].length);
+
       await db.transaction((txn) async {
         for (int i = 0; i < data["courses"].length; i++) {
           var course = data["courses"][i];
-          var existingCourses = await txn.query("courses",
-              where: "course_name = ?", whereArgs: [course["name"]]);
+          var existingCourses = await txn.query("courses", where: "course_name = ?", whereArgs: [course["name"]]);
 
           if (existingCourses.isEmpty) {
             await txn.insert("courses", {
               "course_name": course["name"],
               "teacher": course["teacher_name"],
+              "place_and_time": course["place_and_time"],
               "missing": course["num_missing"],
               "graded": course["num_graded"],
               "ungraded": course["num_ungraded"],
-              "total": course["num_total"]
+              "total": course["num_total"],
             });
-            // print("inserting ${course["name"]}");
           } else {
             await txn.update(
-                "courses",
-                {
-                  "course_name": course["name"],
-                  "teacher": course["teacher_name"],
-                  "missing": course["num_missing"],
-                  "graded": course["num_graded"],
-                  "ungraded": course["num_ungraded"],
-                  "total": course["num_total"]
-                },
-                where: "course_name = ?",
-                whereArgs: [course["name"]]);
-            // print("updating ${course["name"]}");
+              "courses",
+              {
+                "course_name": course["name"],
+                "teacher": course["teacher_name"],
+                "place_and_time": course["place_and_time"],
+                "missing": course["num_missing"],
+                "graded": course["num_graded"],
+                "ungraded": course["num_ungraded"],
+                "total": course["num_total"],
+              },
+              where: "course_name = ?",
+              whereArgs: [course["name"]],
+            );
           }
 
           for (var category in course["grades"]) {
-            var existingCategories = await txn.query("course_grades",
-                where: "course_name = ? AND category = ?",
-                whereArgs: [course["name"], category["category"]]);
+            var existingCategories = await txn.query("course_grades", where: "course_name = ? AND category = ?", whereArgs: [course["name"], category["category"]]);
 
             if (existingCategories.isEmpty) {
               await txn.insert("course_grades", {
@@ -170,27 +163,26 @@ class DBHelper {
                 "category": category["category"],
                 "percent_grade": category["percent_grade"],
                 "fraction_grade": category["fraction_grade"],
-                "additional_info": category["additional_info"]
+                "additional_info": category["additional_info"],
               });
             } else {
               await txn.update(
-                  "course_grades",
-                  {
-                    "course_name": course["name"],
-                    "category": category["category"],
-                    "percent_grade": category["percent_grade"],
-                    "fraction_grade": category["fraction_grade"],
-                    "additional_info": category["additional_info"]
-                  },
-                  where: "course_name = ? AND category = ?",
-                  whereArgs: [course["name"], category["category"]]);
+                "course_grades",
+                {
+                  "course_name": course["name"],
+                  "category": category["category"],
+                  "percent_grade": category["percent_grade"],
+                  "fraction_grade": category["fraction_grade"],
+                  "additional_info": category["additional_info"],
+                },
+                where: "course_name = ? AND category = ?",
+                whereArgs: [course["name"], category["category"]],
+              );
             }
           }
 
           for (var assignment in course["assignments"]) {
-            var existingAssignments = await txn.query("assignments",
-                where: "course_name = ? AND name = ?",
-                whereArgs: [course["name"], assignment["name"]]);
+            var existingAssignments = await txn.query("assignments", where: "course_name = ? AND name = ?", whereArgs: [course["name"], assignment["name"]]);
 
             if (existingAssignments.isEmpty) {
               await txn.insert("assignments", {
@@ -199,26 +191,26 @@ class DBHelper {
                 "date_due": assignment["date_due"],
                 "score": assignment["score"],
                 "impact": assignment["impact"],
-                "category": assignment["category"]
+                "category": assignment["category"],
               });
             } else {
               await txn.update(
-                  "assignments",
-                  {
-                    "course_name": course["name"],
-                    "name": assignment["name"],
-                    "date_due": assignment["date_due"],
-                    "score": assignment["score"],
-                    "impact": assignment["impact"],
-                    "category": assignment["category"]
-                  },
-                  where: "course_name = ? AND name = ?",
-                  whereArgs: [course["name"], assignment["name"]]);
+                "assignments",
+                {
+                  "course_name": course["name"],
+                  "name": assignment["name"],
+                  "date_due": assignment["date_due"],
+                  "score": assignment["score"],
+                  "impact": assignment["impact"],
+                  "category": assignment["category"],
+                },
+                where: "course_name = ? AND name = ?",
+                whereArgs: [course["name"], assignment["name"]],
+              );
             }
           }
         }
       });
-      // print("help");
     } catch (e) {
       print(e);
       return 0;
@@ -226,10 +218,8 @@ class DBHelper {
     return 1;
   }
 
-  // save name to name.txt
   Future<String> get _namePath async {
     final directory = await getApplicationDocumentsDirectory();
-
     return directory.path;
   }
 
@@ -244,7 +234,6 @@ class DBHelper {
 
   Future<void> saveName(String name) async {
     File file = await _nameFile;
-    // print files in current directory
     if (!file.existsSync()) {
       file.createSync();
     }
@@ -257,13 +246,8 @@ class DBHelper {
     if (file.existsSync()) {
       String s = file.readAsStringSync();
       name = s;
-      // print("name: $name");
-    } else {
-      // print("name not found");
     }
   }
-
-  // test schema for courses
 
   Future<void> clearDB() async {
     deleteDatabase(db.path);
