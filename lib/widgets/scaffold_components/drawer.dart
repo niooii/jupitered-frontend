@@ -5,6 +5,7 @@ import 'package:jupiter_frontend/widgets/compound/stats_view.dart';
 import 'package:jupiter_frontend/pages/login_screen.dart';
 import 'package:jupiter_frontend/pages/main_screen.dart';
 import 'package:jupiter_frontend/pages/settings_screen.dart';
+import 'package:jupiter_frontend/widgets/scaffold_components/drawer_divider.dart';
 import 'package:jupiter_frontend/widgets/scaffold_components/drawer_tile.dart';
 
 import 'package:jupiter_frontend/pages/theme_page.dart';
@@ -26,10 +27,7 @@ class CDrawer extends StatelessWidget {
               child: Image.asset('assets/images/jupiter-transparent.png', height: 200,)
             ),
           ),
-          Divider(
-            thickness: 0.5,
-            color: Theme.of(context).colorScheme.onBackground
-          ),
+          const CDrawerDivider(),
           // const Gap(gap),
           // ...courses,
           const Gap(gap),
@@ -40,16 +38,20 @@ class CDrawer extends StatelessWidget {
             text: "Home"
           ),
           const Gap(gap),
+          CDrawerTile(
+            icon: const Icon(CupertinoIcons.bubble_left), 
+            splashColor: Theme.of(context).colorScheme.surface, 
+            redirectPage: MainScreen(), 
+            text: "Manage notifications"
+          ),
+          const Gap(gap),
           Expanded(
             child: Align(
               alignment: Alignment.bottomCenter,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  Divider(
-                    thickness: 0.5,
-                    color: Theme.of(context).colorScheme.onBackground
-                  ),
+                  const CDrawerDivider(),
                   CDrawerTile(
                     icon: const Icon(Icons.settings_outlined),
                     splashColor: Theme.of(context).colorScheme.surface,

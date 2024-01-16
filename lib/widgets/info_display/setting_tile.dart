@@ -35,7 +35,7 @@ class CSettingsTile extends StatelessWidget {
         ),
       ),
       child: ListTile(
-        splashColor: Theme.of(context).colorScheme.error,
+        splashColor: Theme.of(context).colorScheme.surface,
         leading: icon,
         title: Text(
           label,

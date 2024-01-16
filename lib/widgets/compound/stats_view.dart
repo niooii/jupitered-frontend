@@ -16,62 +16,47 @@ class HomePage extends StatefulWidget {
 class HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<List<Course>>(
-      future: CDbManager.getInstance().getCourses(),
-      builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.waiting) {
-          return const Center(
-            child: CircularProgressIndicator(),
-          ); 
-        } else if (snapshot.hasError) {
-          return Text('Error: ${snapshot.error}');
-        } else {
-          List<Course> courses = snapshot.data!;
+    // gather statistics
+    int total = 0;
+    int totalMissing = 0;
+    int totalUngraded = 0;
+    int totalGraded = 0;
 
-          // gather statistics
-          int total = 0;
-          int totalMissing = 0;
-          int totalUngraded = 0;
-          int totalGraded = 0;
+    List<CourseStatDisplay> courseWidgets = List.empty(growable: true);
 
-          List<CourseStatDisplay> courseWidgets = List.empty(growable: true);
+    for(Course c in CCache().cachedCourses) {
+      total += c.totalAssignments;
+      totalMissing += c.missingAssignments;
+      totalUngraded += c.ungradedAssignments;
+      totalGraded += c.gradedAssignments;
 
-          for(Course c in courses) {
-            total += c.totalAssignments;
-            totalMissing += c.missingAssignments;
-            totalUngraded += c.ungradedAssignments;
-            totalGraded += c.gradedAssignments;
+      courseWidgets.add(CourseStatDisplay(
+        courseName: c.name,
+        courseInfo: c.placeAndTime,
+        missing: c.missingAssignments,
+        ungraded: c.ungradedAssignments,
+        graded: c.gradedAssignments,
+        total: c.totalAssignments,
+        )
+      );
+    }
 
-            courseWidgets.add(CourseStatDisplay(
-              courseName: c.name,
-              courseInfo: c.placeAndTime,
-              missing: c.missingAssignments,
-              ungraded: c.ungradedAssignments,
-              graded: c.gradedAssignments,
-              total: c.totalAssignments,
-              )
-            );
-          }
-
-          return ListView(
-            children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  const Gap(15),
-                  const CallistoText("Welcome back,", size: 20, weight: FontWeight.bold),
-                  CallistoText(CCache().name, size: 35, weight: FontWeight.bold),
-                  CallistoText("Total: ${total}", size: 20),
-                  CallistoText("Missing: ${totalGraded}", size: 20),
-                  CallistoText("Ungraded: ${totalUngraded}", size: 20),
-                  CallistoText("Missing: ${totalMissing}", size: 20),
-                ],
-              ),
-              ...courseWidgets
-            ],
-          );
-        }
-      },
+    return ListView(
+      children: [
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            const Gap(15),
+            const CallistoText("Welcome back,", size: 20, weight: FontWeight.bold),
+            CallistoText(CCache().name, size: 35, weight: FontWeight.bold),
+            CallistoText("Total: ${total}", size: 20),
+            CallistoText("Missing: ${totalGraded}", size: 20),
+            CallistoText("Ungraded: ${totalUngraded}", size: 20),
+            CallistoText("Missing: ${totalMissing}", size: 20),
+          ],
+        ),
+        ...courseWidgets
+      ],
     );
   }
 }

@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:http/http.dart';
 
 class CApiManager {
   static CApiManager? _instance;
@@ -20,7 +21,7 @@ class CApiManager {
     return _instance!;
   }
 
-  getAssignments(String user, String pass) async {
+  Future<Response> getAssignments(String user, String pass) async {
     // JsonDecoder decoder = const JsonDecoder();
     var response = await http.get(Uri.http(
         "96.246.237.185:9090", "/jupiter", {"osis": user, "password": pass}));
@@ -28,7 +29,7 @@ class CApiManager {
     return response;
   }
 
-  validateInfo(String user, String pass) async {
+  Future<Response> validateInfo(String user, String pass) async {
     // JsonDecoder decoder = const JsonDecoder();
     var response = await http.get(Uri.http(
         "96.246.237.185:9090", "/login_jupiter", {"osis": user, "password": pass}));

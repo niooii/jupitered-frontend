@@ -16,25 +16,27 @@ class LoadingPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final Color color = Theme.of(context).colorScheme.primary;
 
-    login.then((value) {
+    Future<void> handleLogin() async {
+      final value = await login;
       if (value.statusCode != 200) {
         errorCallback(value.body);
         Navigator.pop(context);
       } else {
-        successCallback().whenComplete(() {
-          // grab the data and put it into global cache
-          CDbManager.getInstance().getCourses().then((courseList) => {
-            CCache().cacheCourses(courseList)
-          });
-          // caching OSIS and NAME are handled in DBHELPER::storeAPIRespones
-          // main screen
-          Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(builder: (context) => const MainScreen()),
-          );
-        });
+        await successCallback(); // Wait for successCallback to complete
+
+        // grab the data and put it into global cache
+        final courseList = await CDbManager.getInstance().getCourses();
+        CCache().cacheCourses(courseList);
+
+        // main screen
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => const MainScreen()),
+        );
       }
-    });
+    }
+
+    handleLogin();
 
     return Scaffold(
       body: Center(
