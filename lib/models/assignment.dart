@@ -2,28 +2,25 @@ class Assignment {
   String name;
   DateTime? duedate;
 
-  double? grade;
-  double maxGrade;
+  String score;
 
   double impact;
 
   String cat;
   double weight;
 
-  Assignment(this.name, this.duedate, this.grade, this.maxGrade, this.impact,
+  Assignment(this.name, this.duedate, this.score, this.impact,
       this.cat, this.weight);
 
   factory Assignment.fromMap(Map<String, dynamic> map) {
     return Assignment(
         map["name"],
         parseDate(map["date_due"]),
-        parseScore(map["score"]),
-        parseMaxScore(map["score"]),
+        map["score"],
         double.tryParse(map["impact"]) ?? 0,
         map["category"],
         double.parse(map["weight"] ?? "0"));
   }
-
   // {
   // 	"name": "Midyear Project (Source Code and Video)",
   // 	"date_due": "1/7",
@@ -32,25 +29,30 @@ class Assignment {
   // 	"impact": "",
   // 	"category": "Midyear/Final"
   // },
-  static double parseMaxScore(String score) {
-    if (score == "absent") {
-      return 0;
-    }
-    if (score == "zero") {
-      return 0;
-    }
-    return double.parse(score.split("/")[1]);
-  }
+  // static double parseMaxScore(String score) {
+  //   if (score == "absent") {
+  //     return 0;
+  //   }
+  //   if (score == "absent") {
+  //     return 0;
+  //   }
+  //   if (score == "zero") {
+  //     return 0;
+  //   }
+  //   var split = score.split("/");
+  //   print(split[split.length == 1 ? 0 : 1]);
+  //   return double.parse(split[split.length == 1 ? 0 : 1]);
+  // }
 
-  static double parseScore(String score) {
-    if (score == "absent") {
-      return 0;
-    }
-    if (score == "zero") {
-      return 0;
-    }
-    return double.tryParse(score.split("/")[0]) ?? 0;
-  }
+  // static double parseScore(String score) {
+  //   if (score == "absent") {
+  //     return 0;
+  //   }
+  //   if (score == "zero") {
+  //     return 0;
+  //   }
+  //   return double.tryParse(score.split("/")[0]) ?? 0;
+  // }
 
   static DateTime parseDate(String dd) {
     var da = dd.split("/");
@@ -83,17 +85,17 @@ class Assignment {
     return DateTime(year, month, day);
   }
 
-  double getPercent() {
-    // print(
-    // "grade: $grade, maxGrade: $maxGrade = ${((grade ?? 0) / maxGrade) * 100}");
-    return ((grade ?? 0) / maxGrade) * 100;
-  }
+  // double getPercent() {
+  //   // print(
+  //   // "grade: $grade, maxGrade: $maxGrade = ${((grade ?? 0) / maxGrade) * 100}");
+  //   return ((grade ?? 0) / maxGrade) * 100;
+  // }
 
-  String getFractionalGrade() {
-    return grade.toString() + "/" + maxGrade.toString();
-  }
+  // String getFractionalGrade() {
+  //   return grade.toString() + "/" + maxGrade.toString();
+  // }
 
-  double getWeightedGrade() {
-    return (grade ?? 0) * weight;
-  }
+  // double getWeightedGrade() {
+  //   return (grade ?? 0) * weight;
+  // }
 }

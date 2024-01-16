@@ -10,13 +10,18 @@ class Course {
 
   String name;
   String teacher;
+  String placeAndTime;
+  int missingAssignments;
+  int ungradedAssignments;
+  int gradedAssignments;
+  int totalAssignments;
 
   double ave;
 
   // marked as late because of compiler error
   List<Map<String, dynamic>> cats;
 
-  Course(this.name, this.teacher, this.assignments, this.ave, this.cats);
+  Course(this.name, this.teacher, this.placeAndTime, this.missingAssignments, this.ungradedAssignments, this.gradedAssignments, this.totalAssignments, this.assignments, this.ave, this.cats);
 }
 
 
