@@ -18,37 +18,37 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen> {
   PersistentTabController _controller = PersistentTabController(initialIndex: 1);
 
-  List<Widget> _buildScreens() {
-        return [
-          // TODO! this becomes courses page
-          CoursePage(),
-          HomePage(),
-          SettingsPage()
-        ];
-    }
+  // List<Widget> _buildScreens() {
+  //       return [
+  //         // TODO! this becomes courses page
+  //         CoursePage(),
+  //         HomePage(),
+  //         SettingsPage()
+  //       ];
+  //   }
 
-    List<PersistentBottomNavBarItem> _navBarsItems() {
-        return [
-            PersistentBottomNavBarItem(
-                icon: Icon(CupertinoIcons.doc),
-                title: ("Courses"),
-                activeColorPrimary: Theme.of(context).colorScheme.onSecondary,
-                inactiveColorPrimary: CupertinoColors.systemGrey,
-            ),
-            PersistentBottomNavBarItem(
-                icon: Icon(CupertinoIcons.home),
-                title: ("Home"),
-                activeColorPrimary: Theme.of(context).colorScheme.onSecondary,
-                inactiveColorPrimary: CupertinoColors.systemGrey,
-            ),
-            PersistentBottomNavBarItem(
-                icon: Icon(CupertinoIcons.settings),
-                title: ("Settings"),
-                activeColorPrimary: Theme.of(context).colorScheme.onSecondary,
-                inactiveColorPrimary: CupertinoColors.systemGrey,
-            ),
-        ];
-    }
+  //   List<PersistentBottomNavBarItem> _navBarsItems() {
+  //       return [
+  //           PersistentBottomNavBarItem(
+  //               icon: Icon(CupertinoIcons.doc),
+  //               title: ("Courses"),
+  //               activeColorPrimary: Theme.of(context).colorScheme.onSecondary,
+  //               inactiveColorPrimary: CupertinoColors.systemGrey,
+  //           ),
+  //           PersistentBottomNavBarItem(
+  //               icon: Icon(CupertinoIcons.home),
+  //               title: ("Home"),
+  //               activeColorPrimary: Theme.of(context).colorScheme.onSecondary,
+  //               inactiveColorPrimary: CupertinoColors.systemGrey,
+  //           ),
+  //           PersistentBottomNavBarItem(
+  //               icon: Icon(CupertinoIcons.settings),
+  //               title: ("Settings"),
+  //               activeColorPrimary: Theme.of(context).colorScheme.onSecondary,
+  //               inactiveColorPrimary: CupertinoColors.systemGrey,
+  //           ),
+  //       ];
+  //   }
 
   @override
   Widget build(BuildContext context) {

@@ -4,6 +4,7 @@ import 'package:jupiter_frontend/widgets/callisto_text.dart';
 class CallistoDrawerOption extends StatelessWidget {
   final Icon icon;
   final Color splashColor;
+  final Color? hoverColor;
   final Widget redirectPage;
   final String text;
 
@@ -11,6 +12,7 @@ class CallistoDrawerOption extends StatelessWidget {
     super.key,
     required this.icon,
     required this.splashColor,
+    this.hoverColor,
     required this.redirectPage,
     required this.text
   });
@@ -19,6 +21,7 @@ class CallistoDrawerOption extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       splashColor: splashColor,
+      hoverColor: hoverColor,
       leading: icon,
       title: CallistoText(text, size: 17),
       onTap: () {

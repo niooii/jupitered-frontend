@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:jupiter_frontend/models/course.dart';
+import 'package:jupiter_frontend/services/cache.dart';
 import 'package:jupiter_frontend/services/sqlite_helper.dart';
 import 'package:jupiter_frontend/widgets/callisto_text.dart';
 import 'package:jupiter_frontend/widgets/course_stat_container.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
-
+  
   @override
   State<HomePage> createState() => HomePageState();
 }
@@ -59,7 +60,7 @@ class HomePageState extends State<HomePage> {
                 children: [
                   const Gap(15),
                   const CallistoText("Welcome back,", size: 20, weight: FontWeight.bold),
-                  CallistoText(DBHelper.getInstance().name, size: 35, weight: FontWeight.bold),
+                  CallistoText(CallistoCache().name, size: 35, weight: FontWeight.bold),
                   CallistoText("Total: ${total}", size: 20),
                   CallistoText("Missing: ${totalGraded}", size: 20),
                   CallistoText("Ungraded: ${totalUngraded}", size: 20),

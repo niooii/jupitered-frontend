@@ -49,17 +49,11 @@ class CallistoDrawer extends StatelessWidget {
           const Gap(gap),
           ...courses,
           const Gap(gap),
-          ListTile(
-            leading: const Icon(CupertinoIcons.home),
-            title: const Text('Home'),
-            onTap: () {
-              Navigator.pop(context);
-              
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => MainScreen()),
-              );
-            },
+          CallistoDrawerOption(
+            icon: const Icon(CupertinoIcons.home), 
+            splashColor: Theme.of(context).colorScheme.surface, 
+            redirectPage: MainScreen(), 
+            text: "Home"
           ),
           const Gap(gap),
           Expanded(
@@ -73,14 +67,15 @@ class CallistoDrawer extends StatelessWidget {
                     color: Theme.of(context).colorScheme.onBackground
                   ),
                   CallistoDrawerOption(
-                    icon: Icon(Icons.settings_outlined),
-                    splashColor: Theme.of(context).colorScheme.error,
-                    redirectPage: SettingsPage(),
+                    icon: const Icon(Icons.settings_outlined),
+                    splashColor: Theme.of(context).colorScheme.surface,
+                    redirectPage: const SettingsPage(),
                     text: "Settings",
                   ),
                   CallistoDrawerOption(
-                    icon: Icon(Icons.keyboard_arrow_left),
+                    icon: const Icon(Icons.keyboard_arrow_left),
                     splashColor: Theme.of(context).colorScheme.error,
+                    hoverColor: Theme.of(context).colorScheme.error,
                     redirectPage: LoginScreen(),
                     text: "Logout",
                   ),

@@ -2,18 +2,18 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:jupiter_frontend/services/cache.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
 
 import 'package:jupiter_frontend/models/assignment.dart';
 import 'package:jupiter_frontend/models/course.dart';
+import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 
 class DBHelper {
   static DBHelper? _instance = DBHelper._();
   static late Database db;
-
-  String name = "";
 
   DBHelper._() {
     _instance = this;
@@ -24,12 +24,13 @@ class DBHelper {
     return _instance!;
   }
 
-  get getName {
-    return name;
-  }
-
   Future<void> initDB() async {
-    _instance?.loadName();
+    // _instance?.loadName();
+
+    sqfliteFfiInit();
+
+
+    databaseFactory = databaseFactoryFfi;
 
     String path = await getDatabasesPath();
     db = await openDatabase(
@@ -120,7 +121,9 @@ class DBHelper {
   Future<int> storeApiResponse(String json) async {
     try {
       var data = JsonDecoder().convert(json);
-      name = data["name"];
+      
+      CallistoCache().cacheName(data["name"]);
+      CallistoCache().cacheOsis(data["osis"]);
 
       await db.transaction((txn) async {
         for (int i = 0; i < data["courses"].length; i++) {
@@ -241,13 +244,13 @@ class DBHelper {
     file.writeAsStringSync(name);
   }
 
-  Future<void> loadName() async {
-    File file = await _nameFile;
-    if (file.existsSync()) {
-      String s = file.readAsStringSync();
-      name = s;
-    }
-  }
+  // Future<void> loadName() async {
+  //   File file = await _nameFile;
+  //   if (file.existsSync()) {
+  //     String s = file.readAsStringSync();
+  //     name = s;
+  //   }
+  // }
 
   Future<void> clearDB() async {
     deleteDatabase(db.path);
