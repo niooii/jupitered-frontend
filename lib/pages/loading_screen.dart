@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:jupiter_frontend/pages/login_screen.dart';
-import 'package:jupiter_frontend/pages/main_screen.dart';
+import 'package:jupiter_frontend/pages/home_page.dart';
 import 'package:jupiter_frontend/services/cache.dart';
 import 'package:jupiter_frontend/services/db_manager.dart';
 import 'package:lottie/lottie.dart';
@@ -31,7 +31,7 @@ class LoadingPage extends StatelessWidget {
         // main screen
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (context) => const MainScreen()),
+          MaterialPageRoute(builder: (context) => const HomePage()),
         );
       }
     }

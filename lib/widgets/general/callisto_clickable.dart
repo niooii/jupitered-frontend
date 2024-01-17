@@ -3,16 +3,18 @@ import 'package:flutter/material.dart';
 
 class CClickable extends StatelessWidget {
   Widget? child;
+  double elevation;
   void Function()? onPressed;
   
-  CClickable({super.key, this.child, this.onPressed});
+  CClickable({super.key, this.child, this.onPressed, this.elevation=0});
 
   @override
   Widget build(BuildContext context) {
     return ButtonTheme(
       padding: EdgeInsets.zero,
       child: MaterialButton(
-        elevation: 0,
+        splashColor: Colors.transparent,
+        elevation: elevation,
         onPressed: onPressed,
         child: child
       ),

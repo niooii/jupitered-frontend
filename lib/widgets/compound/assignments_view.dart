@@ -15,7 +15,7 @@ class AssignmentsView extends StatefulWidget {
 class _AssignmentsViewState extends State<AssignmentsView> {
   @override
   Widget build(BuildContext context) {
-    return ListView(
+    return Column(
       children: widget.course.assignments.map((Assignment a) {
         return AssignmentTile(assignment: a);
       }).toList(),

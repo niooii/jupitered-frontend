@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:jupiter_frontend/models/user.dart';
@@ -9,20 +10,20 @@ import 'package:jupiter_frontend/widgets/scaffold_components/drawer.dart';
 import 'package:jupiter_frontend/widgets/general/callisto_text.dart';
 import 'package:jupiter_frontend/widgets/info_display/setting_tile.dart';
 
-class SettingsScreen extends StatefulWidget {
-  const SettingsScreen({super.key});
+class SettingsPage extends StatefulWidget {
+  const SettingsPage({super.key});
 
   @override
-  State<SettingsScreen> createState() => _SettingsScreenState();
+  State<SettingsPage> createState() => _SettingsPageState();
 }
 
-class _SettingsScreenState extends State<SettingsScreen> {
+class _SettingsPageState extends State<SettingsPage> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
         // drawer: CDrawer(),
-        appBar: CAppBar(title: "Settings"),
+        appBar: const CAppBar(title: "Settings"),
         body: Column(
           children: [
             const Gap(40),
@@ -33,6 +34,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
             CSettingsTile("Preferences", const Icon(Icons.settings_outlined), ThemePage()),
             const Gap(10),
             CSettingsTile("Theme", const Icon(Icons.palette), const ThemePage()),
+            const Gap(10),
+            CSettingsTile("Manage Notifications", const Icon(CupertinoIcons.bubble_left), const ThemePage()),
             // Expanded(
             //   child: Align(
             //     alignment: Alignment.bottomCenter,

@@ -1,10 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:jupiter_frontend/widgets/compound/course_stats_view.dart';
+import 'package:jupiter_frontend/models/course.dart';
+import 'package:jupiter_frontend/pages/all_assignments_page.dart';
+import 'package:jupiter_frontend/pages/course_page.dart';
+import 'package:jupiter_frontend/services/cache.dart';
+import 'package:jupiter_frontend/widgets/compound/courses_view.dart';
 import 'package:jupiter_frontend/pages/login_screen.dart';
-import 'package:jupiter_frontend/pages/main_screen.dart';
-import 'package:jupiter_frontend/pages/settings_screen.dart';
+import 'package:jupiter_frontend/pages/home_page.dart';
+import 'package:jupiter_frontend/pages/settings_page.dart';
 import 'package:jupiter_frontend/widgets/scaffold_components/drawer_divider.dart';
 import 'package:jupiter_frontend/widgets/scaffold_components/drawer_tile.dart';
 
@@ -18,8 +22,27 @@ class CDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    List<Widget> courseTiles = List.empty(growable: true);
+    // maybe NOT run this loop every fucking time we open the drawer.
+    for(Course c in CCache().cachedCourses) {
+      courseTiles.add(
+        Column(
+          children: [
+            CDrawerTile(
+              icon: const Icon(CupertinoIcons.add), 
+              splashColor: Theme.of(context).colorScheme.surface, 
+              redirectPage: CoursePage(course: c), 
+              text: c.name
+            ),
+            const Gap(gap),
+          ],
+        )
+      );
+    }
+
+    
     return Drawer(
-      child: Column(
+      child: ListView(
         children: [
           Padding(
             padding: EdgeInsets.all(20),
@@ -28,48 +51,38 @@ class CDrawer extends StatelessWidget {
             ),
           ),
           const CDrawerDivider(),
-          // const Gap(gap),
-          // ...courses,
           const Gap(gap),
           CDrawerTile(
             icon: const Icon(CupertinoIcons.home), 
             splashColor: Theme.of(context).colorScheme.surface, 
-            redirectPage: MainScreen(), 
+            redirectPage: HomePage(), 
             text: "Home"
           ),
           const Gap(gap),
           CDrawerTile(
-            icon: const Icon(CupertinoIcons.bubble_left), 
+            icon: const Icon(CupertinoIcons.doc_text), 
             splashColor: Theme.of(context).colorScheme.surface, 
-            redirectPage: MainScreen(), 
-            text: "Manage notifications"
+            redirectPage: const AllAssignmentsPage(), 
+            text: "All Assignments"
           ),
-          const Gap(gap),
-          Expanded(
-            child: Align(
-              alignment: Alignment.bottomCenter,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  const CDrawerDivider(),
-                  CDrawerTile(
-                    icon: const Icon(Icons.settings_outlined),
-                    splashColor: Theme.of(context).colorScheme.surface,
-                    redirectPage: const SettingsScreen(),
-                    text: "Settings",
-                    isCorePage: false,
-                  ),
-                  CDrawerTile(
-                    icon: const Icon(Icons.keyboard_arrow_left),
-                    splashColor: Theme.of(context).colorScheme.error,
-                    hoverColor: Theme.of(context).colorScheme.error,
-                    redirectPage: LoginScreen(),
-                    text: "Logout",
-                  ),
-                ],
-              )
-            ),
-          )
+          const CDrawerDivider(),
+          // GENERATED COURSE TILES DYNAMICALLY
+          ...courseTiles,
+          const CDrawerDivider(),
+          CDrawerTile(
+            icon: const Icon(Icons.settings_outlined),
+            splashColor: Theme.of(context).colorScheme.surface,
+            redirectPage: const SettingsPage(),
+            text: "Settings",
+            isCorePage: false,
+          ),
+          CDrawerTile(
+            icon: const Icon(Icons.keyboard_arrow_left),
+            splashColor: Theme.of(context).colorScheme.error,
+            hoverColor: Theme.of(context).colorScheme.error,
+            redirectPage: LoginScreen(),
+            text: "Logout",
+          ),
         ],
       ),
     );

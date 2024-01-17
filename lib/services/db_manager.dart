@@ -89,7 +89,7 @@ class CDbManager {
     for (int i = 0; i < courseMapList.length; i++) {
       var course = courseMapList[i];
       List<Assignment> assignments = await getAssignments(course["course_name"]);
-      await db.query("course_grades", where: "course_name = ?", whereArgs: [course["course_name"]]).then((catMap) {
+      await db.query("course_grades", where: "course_name = ?", whereArgs: [course["course_name"]]).then((catMapList) {
         courses.add(Course(
           course["course_name"],
           course["teacher"],
@@ -99,8 +99,23 @@ class CDbManager {
           course["graded"],
           course["total"],
           assignments,
-          double.tryParse(catMap[0]["percent_grade"].toString()) ?? 0,
-          catMap,
+          double.tryParse(catMapList[0]["percent_grade"].toString()) ?? 0,
+          catMapList.map((categoryMap) {
+            /* 
+            {
+              "category": "Course Average",
+              "percent_grade": 97.1,
+              "fraction_grade": null,
+              "additional_info": null
+            },
+            */
+            return GradeCategory(
+              category: categoryMap["category"]!.toString(),
+              percentGrade: double.tryParse(categoryMap["percent_grade"].toString()) ?? 0,
+              fractionGrade: categoryMap["fraction_grade"]?.toString(),
+              additionalInfo: categoryMap["additional_info"]?.toString()
+            );
+          }).toList()
         ));
       });
     }
