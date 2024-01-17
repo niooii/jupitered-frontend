@@ -1,14 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:jupiter_frontend/models/user.dart';
-import 'package:jupiter_frontend/pages/login_screen.dart';
-import 'package:jupiter_frontend/pages/theme_page.dart';
+import 'package:jupiter_frontend/pages/settings/preferences/page.dart';
+import 'package:jupiter_frontend/pages/settings/themes/page.dart';
 import 'package:jupiter_frontend/services/cache.dart';
 import 'package:jupiter_frontend/widgets/scaffold_components/appbar.dart';
-import 'package:jupiter_frontend/widgets/scaffold_components/drawer.dart';
 import 'package:jupiter_frontend/widgets/general/callisto_text.dart';
-import 'package:jupiter_frontend/widgets/info_display/setting_tile.dart';
+import 'package:jupiter_frontend/pages/settings/setting_tile.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({super.key});
@@ -31,7 +29,7 @@ class _SettingsPageState extends State<SettingsPage> {
             CallistoText(CCache().name, size: 30),
             CallistoText(CCache().osis, size: 20),
             const Gap(40),
-            CSettingsTile("Preferences", const Icon(Icons.settings_outlined), ThemePage()),
+            CSettingsTile("Preferences", const Icon(Icons.settings_outlined), const PreferencesPage()),
             const Gap(10),
             CSettingsTile("Theme", const Icon(Icons.palette), const ThemePage()),
             const Gap(10),

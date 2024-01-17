@@ -2,17 +2,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:jupiter_frontend/models/course.dart';
-import 'package:jupiter_frontend/pages/all_assignments_page.dart';
-import 'package:jupiter_frontend/pages/course_page.dart';
+import 'package:jupiter_frontend/pages/all_assignments/page.dart';
+import 'package:jupiter_frontend/pages/course/page.dart';
 import 'package:jupiter_frontend/services/cache.dart';
-import 'package:jupiter_frontend/widgets/compound/courses_view.dart';
 import 'package:jupiter_frontend/pages/login_screen.dart';
-import 'package:jupiter_frontend/pages/home_page.dart';
-import 'package:jupiter_frontend/pages/settings_page.dart';
+import 'package:jupiter_frontend/pages/home/page.dart';
+import 'package:jupiter_frontend/pages/settings/page.dart';
 import 'package:jupiter_frontend/widgets/scaffold_components/drawer_divider.dart';
 import 'package:jupiter_frontend/widgets/scaffold_components/drawer_tile.dart';
-
-import 'package:jupiter_frontend/pages/theme_page.dart';
 
 class CDrawer extends StatelessWidget {
 

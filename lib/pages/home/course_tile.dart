@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:jupiter_frontend/pages/course_page.dart';
+import 'package:jupiter_frontend/pages/course/page.dart';
 import 'package:jupiter_frontend/widgets/general/callisto_clickable.dart';
 import 'package:jupiter_frontend/widgets/general/callisto_text.dart';
 import 'package:jupiter_frontend/models/course.dart';
@@ -37,6 +37,7 @@ class CourseTile extends StatelessWidget {
             border: Border.all(color: Theme.of(context).colorScheme.tertiary),
             gradient: const LinearGradient(colors: [
               Colors.transparent,
+              // TODO! change color for diff grades
               Color.fromARGB(164, 33, 149, 243)
             ],
             stops: [

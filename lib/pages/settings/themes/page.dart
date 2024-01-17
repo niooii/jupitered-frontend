@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hsvcolor_picker/flutter_hsvcolor_picker.dart';
 import 'package:gap/gap.dart';
 import 'package:jupiter_frontend/jupiter_frontend.dart' as app;
-import 'package:jupiter_frontend/widgets/scaffold_components/drawer.dart';
 
 var catppuccinThemes = [
   (catppuccin.latte, "Latte"),
@@ -63,75 +62,73 @@ class _ThemePageState extends State<ThemePage> {
     List<ColorTile> tiles =
         schemeColors.entries.map((e) => ColorTile(e.value, e.key)).toList();
 
-    return SafeArea(
-      child: Scaffold(
-        appBar: AppBar(
-          title: Text(
-            "Change the Theme",
-            style: TextStyle(
-              color: Theme.of(context).colorScheme.onPrimary,
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          "Change the Theme",
+          style: TextStyle(
+            color: Theme.of(context).colorScheme.onPrimary,
+          ),
+        ),
+        backgroundColor: Theme.of(context).colorScheme.primary,
+      ),
+      body: Center(
+        child: ListView(
+          children: [
+            const Gap(10),
+            const Center(
+              child: Text(
+                "Presets",
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              ),
             ),
-          ),
-          backgroundColor: Theme.of(context).colorScheme.primary,
-        ),
-        body: Center(
-          child: ListView(
-            children: [
-              const Gap(10),
-              const Center(
-                child: Text(
-                  "Presets",
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                ),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: catppuccinThemes.map((data) {
-                  Flavor flavor = data.$1;
-                  String flavorName = data.$2;
-                  return TextButton(
-                    onPressed: () {
-                      ThemeData theme = ThemeData(
-                        primaryColor: const Color(0xffe9c46a),
-                        colorScheme: ColorScheme(
-                          primary: flavor.crust,
-                          onPrimary: flavor.subtext0,
-                          secondary: flavor.mantle,
-                          onSecondary: flavor.subtext1,
-                          tertiary: flavor.surface0,
-                          onTertiary: flavor.text,
-                          background: flavor.base,
-                          onBackground: flavor.text,
-                          surface: flavor.surface0,
-                          onSurface: flavor.text,
-                          brightness: Brightness.light,
-                          error: flavor.red,
-                          onError: flavor.teal,
-                        ),
-                        useMaterial3: true,
-                      );
-                      app.JupiterFrontendApp.getState().setTheme(theme);
-                    },
-                    child: Text(
-                      flavorName,
-                      style: TextStyle(
-                        color: Theme.of(context).colorScheme.onBackground,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: catppuccinThemes.map((data) {
+                Flavor flavor = data.$1;
+                String flavorName = data.$2;
+                return TextButton(
+                  onPressed: () {
+                    ThemeData theme = ThemeData(
+                      primaryColor: const Color(0xffe9c46a),
+                      colorScheme: ColorScheme(
+                        primary: flavor.crust,
+                        onPrimary: flavor.subtext0,
+                        secondary: flavor.mantle,
+                        onSecondary: flavor.subtext1,
+                        tertiary: flavor.surface0,
+                        onTertiary: flavor.text,
+                        background: flavor.base,
+                        onBackground: flavor.text,
+                        surface: flavor.surface0,
+                        onSurface: flavor.text,
+                        brightness: Brightness.light,
+                        error: flavor.red,
+                        onError: flavor.teal,
                       ),
+                      useMaterial3: true,
+                    );
+                    app.JupiterFrontendApp.getState().setTheme(theme);
+                  },
+                  child: Text(
+                    flavorName,
+                    style: TextStyle(
+                      color: Theme.of(context).colorScheme.onBackground,
                     ),
-                  );
-                }).toList(),
-              ),
-              ...tiles
-            ],
-          ),
+                  ),
+                );
+              }).toList(),
+            ),
+            ...tiles
+          ],
         ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            app.JupiterFrontendApp.getState().setTheme(newTheme(tiles));
-            // Navigator.pop(context);
-          },
-          child: Icon(Icons.check),
-        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          app.JupiterFrontendApp.getState().setTheme(newTheme(tiles));
+          // Navigator.pop(context);
+        },
+        child: Icon(Icons.check),
       ),
     );
   }

@@ -30,6 +30,7 @@ class AssignmentDetails extends StatelessWidget {
 
   final Assignment assignment;
 
+// TODO! make expandable
   @override
   Widget build(BuildContext context) {
     return SafeArea(

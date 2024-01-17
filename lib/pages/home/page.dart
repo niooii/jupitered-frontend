@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:jupiter_frontend/models/course.dart';
 import 'package:jupiter_frontend/services/cache.dart';
-import 'package:jupiter_frontend/widgets/compound/courses_view.dart';
+import 'package:jupiter_frontend/pages/home/courses_view.dart';
 import 'package:jupiter_frontend/widgets/general/callisto_clickable.dart';
 import 'package:jupiter_frontend/widgets/general/callisto_text.dart';
 import 'package:jupiter_frontend/widgets/scaffold_components/appbar.dart';

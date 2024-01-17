@@ -1,8 +1,7 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:jupiter_frontend/models/assignment.dart';
 import 'package:jupiter_frontend/models/course.dart';
-import 'package:jupiter_frontend/widgets/info_display/assignment_tile.dart';
+import 'package:jupiter_frontend/pages/course/assignment_tile.dart';
 
 class AssignmentsView extends StatefulWidget {
   final Course course;

@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:jupiter_frontend/pages/login_screen.dart';
 
 import 'package:catppuccin_flutter/catppuccin_flutter.dart';
-import 'package:jupiter_frontend/pages/home_page.dart';
-import 'package:jupiter_frontend/pages/theme_page.dart';
+import 'package:jupiter_frontend/pages/home/page.dart';
+import 'package:jupiter_frontend/pages/settings/themes/page.dart';
 
 // test import
 

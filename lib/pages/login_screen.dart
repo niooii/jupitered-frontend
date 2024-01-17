@@ -155,7 +155,6 @@ class _LoginScreenState extends State<LoginScreen> {
                       }
                     }
 
-                    // TODO! DO STUFF HERE I GUESS IDK
                     successCallback() async {
                       if (widget._rememberMe) {
                         u.saveUser(

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:jupiter_frontend/pages/login_screen.dart';
-import 'package:jupiter_frontend/pages/home_page.dart';
+import 'package:jupiter_frontend/pages/home/page.dart';
 import 'package:jupiter_frontend/services/cache.dart';
 import 'package:jupiter_frontend/services/db_manager.dart';
 import 'package:lottie/lottie.dart';

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jupiter_frontend/models/course.dart';
-import 'package:jupiter_frontend/widgets/compound/assignments_view.dart';
+import 'package:jupiter_frontend/pages/course/assignments_view.dart';
 import 'package:jupiter_frontend/widgets/scaffold_components/appbar.dart';
 import 'package:jupiter_frontend/widgets/scaffold_components/drawer_divider.dart';
 
