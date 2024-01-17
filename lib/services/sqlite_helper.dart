@@ -33,9 +33,8 @@ class DBHelper {
 
     String path = await getDatabasesPath();
     db = await openDatabase(
-      join(path, 'users.db'),
+      join(path, 'calisto.db'),
       onCreate: (database, version) async {
-        
         await database.execute(
           """
             CREATE TABLE courses (
@@ -87,9 +86,12 @@ class DBHelper {
 
     for (int i = 0; i < courseMapList.length; i++) {
       var course = courseMapList[i];
-      List<Assignment> assignments = await getAssignments(course["course_name"]);
+      List<Assignment> assignments =
+          await getAssignments(course["course_name"]);
       print(course);
-      await db.query("course_grades", where: "course_name = ?", whereArgs: [course["course_name"]]).then((catMap) {
+      await db.query("course_grades",
+          where: "course_name = ?",
+          whereArgs: [course["course_name"]]).then((catMap) {
         courses.add(Course(
           course["course_name"],
           course["teacher"],
@@ -109,7 +111,8 @@ class DBHelper {
 
   Future<List<Assignment>> getAssignments(String course) async {
     List<Assignment> assignments = [];
-    List<Map<String, dynamic>> assignmentMap = await db.rawQuery('SELECT * FROM assignments WHERE course_name = ?', [course]);
+    List<Map<String, dynamic>> assignmentMap = await db
+        .rawQuery('SELECT * FROM assignments WHERE course_name = ?', [course]);
 
     for (var assignment in assignmentMap) {
       assignments.add(Assignment.fromMap(assignment));
@@ -125,7 +128,8 @@ class DBHelper {
       await db.transaction((txn) async {
         for (int i = 0; i < data["courses"].length; i++) {
           var course = data["courses"][i];
-          var existingCourses = await txn.query("courses", where: "course_name = ?", whereArgs: [course["name"]]);
+          var existingCourses = await txn.query("courses",
+              where: "course_name = ?", whereArgs: [course["name"]]);
 
           if (existingCourses.isEmpty) {
             await txn.insert("courses", {
@@ -155,7 +159,9 @@ class DBHelper {
           }
 
           for (var category in course["grades"]) {
-            var existingCategories = await txn.query("course_grades", where: "course_name = ? AND category = ?", whereArgs: [course["name"], category["category"]]);
+            var existingCategories = await txn.query("course_grades",
+                where: "course_name = ? AND category = ?",
+                whereArgs: [course["name"], category["category"]]);
 
             if (existingCategories.isEmpty) {
               await txn.insert("course_grades", {
@@ -182,7 +188,9 @@ class DBHelper {
           }
 
           for (var assignment in course["assignments"]) {
-            var existingAssignments = await txn.query("assignments", where: "course_name = ? AND name = ?", whereArgs: [course["name"], assignment["name"]]);
+            var existingAssignments = await txn.query("assignments",
+                where: "course_name = ? AND name = ?",
+                whereArgs: [course["name"], assignment["name"]]);
 
             if (existingAssignments.isEmpty) {
               await txn.insert("assignments", {
