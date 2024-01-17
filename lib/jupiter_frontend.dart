@@ -5,6 +5,7 @@ import 'package:jupiter_frontend/pages/login_screen.dart';
 import 'package:catppuccin_flutter/catppuccin_flutter.dart';
 import 'package:jupiter_frontend/pages/home/page.dart';
 import 'package:jupiter_frontend/pages/settings/themes/page.dart';
+import 'package:jupiter_frontend/services/shared_preferences.dart';
 
 // test import
 
@@ -46,6 +47,7 @@ class _JupiterFrontendAppState extends State<JupiterFrontendApp> {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    bool autoLogIn = CSharedPrefs().autoLogIn;
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Callisto',
@@ -53,7 +55,7 @@ class _JupiterFrontendAppState extends State<JupiterFrontendApp> {
       // TODO!
       // if auto login from shared preferences (changable in settings) is true, go to main screen directly. if CCache().loadCacheFromDisk returns false,
       // fetch data. if it cant fetch data (no internet or api down), redirect user to an error screen and explain. 
-      home: LoginScreen(),
+      home: autoLogIn ? mainscreen() : LoginScreen(),
       //     LoginScreen(
       //   key: key,
       // ),

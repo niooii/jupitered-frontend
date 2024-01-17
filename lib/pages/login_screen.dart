@@ -7,7 +7,6 @@ import 'package:jupiter_frontend/services/api_manager.dart';
 
 import 'package:jupiter_frontend/models/user.dart';
 import 'package:jupiter_frontend/services/db_manager.dart';
-import 'package:lottie/lottie.dart';
 
 class LoginScreen extends StatefulWidget {
   bool _rememberMe = false;
@@ -107,9 +106,11 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   Text("Remember Me",
                       style: TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.bold,
-                          color: Theme.of(context).colorScheme.onBackground))
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold,
+                        color: Theme.of(context).colorScheme.onBackground
+                      )
+                    )
                 ],
               ),
               const Gap(10),
