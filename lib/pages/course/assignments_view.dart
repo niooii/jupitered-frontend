@@ -3,6 +3,7 @@ import 'package:jupiter_frontend/models/assignment.dart';
 import 'package:jupiter_frontend/models/course.dart';
 import 'package:jupiter_frontend/pages/course/assignment_tile.dart';
 
+// TODO! add filter by [category, grade below n, grade above n]
 class AssignmentsView extends StatefulWidget {
   final Course course;
   const AssignmentsView({super.key, required this.course});

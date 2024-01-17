@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:jupiter_frontend/services/shared_preferences.dart';
 import 'package:jupiter_frontend/widgets/scaffold_components/appbar.dart';
 
 class PreferencesPage extends StatefulWidget {
@@ -16,7 +17,9 @@ class _PreferencesPageState extends State<PreferencesPage> {
       appBar: CAppBar(title: "Preferences"),
       body: ListView(
         children: [
-          
+          Checkbox(value: CSharedPrefs().autoLogIn, onChanged: (val) {
+            CSharedPrefs().autoLogIn = val!;
+          })
         ],
       ),
     );

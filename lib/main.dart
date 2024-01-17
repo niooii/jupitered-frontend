@@ -6,6 +6,7 @@ import 'package:jupiter_frontend/services/shared_preferences.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await CSharedPrefs().init();
+  CSharedPrefs().load();
   await CDbManager.getInstance().initDB();
 
   runApp(const JupiterFrontendApp());

@@ -6,6 +6,8 @@ class CSharedPrefs {
   late SharedPreferences prefs;
   static CSharedPrefs? _instance;
 
+  late bool autoLogIn;
+
   CSharedPrefs._();
 
   Future<void> init() async {
@@ -18,7 +20,11 @@ class CSharedPrefs {
   }
 
   void save() {
-    
+    print("wrote todisk");
+  }
+  
+  void load() {
+    autoLogIn = prefs.getBool("autoLogIn") ?? false;
   }
 
 }
