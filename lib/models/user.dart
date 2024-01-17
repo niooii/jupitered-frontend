@@ -5,6 +5,7 @@ import 'package:path_provider/path_provider.dart';
 
 import 'package:flutter/services.dart';
 
+//  Follow single responsibility principle
 class User {
   String username;
   String? password;

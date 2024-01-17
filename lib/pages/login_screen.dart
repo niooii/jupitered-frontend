@@ -2,13 +2,11 @@ import 'dart:isolate';
 
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:jupiter_frontend/pages/courses_page.dart';
 import 'package:jupiter_frontend/pages/loading_screen.dart';
-import 'package:jupiter_frontend/services/api_helper.dart';
+import 'package:jupiter_frontend/services/api_manager.dart';
 
 import 'package:jupiter_frontend/models/user.dart';
-import 'package:jupiter_frontend/services/sqlite_helper.dart';
-import 'package:lottie/lottie.dart';
+import 'package:jupiter_frontend/services/db_manager.dart';
 
 class LoginScreen extends StatefulWidget {
   bool _rememberMe = false;
@@ -108,9 +106,11 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   Text("Remember Me",
                       style: TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.bold,
-                          color: Theme.of(context).colorScheme.onBackground))
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold,
+                        color: Theme.of(context).colorScheme.onBackground
+                      )
+                    )
                 ],
               ),
               const Gap(10),
@@ -135,7 +135,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     _invalidOsis = false;
                     _wrongPassword = false;
 
-                    var res = ApiHelper.getInstance().then(
+                    var res = CApiManager.getInstance().then(
                       (value) =>
                         value.validateInfo(
                             _osisController.text, _passwordController.text)
@@ -156,17 +156,16 @@ class _LoginScreenState extends State<LoginScreen> {
                       }
                     }
 
-                    // TODO! DO STUFF HERE I GUESS IDK
                     successCallback() async {
                       if (widget._rememberMe) {
                         u.saveUser(
                             _osisController.text, _passwordController.text);
                       }
-                      await ApiHelper.getInstance().then((APIval) => APIval
+                      await CApiManager.getInstance().then((APIval) => APIval
                               .getAssignments(
                                   _osisController.text, _passwordController.text)
                           .then((responseval) async => {
-                                await DBHelper.getInstance()
+                                await CDbManager.getInstance()
                                     .storeApiResponse(responseval.body)
                                     .then((value) =>
                                         print("response saved?: ${value == 1}")),

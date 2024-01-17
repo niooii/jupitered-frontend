@@ -2,38 +2,38 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:jupiter_frontend/services/cache.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
 
 import 'package:jupiter_frontend/models/assignment.dart';
 import 'package:jupiter_frontend/models/course.dart';
+import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 
-class DBHelper {
-  static DBHelper? _instance = DBHelper._();
+class CDbManager {
+  static CDbManager? _instance = CDbManager._();
   static late Database db;
 
-  String name = "";
-
-  DBHelper._() {
+  CDbManager._() {
     _instance = this;
     initDB().whenComplete(() => print("DATABASE HAS BEEN INITIALIZED!!"));
   }
 
-  static DBHelper getInstance() {
+  static CDbManager getInstance() {
     return _instance!;
   }
 
-  get getName {
-    return name;
-  }
-
   Future<void> initDB() async {
-    _instance?.loadName();
+    // _instance?.loadName();
+
+    sqfliteFfiInit();
+
+    databaseFactory = databaseFactoryFfi;
 
     String path = await getDatabasesPath();
     db = await openDatabase(
-      join(path, 'calisto.db'),
+      join(path, 'users.db'),
       onCreate: (database, version) async {
         await database.execute(
           """
@@ -88,22 +88,36 @@ class DBHelper {
       var course = courseMapList[i];
       List<Assignment> assignments =
           await getAssignments(course["course_name"]);
-      print(course);
       await db.query("course_grades",
           where: "course_name = ?",
-          whereArgs: [course["course_name"]]).then((catMap) {
+          whereArgs: [course["course_name"]]).then((catMapList) {
         courses.add(Course(
-          course["course_name"],
-          course["teacher"],
-          course["place_and_time"],
-          course["missing"],
-          course["ungraded"],
-          course["graded"],
-          course["total"],
-          assignments,
-          double.tryParse(catMap[0]["percent_grade"].toString()) ?? 0,
-          catMap,
-        ));
+            course["course_name"],
+            course["teacher"],
+            course["place_and_time"],
+            course["missing"],
+            course["ungraded"],
+            course["graded"],
+            course["total"],
+            assignments,
+            double.tryParse(catMapList[0]["percent_grade"].toString()) ?? 0,
+            catMapList.map((categoryMap) {
+              /* 
+            {
+              "category": "Course Average",
+              "percent_grade": 97.1,
+              "fraction_grade": null,
+              "additional_info": null
+            },
+            */
+              return GradeCategory(
+                  category: categoryMap["category"]!.toString(),
+                  percentGrade: double.tryParse(
+                          categoryMap["percent_grade"].toString()) ??
+                      0,
+                  fractionGrade: categoryMap["fraction_grade"]?.toString(),
+                  additionalInfo: categoryMap["additional_info"]?.toString());
+            }).toList()));
       });
     }
     return courses;
@@ -123,7 +137,9 @@ class DBHelper {
   Future<int> storeApiResponse(String json) async {
     try {
       var data = JsonDecoder().convert(json);
-      name = data["name"];
+
+      CCache().cacheName(data["name"]);
+      CCache().cacheOsis(data["osis"]);
 
       await db.transaction((txn) async {
         for (int i = 0; i < data["courses"].length; i++) {
@@ -220,7 +236,7 @@ class DBHelper {
         }
       });
     } catch (e) {
-      print(e);
+      print("Exception: $e");
       return 0;
     }
     return 1;
@@ -231,31 +247,13 @@ class DBHelper {
     return directory.path;
   }
 
-  Future<File> get _nameFile async {
-    final path = await _namePath;
-    File f = File('$path/name.txt');
-    if (!f.existsSync()) {
-      f.createSync();
-    }
-    return f;
-  }
-
-  Future<void> saveName(String name) async {
-    File file = await _nameFile;
-    if (!file.existsSync()) {
-      file.createSync();
-    }
-
-    file.writeAsStringSync(name);
-  }
-
-  Future<void> loadName() async {
-    File file = await _nameFile;
-    if (file.existsSync()) {
-      String s = file.readAsStringSync();
-      name = s;
-    }
-  }
+  // Future<void> loadName() async {
+  //   File file = await _nameFile;
+  //   if (file.existsSync()) {
+  //     String s = file.readAsStringSync();
+  //     name = s;
+  //   }
+  // }
 
   Future<void> clearDB() async {
     deleteDatabase(db.path);

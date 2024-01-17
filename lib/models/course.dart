@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:jupiter_frontend/models/assignment.dart';
 
 import 'dart:convert';
-import 'package:jupiter_frontend/models/assignment.dart';
 
+// !!!! https://docs.flutter.dev/data-and-backend/serialization/json#code-generation docs
 class Course {
   List<Assignment> assignments;
 
@@ -15,15 +15,29 @@ class Course {
   int ungradedAssignments;
   int gradedAssignments;
   int totalAssignments;
-
-  double ave;
+  // TODO! this will break at the beginning of the year LOLOLO
+  // may have to update backend too.
+  double average;
 
   // marked as late because of compiler error
-  List<Map<String, dynamic>> cats;
+  List<GradeCategory> gradeCategories;
 
-  Course(this.name, this.teacher, this.placeAndTime, this.missingAssignments, this.ungradedAssignments, this.gradedAssignments, this.totalAssignments, this.assignments, this.ave, this.cats);
+  Course(this.name, this.teacher, this.placeAndTime, this.missingAssignments, this.ungradedAssignments, this.gradedAssignments, this.totalAssignments, this.assignments, this.average, this.gradeCategories);
 }
+/* 
+CREATE TABLE course_grades (
+  course_name TEXT NOT NULL,
+  category TEXT NOT NULL,
+  percent_grade REAL,
+  fraction_grade TEXT,
+  additional_info TEXT
+);
+*/
+class GradeCategory {
+  String category;
+  double? percentGrade;
+  String? fractionGrade;
+  String? additionalInfo;
 
-
-  // wip
-
+  GradeCategory({required this.category, this.percentGrade, this.fractionGrade, this.additionalInfo});
+}
