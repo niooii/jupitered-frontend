@@ -35,7 +35,9 @@ class _AssignmentsViewState extends State<AssignmentsView> {
 
     // create the dropdown menu items
     List<DropdownMenuItem<GradeCategory>> filters =
-        widget.course.gradeCategories.map((e) {
+        widget.course.gradeCategories
+        .where((category) => category.category != "Course Average")
+        .map((e) {
       return DropdownMenuItem<GradeCategory>(
         value: e,
         child: Text(e.toString()),
@@ -72,28 +74,40 @@ class _AssignmentsViewState extends State<AssignmentsView> {
     ];
 
     return Column(children: [
-      Row(children: [
-        CallistoText("Filter By:", size: 12.5),
-        DropdownButton(
-          items: filters,
-          onChanged: (value) {
-            setState(() {
-              _selectedCategory = value;
-            });
-          },
-          style: TextStyle(color: Theme.of(context).colorScheme.onBackground),
+      Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+        Column(
+          children: [
+            const CallistoText("Filter By:", size: 12.5, textAlign: TextAlign.left,),
+            DropdownButton(
+              items: filters,
+              onChanged: (value) {
+                setState(() {
+                  _selectedCategory = value;
+                });
+              },
+              style: TextStyle(color: Theme.of(context).colorScheme.onBackground),
+            ),
+          ],
         ),
-        const Gap(5),
-        CallistoText("Sort By:", size: 12.5),
-        DropdownButton(
-            items: sorts,
-            onChanged: (value) {
-              setState(() {
-                assignmentWidgets =
-                    value!(assignmentWidgets.map((e) => e.assignment).toList());
-              });
-            })
-      ]),
+        // const Gap(5),
+        // Column(
+        //   children: [
+        //     const CallistoText("Sort By:", size: 12.5),
+        //     DropdownButton(
+        //         items: sorts,
+        //         onChanged: (value) {
+        //           setState(() {
+        //             assignmentWidgets =
+        //                 value!(assignmentWidgets.map((e) => e.assignment).toList());
+        //           });
+        //         }
+        //       )
+        //   ],
+        // )
+      ]
+      ),
       // if an item is selected, filter the list of assignments
       if (_selectedCategory != null)
         ...assignmentWidgets

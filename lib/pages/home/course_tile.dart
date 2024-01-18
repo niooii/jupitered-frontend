@@ -13,7 +13,7 @@ class CourseTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var courseInfoChildren = [
-      CallistoText(course.placeAndTime, size: 13),
+      // CallistoText(course.placeAndTime, size: 13),
       CallistoText(course.name, size: 22, textAlign: TextAlign.left),
       CallistoText(course.teacher, size: 15),
     ];

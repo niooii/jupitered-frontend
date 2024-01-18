@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:jupiter_frontend/models/course.dart';
 import 'package:jupiter_frontend/pages/course/assignments_view.dart';
 import 'package:jupiter_frontend/widgets/scaffold_components/appbar.dart';
-import 'package:jupiter_frontend/widgets/scaffold_components/drawer_divider.dart';
+import 'package:jupiter_frontend/widgets/general/divider.dart';
 
 class CoursePage extends StatelessWidget {
   final Course course;
@@ -14,8 +14,12 @@ class CoursePage extends StatelessWidget {
       appBar: CAppBar(title: course.name),
       body: ListView(
         children: [
-
-          CDrawerDivider(),
+          // TODO!
+          // display grade category info here
+          ...course.gradeCategories.map<Widget>((category) {
+            return Text(category.toString());
+          }),
+          CDivider(),
           AssignmentsView(course: course)
         ],
       ),

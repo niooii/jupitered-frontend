@@ -20,10 +20,6 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   List<Course> courses = List.empty(growable: true);
   
-  int total = 0;
-  int totalMissing = 0;
-  int totalUngraded = 0;
-  int totalGraded = 0;
   double uwAvg = 0;
 
   // Course is hashable?? this worked???? wtf
@@ -103,17 +99,9 @@ class _HomePageState extends State<HomePage> {
     // gather course data stuff
     courses = CCache().cachedCourses;
 
-    total = 0;
-    totalMissing = 0;
-    totalUngraded = 0;
-    totalGraded = 0;
     double gradeSum = 0.0;
 
     for(Course c in courses) {
-      total += c.totalAssignments;
-      totalMissing += c.missingAssignments;
-      totalUngraded += c.ungradedAssignments;
-      totalGraded += c.gradedAssignments;
 
       gradeSum += c.average;
 
@@ -131,12 +119,18 @@ class _HomePageState extends State<HomePage> {
       body: ListView(
         children: [
           const Gap(15),
-          const CallistoText("Welcome back,", size: 20, weight: FontWeight.bold, textAlign: TextAlign.center),
-          CallistoText(CCache().name, size: 35, weight: FontWeight.bold, textAlign: TextAlign.center),
-          CallistoText("Total: ${total}", size: 20, textAlign: TextAlign.center),
-          CallistoText("Graded: ${totalGraded}", size: 20, textAlign: TextAlign.center),
-          CallistoText("Ungraded: ${totalUngraded}", size: 20, textAlign: TextAlign.center),
-          CallistoText("Missing: ${totalMissing}", size: 20, textAlign: TextAlign.center),
+          const Padding(
+            padding: EdgeInsets.fromLTRB(10.0, 0, 0, 0),
+            child: CallistoText("Welcome back,", size: 20, weight: FontWeight.bold, textAlign: TextAlign.left),
+          ),
+          Padding(
+            padding: EdgeInsets.fromLTRB(10.0, 0, 0, 0),
+            child: CallistoText(CCache().name, size: 35, weight: FontWeight.bold, textAlign: TextAlign.left),
+          ),
+          // CallistoText("Total: ${total}", size: 20, textAlign: TextAlign.center),
+          // CallistoText("Graded: ${totalGraded}", size: 20, textAlign: TextAlign.center),
+          // CallistoText("Ungraded: ${totalUngraded}", size: 20, textAlign: TextAlign.center),
+          // CallistoText("Missing: ${totalMissing}", size: 20, textAlign: TextAlign.center),
           Padding(
               padding: const EdgeInsets.all(16),
               child: CClickable(
@@ -144,6 +138,7 @@ class _HomePageState extends State<HomePage> {
                   _showCustomPopup(context);
                 },
                 child: Container(
+                  alignment: Alignment.centerLeft,
                   decoration: BoxDecoration(
                     // color: ,
                     borderRadius: BorderRadius.circular(10.0),
@@ -151,7 +146,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                   child: Padding(
                     padding: const EdgeInsets.all(20),
-                    child: CallistoText("Your unweighted average: ${uwAvg.toStringAsFixed(2)}", size: 20)
+                    child: CallistoText("Unweighted average: ${uwAvg.toStringAsFixed(2)}", size: 20, weight: FontWeight.w600,)
                   ),
                 ),
               )

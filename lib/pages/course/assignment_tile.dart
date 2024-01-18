@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:jupiter_frontend/models/assignment.dart';
+import 'package:jupiter_frontend/widgets/general/callisto_text.dart';
 
+// TODO! REFACTOR 
 class AssignmentTile extends StatelessWidget {
-  const AssignmentTile({Key? key, required this.assignment}) : super(key: key);
+  bool includeCourseName;
+  AssignmentTile({Key? key, required this.assignment, this.includeCourseName = false}) : super(key: key);
 
   final Assignment assignment;
 
@@ -10,8 +13,8 @@ class AssignmentTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       title: Text(assignment.name),
-      subtitle: Text(assignment.duedate.toString()),
-      trailing: Text(assignment.score),
+      subtitle: Text(includeCourseName ? "${assignment.courseName} - ${assignment.duedate.toString()}" : assignment.duedate.toString()),
+      trailing: CallistoText(assignment.score, size: 15),
       onTap: () {
         Navigator.push(
           context,

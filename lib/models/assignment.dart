@@ -1,5 +1,6 @@
 class Assignment {
   String name;
+  String courseName;
   DateTime? duedate;
 
   String score;
@@ -10,7 +11,7 @@ class Assignment {
   double weight;
 
   Assignment(this.name, this.duedate, this.score, this.impact,
-      this.cat, this.weight);
+      this.cat, this.weight, this.courseName);
 
   factory Assignment.fromMap(Map<String, dynamic> map) {
     return Assignment(
@@ -19,7 +20,8 @@ class Assignment {
         map["score"],
         double.tryParse(map["impact"]) ?? 0,
         map["category"],
-        double.parse(map["weight"] ?? "0"));
+        double.parse(map["weight"] ?? "0"),
+        map["course_name"]);
   }
   // {
   // 	"name": "Midyear Project (Source Code and Video)",

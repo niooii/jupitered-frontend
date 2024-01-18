@@ -32,8 +32,8 @@ class _SettingsPageState extends State<SettingsPage> {
             CSettingsTile("Preferences", const Icon(Icons.settings_outlined), const PreferencesPage()),
             const Gap(10),
             CSettingsTile("Theme", const Icon(Icons.palette), const ThemePage()),
-            const Gap(10),
-            CSettingsTile("Manage Notifications", const Icon(CupertinoIcons.bubble_left), const ThemePage()),
+            // const Gap(10),
+            // CSettingsTile("Manage Notifications", const Icon(CupertinoIcons.bubble_left), const ThemePage()),
             // Expanded(
             //   child: Align(
             //     alignment: Alignment.bottomCenter,
