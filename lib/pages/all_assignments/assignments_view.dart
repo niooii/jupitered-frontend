@@ -21,10 +21,13 @@ class AssignmentsView extends StatefulWidget {
 
     toRender.addAll(assignments);
 
-    categoryFilters = assignments.map((assignment) {
+    // TODO! TEST LATER
+    categoryFilters = assignments.map((a) {
+      return a.cat;
+    }).toSet().map((category) {
       return DropdownMenuItem<String>(
-        value: assignment.cat,
-        child: Text(assignment.cat),
+        value: category,
+        child: Text(category),
       );
     }).toList();
 
