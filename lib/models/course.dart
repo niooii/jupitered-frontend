@@ -22,8 +22,19 @@ class Course {
   // marked as late because of compiler error
   List<GradeCategory> gradeCategories;
 
-  Course(this.name, this.teacher, this.placeAndTime, this.missingAssignments, this.ungradedAssignments, this.gradedAssignments, this.totalAssignments, this.assignments, this.average, this.gradeCategories);
+  Course(
+      this.name,
+      this.teacher,
+      this.placeAndTime,
+      this.missingAssignments,
+      this.ungradedAssignments,
+      this.gradedAssignments,
+      this.totalAssignments,
+      this.assignments,
+      this.average,
+      this.gradeCategories);
 }
+
 /* 
 CREATE TABLE course_grades (
   course_name TEXT NOT NULL,
@@ -39,5 +50,15 @@ class GradeCategory {
   String? fractionGrade;
   String? additionalInfo;
 
-  GradeCategory({required this.category, this.percentGrade, this.fractionGrade, this.additionalInfo});
+  GradeCategory(
+      {required this.category,
+      this.percentGrade,
+      this.fractionGrade,
+      this.additionalInfo});
+
+  @override
+  String toString() {
+    // TODO: implement toString
+    return category;
+  }
 }

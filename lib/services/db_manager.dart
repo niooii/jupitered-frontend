@@ -9,7 +9,7 @@ import 'package:sqflite/sqflite.dart';
 
 import 'package:jupiter_frontend/models/assignment.dart';
 import 'package:jupiter_frontend/models/course.dart';
-import 'package:sqflite_common_ffi/sqflite_ffi.dart';
+// import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 
 class CDbManager {
   static CDbManager? _instance = CDbManager._();
@@ -27,13 +27,13 @@ class CDbManager {
   Future<void> initDB() async {
     // _instance?.loadName();
 
-    sqfliteFfiInit();
+    // sqfliteFfiInit();
 
-    databaseFactory = databaseFactoryFfi;
+    // databaseFactory = databaseFactoryFfi;
 
     String path = await getDatabasesPath();
     db = await openDatabase(
-      join(path, 'users.db'),
+      join(path, 'callisto.db'),
       onCreate: (database, version) async {
         await database.execute(
           """

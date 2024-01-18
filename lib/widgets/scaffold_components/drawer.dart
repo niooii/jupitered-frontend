@@ -12,7 +12,6 @@ import 'package:jupiter_frontend/widgets/scaffold_components/drawer_divider.dart
 import 'package:jupiter_frontend/widgets/scaffold_components/drawer_tile.dart';
 
 class CDrawer extends StatelessWidget {
-
   static const double gap = 5;
 
   const CDrawer({super.key});
@@ -21,47 +20,44 @@ class CDrawer extends StatelessWidget {
   Widget build(BuildContext context) {
     List<Widget> courseTiles = List.empty(growable: true);
     // maybe NOT run this loop every fucking time we open the drawer.
-    for(Course c in CCache().cachedCourses) {
-      courseTiles.add(
-        Column(
-          children: [
-            CDrawerTile(
-              icon: const Icon(CupertinoIcons.add), 
-              splashColor: Theme.of(context).colorScheme.surface, 
-              redirectPage: CoursePage(course: c), 
-              text: c.name
-            ),
-            const Gap(gap),
-          ],
-        )
-      );
+    for (Course c in CCache().cachedCourses) {
+      courseTiles.add(Column(
+        children: [
+          CDrawerTile(
+              icon: const Icon(CupertinoIcons.add),
+              splashColor: Theme.of(context).colorScheme.surface,
+              redirectPage: CoursePage(course: c),
+              text: c.name),
+          const Gap(gap),
+        ],
+      ));
     }
 
-    
     return Drawer(
       child: ListView(
         children: [
           Padding(
             padding: EdgeInsets.all(20),
             child: Center(
-              child: Image.asset('assets/images/jupiter-transparent.png', height: 200,)
-            ),
+                child: Image.asset(
+              'assets/images/jupiter-transparent.png',
+              height: 200,
+            )),
           ),
           const CDrawerDivider(),
           const Gap(gap),
           CDrawerTile(
-            icon: const Icon(CupertinoIcons.home), 
-            splashColor: Theme.of(context).colorScheme.surface, 
-            redirectPage: HomePage(), 
-            text: "Home"
-          ),
+              icon: const Icon(CupertinoIcons.home),
+              splashColor: Theme.of(context).colorScheme.surface,
+              redirectPage: HomePage(),
+              text: "Home"),
           const Gap(gap),
           CDrawerTile(
-            icon: const Icon(CupertinoIcons.doc_text), 
-            splashColor: Theme.of(context).colorScheme.surface, 
-            redirectPage: const AllAssignmentsPage(), 
-            text: "All Assignments"
-          ),
+              icon: const Icon(CupertinoIcons.doc_text),
+              splashColor: Theme.of(context).colorScheme.surface,
+              redirectPage:
+                  AllAssignmentsPage(allCourses: CCache().cachedCourses),
+              text: "All Assignments"),
           const CDrawerDivider(),
           // GENERATED COURSE TILES DYNAMICALLY
           ...courseTiles,
@@ -85,5 +81,3 @@ class CDrawer extends StatelessWidget {
     );
   }
 }
-
-
