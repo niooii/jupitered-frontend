@@ -42,6 +42,7 @@ class _CExpansionTileState extends State<CExpansionTile> {
           crossAxisAlignment: widget.crossAxisAlignment,
           children: _isExpanded ? children.reversed.toList() : [widget.child],
         );
+        break;
       case ExpandDirection.up:
         child = Column(
           mainAxisSize: MainAxisSize.min,
@@ -49,6 +50,7 @@ class _CExpansionTileState extends State<CExpansionTile> {
           crossAxisAlignment: widget.crossAxisAlignment,
           children: _isExpanded ? children.reversed.toList() : [widget.child],
         );
+        break;
       case ExpandDirection.down:
         child = Column(
           mainAxisSize: MainAxisSize.min,
@@ -56,6 +58,7 @@ class _CExpansionTileState extends State<CExpansionTile> {
           crossAxisAlignment: widget.crossAxisAlignment,
           children: _isExpanded ? children : [widget.child],
         );
+        break;
       case ExpandDirection.right:
         child = Row(
           mainAxisSize: MainAxisSize.min,
@@ -63,19 +66,27 @@ class _CExpansionTileState extends State<CExpansionTile> {
           crossAxisAlignment: widget.crossAxisAlignment,
           children: _isExpanded ? children : [widget.child],
         );
+        break;
     }
 
     // TODO! add smooth animation and border maybe i dont KNOW ANYMORE my t key is broken i had to type "dont" six times
-    return CClickable(
-      child: AnimatedContainer(
-        duration: widget.duration,
-        child: child,
+    return AnimatedContainer(
+      curve: Curves.fastOutSlowIn,
+      decoration: BoxDecoration(
+        border: Border.all(
+          color: Colors.black
+        ),
+        borderRadius: BorderRadius.circular(4)
       ),
-      onPressed: () {
-        setState(() {
-          _isExpanded = !_isExpanded;
-        });
-      },
+      duration: widget.duration,
+      child: CClickable(
+        child: child,
+        onPressed: () {
+          setState(() {
+            _isExpanded = !_isExpanded;
+          });
+        },
+      ), 
     );
   }
 }
