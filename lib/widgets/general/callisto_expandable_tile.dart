@@ -13,7 +13,10 @@ class CExpansionTile extends StatefulWidget {
   List<Widget> expandedChildren;
   Duration duration;
   ExpandDirection expandDirection;
-  CExpansionTile({super.key, required this.child, required this.expandedChildren, this.duration = const Duration(milliseconds: 500), this.expandDirection = ExpandDirection.down});
+  MainAxisAlignment mainAxisAlignment;
+  CrossAxisAlignment crossAxisAlignment;
+
+  CExpansionTile({super.key, required this.child, required this.expandedChildren, this.duration = const Duration(milliseconds: 500), this.expandDirection = ExpandDirection.down, this.mainAxisAlignment = MainAxisAlignment.start, this.crossAxisAlignment = CrossAxisAlignment.start});
 
   @override
   State<CExpansionTile> createState() => _CExpansionTileState();
@@ -33,18 +36,31 @@ class _CExpansionTileState extends State<CExpansionTile> {
       // TODO! does this even fucking work
       case ExpandDirection.left:
         child = Row(
+          // TODO! allow customization later maybe .. perhaps ...
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: widget.mainAxisAlignment,
+          crossAxisAlignment: widget.crossAxisAlignment,
           children: _isExpanded ? children.reversed.toList() : [widget.child],
         );
       case ExpandDirection.up:
         child = Column(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: widget.mainAxisAlignment,
+          crossAxisAlignment: widget.crossAxisAlignment,
           children: _isExpanded ? children.reversed.toList() : [widget.child],
         );
       case ExpandDirection.down:
         child = Column(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: widget.mainAxisAlignment,
+          crossAxisAlignment: widget.crossAxisAlignment,
           children: _isExpanded ? children : [widget.child],
         );
       case ExpandDirection.right:
         child = Row(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: widget.mainAxisAlignment,
+          crossAxisAlignment: widget.crossAxisAlignment,
           children: _isExpanded ? children : [widget.child],
         );
     }

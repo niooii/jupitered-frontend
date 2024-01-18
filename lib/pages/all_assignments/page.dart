@@ -51,9 +51,7 @@ class _AllAssignmentsPageState extends State<AllAssignmentsPage> {
           CallistoText("Missing: ${widget.totalMissing}", size: 20, textAlign: TextAlign.center),
           const CDivider(),
           Gap(10),
-          // TODO! search bar here, filter by course and subsection of that will be filter by each courses category
-          // aaron if u see this dw about it ill do it i feel like it sounds kinda retarded when i type it out
-          AssignmentsView(assignments: widget.allAssignments, )
+          AssignmentsView(assignments: widget.allAssignments, multiCourse: true,)
         ],
       ),
     );
