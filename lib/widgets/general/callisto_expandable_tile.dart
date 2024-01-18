@@ -65,6 +65,7 @@ class _CExpansionTileState extends State<CExpansionTile> {
         );
     }
 
+    // TODO! add smooth animation and border maybe i dont KNOW ANYMORE my t key is broken i had to type "dont" six times
     return CClickable(
       child: AnimatedContainer(
         duration: widget.duration,
