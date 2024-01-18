@@ -120,18 +120,14 @@ class _HomePageState extends State<HomePage> {
         children: [
           const Gap(15),
           const Padding(
-            padding: EdgeInsets.fromLTRB(10.0, 0, 0, 0),
+            padding: EdgeInsets.fromLTRB(15.0, 0, 0, 0),
             child: CallistoText("Welcome back,", size: 20, weight: FontWeight.bold, textAlign: TextAlign.left),
           ),
           Padding(
-            padding: EdgeInsets.fromLTRB(10.0, 0, 0, 0),
+            padding: EdgeInsets.fromLTRB(15.0, 0, 0, 0),
             child: CallistoText(CCache().name, size: 35, weight: FontWeight.bold, textAlign: TextAlign.left),
           ),
-          // CallistoText("Total: ${total}", size: 20, textAlign: TextAlign.center),
-          // CallistoText("Graded: ${totalGraded}", size: 20, textAlign: TextAlign.center),
-          // CallistoText("Ungraded: ${totalUngraded}", size: 20, textAlign: TextAlign.center),
-          // CallistoText("Missing: ${totalMissing}", size: 20, textAlign: TextAlign.center),
-          Padding(
+            Padding(
               padding: const EdgeInsets.all(16),
               child: CClickable(
                 onPressed: () {

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:jupiter_frontend/models/course.dart';
 import 'package:jupiter_frontend/pages/all_assignments/assignments_view.dart';
 import 'package:jupiter_frontend/pages/course/DEPRECATED.dart';
+import 'package:jupiter_frontend/widgets/general/callisto_text.dart';
 import 'package:jupiter_frontend/widgets/scaffold_components/appbar.dart';
 import 'package:jupiter_frontend/widgets/general/divider.dart';
 
@@ -18,7 +19,13 @@ class CoursePage extends StatelessWidget {
           // TODO!
           // display grade category info here
           ...course.gradeCategories.map<Widget>((category) {
-            return Text(category.toString());
+            return Column(
+              children: [
+                CallistoText(category.category, size: 15),
+                CallistoText("${category.percentGrade} (${category.fractionGrade})", size: 15),
+                CallistoText("${category.additionalInfo}", size: 15),
+              ],
+            );
           }),
           CDivider(),
           AssignmentsView(assignments: course.assignments)

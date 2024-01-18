@@ -19,7 +19,8 @@ class AssignmentsView extends StatefulWidget {
   // stats
   AssignmentsView({super.key, required this.assignments, this.multiCourse = false}) {
 
-    toRender.addAll(assignments);
+    filteredFromSearch.addAll(assignments);
+    toRender.addAll(filteredFromSearch);
 
     // TODO! TEST LATER
     categoryFilters = assignments.map((a) {
@@ -34,7 +35,7 @@ class AssignmentsView extends StatefulWidget {
     categoryFilters.insert(
       0,
       const DropdownMenuItem<String>(
-        value: null,
+        value: "All",
         child: Text("All"),
       ),
     );
@@ -49,6 +50,7 @@ class AssignmentsView extends StatefulWidget {
 // if it is multicourse, include "only show course: and then when button isn clicked, expand into each category with All in there too".
 class _AssignmentsViewState extends State<AssignmentsView> {
   final TextEditingController _keywordSearchController = TextEditingController();
+  String categoryFilter = "All";
   @override
   Widget build(BuildContext context) {
     List<Widget> filterWidgets = List.empty(growable: true);
@@ -71,6 +73,14 @@ class _AssignmentsViewState extends State<AssignmentsView> {
               } else {
                 widget.filteredFromSearch = widget.assignments.where((assignment) => assignment.name.toLowerCase().contains(query.toLowerCase())).toList();
               }
+
+              // update for the category filter
+              if(categoryFilter == "All") {
+                widget.toRender = widget.filteredFromSearch;
+                return;
+              }
+              // TODO! FIX . 
+              widget.toRender = widget.filteredFromSearch.where((assignment) => assignment.cat == categoryFilter).toList();
             });
           },
         ),
@@ -78,7 +88,7 @@ class _AssignmentsViewState extends State<AssignmentsView> {
     ]);
 
     if(widget.multiCourse) {
-
+      // TODO! show only [course]
     } else {
       filterWidgets.add(
         Padding(
@@ -88,15 +98,20 @@ class _AssignmentsViewState extends State<AssignmentsView> {
               Row(
                 children: [
                   CallistoText("Show only: ", size: 20, weight: FontWeight.w400, textAlign: TextAlign.start),
+                  Gap(10),
                   DropdownButton(
+                    focusColor: Colors.transparent,
+                    value: categoryFilter,
                     items: widget.categoryFilters,
                     onChanged: (value) {
                       setState(() {
-                        if(value == null) {
+                        categoryFilter = value!;
+                        if(value == "All") {
                           widget.toRender = widget.filteredFromSearch;
+                          return;
                         }
                         // TODO! FIX . 
-                        widget.toRender = widget.toRender.where((assignment) => assignment.cat == value).toList();
+                        widget.toRender = widget.filteredFromSearch.where((assignment) => assignment.cat == value).toList();
                       });
                     }
                   )
@@ -113,6 +128,15 @@ class _AssignmentsViewState extends State<AssignmentsView> {
       Column(
         children: [
           ...filterWidgets,
+          Padding(
+            padding: EdgeInsets.all(15),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                CallistoText("Displaying ${widget.toRender.length}/${widget.assignments.length} assignment(s)", size: 10, weight: FontWeight.w500 ),
+              ],
+            ),
+          ),
           const CDivider(),
           ...widget.toRender.map<Widget>((Assignment a) {
             return AssignmentTile(assignment: a, includeCourseName: widget.multiCourse,);

@@ -35,7 +35,6 @@ class AllAssignmentsPage extends StatefulWidget {
 }
 
 class _AllAssignmentsPageState extends State<AllAssignmentsPage> {
-  final TextEditingController _keywordSearchController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(

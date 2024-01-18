@@ -41,7 +41,7 @@ class CourseTile extends StatelessWidget {
               Color.fromARGB(164, 33, 149, 243)
             ],
             stops: [
-              0.42,
+              0.6,
               1.0
             ],
             )
