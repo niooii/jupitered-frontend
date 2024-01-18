@@ -47,7 +47,6 @@ class _HomePageState extends State<HomePage> {
                         onChanged: (val) {
                           setState(() {
                             avgIncludedCourses[course] = val!;
-                            print(val);
                           });
                         },
                       ),
@@ -61,10 +60,9 @@ class _HomePageState extends State<HomePage> {
               TextButton(
                 onPressed: () {
                   _updateAvg();
-                  print("redoing avg");
                   Navigator.of(context).pop();
                 },
-                child: const CallistoText("Save", size: 18),
+                child: const CallistoText("Finish", size: 18),
               ),
             ],
           );

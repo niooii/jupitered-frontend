@@ -28,9 +28,9 @@ class CDbManager {
   Future<void> initDB() async {
     // _instance?.loadName();
 
-    sqfliteFfiInit();
+    // sqfliteFfiInit();
 
-    databaseFactory = databaseFactoryFfi;
+    // databaseFactory = databaseFactoryFfi;
 
     String path = await getDatabasesPath();
     db = await openDatabase(
