@@ -34,11 +34,11 @@ class _HomePageState extends State<HomePage> {
           return AlertDialog(
             scrollable: true,
             title: const FittedBox(
-              child: CallistoText("Edit average calculation", size: 30),
+              child: CallistoText("Select courses to include", size: 30),
             ),
             content: Column(
               children: [
-                const CallistoText("Select courses to include:", size: 18),
+                // const CallistoText("Select courses to include:", size: 18),
                 ...avgIncludedCourses.keys.map((Course course) {
                   return Row(
                     children: [
@@ -114,7 +114,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const CAppBar(title: "Callisto"),
+      appBar: const CAppBar(title: "abbbababbabbaab"),
       drawer: const CDrawer(),
       body: ListView(
         children: [

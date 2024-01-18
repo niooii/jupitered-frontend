@@ -7,15 +7,15 @@ import 'package:jupiter_frontend/widgets/general/callisto_text.dart';
 
 // TODO! add filter by [Category]
 // TODO! sort by grade.
-class AssignmentsView extends StatefulWidget {
+class AssignmentsViewDeprecated extends StatefulWidget {
   final Course course;
-  const AssignmentsView({super.key, required this.course});
+  const AssignmentsViewDeprecated({super.key, required this.course});
 
   @override
-  State<AssignmentsView> createState() => _AssignmentsViewState();
+  State<AssignmentsViewDeprecated> createState() => _AssignmentsViewDeprecatedState();
 }
 
-class _AssignmentsViewState extends State<AssignmentsView> {
+class _AssignmentsViewDeprecatedState extends State<AssignmentsViewDeprecated> {
   GradeCategory? _selectedCategory;
 
   List<AssignmentTile> assignmentWidgets = List.empty(growable: true);

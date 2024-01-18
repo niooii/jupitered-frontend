@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jupiter_frontend/models/course.dart';
+import 'package:jupiter_frontend/pages/all_assignments/assignments_view.dart';
 import 'package:jupiter_frontend/pages/course/assignments_view.dart';
 import 'package:jupiter_frontend/widgets/scaffold_components/appbar.dart';
 import 'package:jupiter_frontend/widgets/general/divider.dart';
@@ -20,7 +21,7 @@ class CoursePage extends StatelessWidget {
             return Text(category.toString());
           }),
           CDivider(),
-          AssignmentsView(course: course)
+          AssignmentsView(assignments: course.assignments)
         ],
       ),
     );

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:jupiter_frontend/models/assignment.dart';
 import 'package:jupiter_frontend/models/course.dart';
+import 'package:jupiter_frontend/pages/all_assignments/assignments_view.dart';
 import 'package:jupiter_frontend/pages/course/assignment_tile.dart';
 import 'package:jupiter_frontend/widgets/general/callisto_text.dart';
 import 'package:jupiter_frontend/widgets/scaffold_components/appbar.dart';
@@ -11,7 +12,6 @@ import 'package:jupiter_frontend/widgets/general/divider.dart';
 class AllAssignmentsPage extends StatefulWidget {
   List<Course> allCourses;
   late List<Assignment> allAssignments = List.empty(growable: true);
-  late List<Assignment> toRender = List.empty(growable: true);
 
   // stats
   int total = 0;
@@ -28,9 +28,6 @@ class AllAssignmentsPage extends StatefulWidget {
 
       allAssignments.addAll(c.assignments);
     }
-    toRender.addAll(allAssignments);
-
-    print(allAssignments);
   }
 
   @override
@@ -38,6 +35,7 @@ class AllAssignmentsPage extends StatefulWidget {
 }
 
 class _AllAssignmentsPageState extends State<AllAssignmentsPage> {
+  final TextEditingController _keywordSearchController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,13 +50,10 @@ class _AllAssignmentsPageState extends State<AllAssignmentsPage> {
           CallistoText("Ungraded: ${widget.totalUngraded}", size: 20, textAlign: TextAlign.center),
           CallistoText("Missing: ${widget.totalMissing}", size: 20, textAlign: TextAlign.center),
           const CDivider(),
-          CallistoText("Apply filters", size: 20, textAlign: TextAlign.center, weight: FontWeight.w600),
+          Gap(10),
           // TODO! search bar here, filter by course and subsection of that will be filter by each courses category
           // aaron if u see this dw about it ill do it i feel like it sounds kinda retarded when i type it out
-          const CDivider(),
-          ...widget.toRender.map<Widget>((Assignment a) {
-            return AssignmentTile(assignment: a, includeCourseName: true,);
-          })
+          AssignmentsView(assignments: widget.allAssignments, )
         ],
       ),
     );
