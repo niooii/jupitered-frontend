@@ -60,7 +60,7 @@ class _AllAssignmentsPageState extends State<AllAssignmentsPage> {
           children: [
             const Gap(10),
             // TODO! these statistics are wrong, either my backend is acting up or something went wrong here.
-            const CallistoText("Overall Statistics", size: 30, textAlign: TextAlign.center, weight: FontWeight.bold,),
+            const CallistoText("Your stats:", size: 30, textAlign: TextAlign.center, weight: FontWeight.bold,),
             CallistoText("Total: ${widget.total}", size: 20, textAlign: TextAlign.center),
             CallistoText("Graded: ${widget.totalGraded}", size: 20, textAlign: TextAlign.center),
             CallistoText("Ungraded: ${widget.totalUngraded}", size: 20, textAlign: TextAlign.center),

@@ -32,7 +32,7 @@ class AssignmentTile extends StatelessWidget {
 
     return ExpansionTile(
       title: CallistoText(assignment.name, size: 15),
-      subtitle: Text(includeCourseName ? "${assignment.courseName} - ${assignment.duedate.toString()}" : assignment.duedate.toString()),
+      subtitle: Text(includeCourseName ? "${assignment.courseName} - ${assignment.duedate.toString().replaceFirst(" 00:00:00.000", "")}" : assignment.duedate.toString().replaceFirst(" 00:00:00.000", "")),
       trailing: trailingWidget,
       children: [
         CallistoText(assignment.score, size: 17),

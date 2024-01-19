@@ -83,6 +83,18 @@ class _AssignmentsViewState extends State<AssignmentsView> {
     });
   }
 
+  sortWeightLow(List<Assignment> assignments) {
+    assignments.sort((a, b) {
+      return a.weight.compareTo(b.weight);
+    });
+  }
+
+  sortWeightHeigh(List<Assignment> assignments) {
+    assignments.sort((a, b) {
+      return b.weight.compareTo(a.weight);
+    });
+  }
+
   sortRecentlyDue(List<Assignment> assignments) {
     assignments.sort((a, b) {
       if (a.duedate == null || b.duedate == null) return 0;
@@ -115,6 +127,14 @@ class _AssignmentsViewState extends State<AssignmentsView> {
       DropdownMenuItem<SortOption>(
         value: SortOption("Grade (Lowest)", sortGradeLow),
         child: const Text("Grade (Lowest)"),
+      ),
+      DropdownMenuItem<SortOption>(
+        value: SortOption("Weight (Highest)", sortWeightHeigh),
+        child: const Text("Weight (Highest)"),
+      ),
+      DropdownMenuItem<SortOption>(
+        value: SortOption("Weight (Lowest)", sortWeightLow),
+        child: const Text("Weight (Lowest)"),
       ),
     ];
 

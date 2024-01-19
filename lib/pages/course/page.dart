@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:jupiter_frontend/models/course.dart';
 import 'package:jupiter_frontend/pages/all_assignments/assignments_view.dart';
 import 'package:jupiter_frontend/widgets/general/callisto_text.dart';
@@ -18,11 +19,27 @@ class CoursePage extends StatelessWidget {
           // TODO!
           // display grade category info here
           ...course.gradeCategories.map<Widget>((category) {
+            if (category.category == "Course Average") {
+              return Padding(
+                padding: EdgeInsets.all(15),
+                child: Center(
+                  child: FittedBox(
+                    child: CallistoText("Course average: ${category.percentGrade == null ? "N/A" : "${category.percentGrade}%"}", size: 30, weight: FontWeight.w600,),
+                  )
+                ),
+              );
+            }
             return Column(
               children: [
-                CallistoText(category.category, size: 15),
-                CallistoText("${category.percentGrade} (${category.fractionGrade})", size: 15),
-                CallistoText("${category.additionalInfo}", size: 15),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    CallistoText("${category.category}: ", size: 18, weight: FontWeight.w500,), 
+                    CallistoText("${category.percentGrade ?? "N/A"} ${category.fractionGrade == null ? "(${category.fractionGrade})" : ""}", size: 18),
+                  ],
+                ),
+                CallistoText("${category.additionalInfo}", size: 15, weight: FontWeight.w200,),
+                Gap(10),
               ],
             );
           }),
