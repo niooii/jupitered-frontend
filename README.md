@@ -1,5 +1,5 @@
 # Yet Another Jupiter Frontend
-## becauseapparentlythiswasdonebefore.oops
+becauseapparentlythiswasdonebefore.oops
 
 A sane, native, open-source frontend for jupiter written in flutter.
 
@@ -12,5 +12,5 @@ A sane, native, open-source frontend for jupiter written in flutter.
 
 # API
 The backend is basically just a web scraper cramming together a bunch of lazy futures blah blah balh heres the link
-[jupiter-api](https://github.com/niooii/jupiter-api-rewrite)
+[jupiter-api-rewrite](https://github.com/niooii/jupiter-api-rewrite)
 ### no i do NOT store your information 
