@@ -4,10 +4,10 @@ becauseapparentlythiswasdonebefore.oops
 A sane, native, open-source frontend for jupiter written in flutter.
 
 # FEATURES
-- locally cached courses and assignments
+- locally cached courses and assignments (view offline)
 - assignment sorting and keyword search
 - retaining sanity (optional)
-- stay logged in 
+- stay logged in **(view offline only works with this enabled)**
 - Catpuccin Themes + Custom Themes
 
 # API
