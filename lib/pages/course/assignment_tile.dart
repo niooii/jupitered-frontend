@@ -30,9 +30,11 @@ class AssignmentTile extends StatelessWidget {
         }));
     }
 
+    String dateStr = assignment.duedate == null ? "No Date Provided" : assignment.duedate.toString().replaceFirst(" 00:00:00.000", "");
+    
     return ExpansionTile(
       title: CallistoText(assignment.name, size: 15),
-      subtitle: Text(includeCourseName ? "${assignment.courseName} - ${assignment.duedate.toString().replaceFirst(" 00:00:00.000", "")}" : assignment.duedate.toString().replaceFirst(" 00:00:00.000", "")),
+      subtitle: Text(includeCourseName ? "${assignment.courseName} - ${dateStr}" : dateStr),
       trailing: trailingWidget,
       children: [
         CallistoText(assignment.score, size: 17),

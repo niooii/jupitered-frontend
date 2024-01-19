@@ -26,7 +26,7 @@ class CDrawer extends StatelessWidget {
         children: [
           CDrawerTile(
             isCorePage: false,
-            icon: const Icon(CupertinoIcons.add),
+            icon: const Icon(CupertinoIcons.chevron_forward ),
             splashColor: Theme.of(context).colorScheme.surface,
             redirectPage: CoursePage(course: c),
             text: c.name),
@@ -72,7 +72,7 @@ class CDrawer extends StatelessWidget {
             isCorePage: false,
           ),
           CDrawerTile(
-            icon: const Icon(Icons.keyboard_arrow_left),
+            icon: const Icon(CupertinoIcons.square_arrow_left),
             splashColor: Theme.of(context).colorScheme.error,
             hoverColor: Theme.of(context).colorScheme.error,
             redirectPage: LoginPage(),

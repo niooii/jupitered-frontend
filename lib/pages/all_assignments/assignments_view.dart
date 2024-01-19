@@ -168,7 +168,10 @@ class _AssignmentsViewState extends State<AssignmentsView> {
               if(query.isEmpty) {
                 widget.filteredFromSearch = widget.assignments;
               } else {
-                widget.filteredFromSearch = widget.assignments.where((assignment) => assignment.name.toLowerCase().contains(query.toLowerCase())).toList();
+                widget.filteredFromSearch = widget.assignments.where((assignment){ 
+                  return assignment.name.toLowerCase().contains(query.toLowerCase())
+                  ).toList();
+                };
               }
 
               if(categoryFilter == "All") {

@@ -8,8 +8,9 @@ import 'package:jupiter_frontend/widgets/general/callisto_text.dart';
 import 'package:lottie/lottie.dart';
 
 class LoadingPage extends StatefulWidget {
-  LoadingPage(this.login, this.errorCallback, this.successCallback, {super.key});
+  LoadingPage(this.login, this.exceptionCallback, this.errorCallback, this.successCallback, {super.key});
   Future login;
+  Function exceptionCallback;
   Function errorCallback;
   Function successCallback;
 
@@ -27,39 +28,46 @@ class _LoadingPageState extends State<LoadingPage> {
   }
 
   Future<void> handleLogin() async {
-    final value = await widget.login;
-    if (value.statusCode != 200) {
-      widget.errorCallback(value.body);
+    try {
+        final value = await widget.login;
+      if (value.statusCode != 200) {
+        widget.errorCallback(value.body);
+        if (mounted) {
+          Navigator.pop(context);
+        }
+      } else {
+        setState(() {
+          loadingMessage = "Fetching data...";
+        });
+
+        await widget.successCallback(); // wait for successCallback to complete
+
+        // grab the data and shove it into global cache
+        final courseList = await CDbManager.getInstance().getCourses();
+        setState(() {
+          loadingMessage = "Caching data...";
+        });
+        CCache().cacheCourses(courseList);
+
+        // main screen
+        if (mounted) {
+        Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(builder: (BuildContext context) {
+            return HomePage();
+          }),
+          (r) {
+            return false;
+          },
+        );
+      }
+
+      }
+    } catch (e) {
+      widget.exceptionCallback(e);
       if (mounted) {
         Navigator.pop(context);
       }
-    } else {
-      setState(() {
-        loadingMessage = "Fetching data...";
-      });
-
-      await widget.successCallback(); // wait for successCallback to complete
-
-      // grab the data and shove it into global cache
-      final courseList = await CDbManager.getInstance().getCourses();
-      setState(() {
-        loadingMessage = "Caching data...";
-      });
-      CCache().cacheCourses(courseList);
-
-      // main screen
-      if (mounted) {
-      Navigator.pushAndRemoveUntil(
-        context,
-        MaterialPageRoute(builder: (BuildContext context) {
-          return HomePage();
-        }),
-        (r) {
-          return false;
-        },
-      );
-    }
-
     }
   }
 

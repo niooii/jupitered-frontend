@@ -2,12 +2,14 @@ import 'dart:isolate';
 
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:jupiter_frontend/pages/loading_screen.dart';
 import 'package:jupiter_frontend/pages/login/obscured_text_controller.dart';
 import 'package:jupiter_frontend/services/api_manager.dart';
 
 import 'package:jupiter_frontend/services/db_manager.dart';
 import 'package:jupiter_frontend/services/shared_preferences.dart';
+import 'package:jupiter_frontend/widgets/general/callisto_text.dart';
 
 class LoginPage extends StatefulWidget {
   LoginPage({super.key});
@@ -39,59 +41,78 @@ class _LoginPageState extends State<LoginPage> {
     _invalidOsis = false;
     _wrongPassword = false;
 
-    var res = CApiManager.getInstance().then(
+    try {
+      var res = CApiManager.getInstance().then(
       (value) =>
         value.validateInfo(
             _osisController.text, _passwordController.text)
           );
 
-    errorCallback(String responseString) {
-      if (responseString
-          .contains("Could not find that student ID")) {
+      exceptionCallback(Exception e) {
         setState(() {
-          _invalidOsis = true;
-          osisError = "Could not find osis.";
-        });
-      } else if (responseString
-          .contains("That password is wrong")) {
-        setState(() {
-          _wrongPassword = true;
-        });
+        _invalidOsis = true;
+        osisError = "Check your internet and try again.";
+        print(e);
+        print("intenret error possibly");
+      });
       }
+
+      errorCallback(String responseString) {
+        if (responseString
+            .contains("Could not find that student ID")) {
+          setState(() {
+            _invalidOsis = true;
+            osisError = "Could not find osis.";
+          });
+        } else if (responseString
+            .contains("That password is wrong")) {
+          setState(() {
+            _wrongPassword = true;
+          });
+        }
+      }
+
+      successCallback() async {
+        // if (CSharedPrefs().rememberMe) {
+          
+        // }
+        // need to save anyways for refetching data. 
+        // TODO! maybe make it so when rememberme is on, yea nevermind.
+        CSharedPrefs().osis = _osisController.text;
+        CSharedPrefs().password = _passwordController.text;
+        CSharedPrefs().save();
+        // TODO! absolutely demonic
+        await CApiManager.getInstance().then((APIval) => APIval
+                .getJupiterData(
+                    _osisController.text, _passwordController.text)
+            .then((responseval) async => {
+                  await CDbManager.getInstance()
+                      .storeApiResponse(responseval.body)
+                      .then((value) =>
+                          print("response saved?: ${value == 1}")),
+                }));
+      }
+
+      Navigator.push(context, MaterialPageRoute(
+        builder: (context) {
+          return LoadingPage(res, exceptionCallback, errorCallback, successCallback);
+        },
+      ));
+    } catch(e) {
+      setState(() {
+        _invalidOsis = true;
+        osisError = "Check your internet and try again.";
+        print(e);
+        print("intenret error possibly");
+      });
     }
 
-    successCallback() async {
-      // if (CSharedPrefs().rememberMe) {
-        
-      // }
-      // need to save anyways for refetching data. 
-      // TODO! maybe make it so when rememberme is on, yea nevermind.
-      CSharedPrefs().osis = _osisController.text;
-      CSharedPrefs().password = _passwordController.text;
-      CSharedPrefs().save();
-      // TODO! absolutely demonic
-      await CApiManager.getInstance().then((APIval) => APIval
-              .getJupiterData(
-                  _osisController.text, _passwordController.text)
-          .then((responseval) async => {
-                await CDbManager.getInstance()
-                    .storeApiResponse(responseval.body)
-                    .then((value) =>
-                        print("response saved?: ${value == 1}")),
-              }));
-    }
-
-    Navigator.push(context, MaterialPageRoute(
-      builder: (context) {
-        return LoadingPage(res, errorCallback, successCallback);
-      },
-    ));
   }
 
   @override
   void initState() {
     String? osis;
-    if(CSharedPrefs().rememberMe) {
+    if(CSharedPrefs().rememberMe && CSharedPrefs().osis != null && CSharedPrefs().password != null) {
       _osisController.text = CSharedPrefs().osis!;
       _passwordController.text = CSharedPrefs().password!;
     }
@@ -111,8 +132,8 @@ class _LoginPageState extends State<LoginPage> {
         backgroundColor: Theme.of(context).colorScheme.background,
         appBar: AppBar(
           title: Text(
-            "Login Page",
-            style: TextStyle(color: Theme.of(context).colorScheme.onPrimary),
+            "Yet Another Jupiter Frontend",
+            style: GoogleFonts.poppins(color: Theme.of(context).colorScheme.onPrimary,),
           ),
           backgroundColor: Theme.of(context).colorScheme.primary,
         ),
@@ -168,7 +189,7 @@ class _LoginPageState extends State<LoginPage> {
                     },
                   ),
                   Text("Remember Me",
-                      style: TextStyle(
+                      style: GoogleFonts.poppins(
                         fontSize: 15,
                         fontWeight: FontWeight.bold,
                         color: Theme.of(context).colorScheme.onBackground
@@ -187,7 +208,7 @@ class _LoginPageState extends State<LoginPage> {
                   onPressed: loginFunc,
                   child: Text(
                     'Login',
-                    style: TextStyle(
+                    style: GoogleFonts.poppins(
                         color: Theme.of(context).colorScheme.onPrimary,
                         fontSize: 25),
                   ),

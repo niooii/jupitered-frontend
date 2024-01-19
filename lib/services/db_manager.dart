@@ -115,10 +115,11 @@ class CDbManager {
               "additional_info": null
             },
             */
+            // print(categoryMap["fraction_grade"]);
               return GradeCategory(
                   category: categoryMap["category"]!.toString(),
                   percentGrade: double.tryParse(
-                          categoryMap["percent_grade"].toString()) ?? 0,
+                          categoryMap["percent_grade"].toString()),
                   fractionGrade: categoryMap["fraction_grade"]?.toString(),
                   additionalInfo: categoryMap["additional_info"]?.toString());
             }).toList()));
