@@ -1,4 +1,4 @@
-# Yet Another Jupiter Frontend
+# Yet Another Jupiter Frontend (Callisto)
 becauseapparentlythiswasdonebefore.oops
 
 A sane, native, open-source frontend for jupiter written in flutter.
