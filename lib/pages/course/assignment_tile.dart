@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jupiter_frontend/models/assignment.dart';
+import 'package:jupiter_frontend/pages/error/page.dart';
 import 'package:jupiter_frontend/widgets/general/callisto_text.dart';
 
 // TODO! REFACTOR 
@@ -11,62 +12,33 @@ class AssignmentTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      title: Text(assignment.name),
+    late Widget trailingWidget;
+
+    switch(assignment.status) {
+      
+      case AssignmentStatus.graded:
+        trailingWidget = CallistoText("${assignment.percentScore.toStringAsFixed(2)}%", size: 17);
+        break;
+      case AssignmentStatus.ungraded:
+        trailingWidget = const CallistoText("Ungraded", size: 17);
+        break;
+      case AssignmentStatus.missing:
+        trailingWidget = CallistoText("Missing", size: 17, color: Theme.of(context).colorScheme.error);
+      default:
+        Navigator.push(context, MaterialPageRoute(builder: (builder) {
+          return const ErrorPage();
+        }));
+    }
+
+    return ExpansionTile(
+      title: CallistoText(assignment.name, size: 15),
       subtitle: Text(includeCourseName ? "${assignment.courseName} - ${assignment.duedate.toString()}" : assignment.duedate.toString()),
-      trailing: CallistoText(assignment.score, size: 15),
-      onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => AssignmentDetails(assignment: assignment),
-          ),
-        );
-      },
-    );
-  }
-}
-
-class AssignmentDetails extends StatelessWidget {
-  const AssignmentDetails({Key? key, required this.assignment})
-      : super(key: key);
-
-  final Assignment assignment;
-
-// TODO! make expandable
-  @override
-  Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Theme.of(context).colorScheme.primary,
-          title: Text(
-            assignment.name,
-            style: TextStyle(color: Theme.of(context).colorScheme.onPrimary),
-          ),
-        ),
-        body: Center(
-          child: Column(
-            children: [
-              _buildTextWidget(context, assignment.name, 23),
-              _buildTextWidget(context, assignment.duedate.toString(), 20),
-              _buildTextWidget(context, assignment.score, 20),
-              _buildTextWidget(context, assignment.impact.toString(), 20),
-              _buildTextWidget(context, assignment.cat, 20),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget _buildTextWidget(BuildContext context, String text, double fontSize) {
-    return Text(
-      text,
-      style: TextStyle(
-        fontSize: fontSize,
-        color: Theme.of(context).colorScheme.onBackground,
-      ),
+      trailing: trailingWidget,
+      children: [
+        CallistoText(assignment.score, size: 17),
+        CallistoText("Impact: ${assignment.impact}", size: 17),
+        CallistoText("Weight: ${assignment.weight}", size: 17)
+      ],
     );
   }
 }

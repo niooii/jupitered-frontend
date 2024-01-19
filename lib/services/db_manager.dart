@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:jupiter_frontend/services/cache.dart';
+import 'package:jupiter_frontend/services/shared_preferences.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
@@ -31,6 +32,7 @@ class CDbManager {
     // sqfliteFfiInit();
 
     // databaseFactory = databaseFactoryFfi;
+  
 
     String path = await getDatabasesPath();
     db = await openDatabase(
@@ -67,6 +69,8 @@ class CDbManager {
               name TEXT NOT NULL,
               date_due TEXT,
               score TEXT,
+              status TEXT NOT NULL,
+              worth INTEGER NOT NULL,
               impact TEXT,
               category TEXT NOT NULL
             );
@@ -114,8 +118,7 @@ class CDbManager {
               return GradeCategory(
                   category: categoryMap["category"]!.toString(),
                   percentGrade: double.tryParse(
-                          categoryMap["percent_grade"].toString()) ??
-                      0,
+                          categoryMap["percent_grade"].toString()) ?? 0,
                   fractionGrade: categoryMap["fraction_grade"]?.toString(),
                   additionalInfo: categoryMap["additional_info"]?.toString());
             }).toList()));
@@ -139,8 +142,21 @@ class CDbManager {
     try {
       var data = JsonDecoder().convert(json);
 
-      CCache().cacheName(data["name"]);
-      CCache().cacheOsis(data["osis"]);
+      // what am i even doing here
+      // CCache().cacheName(data["name"]);
+      // CCache().cacheOsis(data["osis"]);
+      // ! if name is different than the person that previously logged in,
+      // clear db
+      if(CSharedPrefs().name != data["name"]) {
+        await db.transaction((txn) async {
+          txn.delete("courses", where: null);
+          txn.delete("course_grades", where: null);
+          txn.delete("assignments", where: null);
+        });
+      }
+      CSharedPrefs().name = data["name"];
+      // domain expansion: infinite i/o operations
+      CSharedPrefs().save();
 
       await db.transaction((txn) async {
         for (int i = 0; i < data["courses"].length; i++) {
@@ -215,10 +231,16 @@ class CDbManager {
                 "name": assignment["name"],
                 "date_due": assignment["date_due"],
                 "score": assignment["score"],
+                "status": assignment["status"],
+                "worth": assignment["worth"],
                 "impact": assignment["impact"],
                 "category": assignment["category"],
               });
             } else {
+              // await txn.delete(
+              //   "assignments",
+              //   where: null
+              // );
               await txn.update(
                 "assignments",
                 {
@@ -226,6 +248,8 @@ class CDbManager {
                   "name": assignment["name"],
                   "date_due": assignment["date_due"],
                   "score": assignment["score"],
+                  "status": assignment["status"],
+                  "worth": assignment["worth"],
                   "impact": assignment["impact"],
                   "category": assignment["category"],
                 },

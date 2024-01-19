@@ -68,41 +68,41 @@ class _AssignmentsViewState extends State<AssignmentsView> {
   late SortOption sortBy;
 
   // TJANK YOU AARON
+  // TODO! do these too oops
   sortGradeHigh(List<Assignment> assignments) {
-    assignments.sort((a, b) => (double.tryParse(a.score) ?? 0)
-        .compareTo(double.tryParse(b.score) ?? 0));
-    return assignments.toList();
+    assignments.sort((a, b) {
+      return b.percentScore.compareTo(a.percentScore);
+    });
   }
 
   sortGradeLow(List<Assignment> assignments) {
-    assignments.sort((a, b) => (double.tryParse(b.score) ?? 0)
-        .compareTo(double.tryParse(a.score) ?? 0));
-    return assignments.toList();
+    assignments.sort((a, b) {
+      // hardcoding ungraded assignments to not show
+      if (a.status == AssignmentStatus.ungraded) return 200;
+      return a.percentScore.compareTo(b.percentScore);
+    });
   }
 
   sortRecentlyDue(List<Assignment> assignments) {
     assignments.sort((a, b) {
       if (a.duedate == null || b.duedate == null) return 0;
-      return b.duedate!.compareTo(a.duedate!);
+        return b.duedate!.compareTo(a.duedate!);
     });
-    return assignments.toList();
   }
 
   sortLeastRecentlyDue(List<Assignment> assignments) {
     assignments.sort((a, b) {
       if (a.duedate == null || b.duedate == null) return 0;
-      return a.duedate!.compareTo(b.duedate!);
+        return a.duedate!.compareTo(b.duedate!);
     });
-
-    return assignments.toList();
   }
 
   @override
   void initState() {
     sorts = [
       DropdownMenuItem<SortOption>(
-        value: SortOption("Newest", sortRecentlyDue),
-        child: const Text("Newest"),
+        value: SortOption("Recent", sortRecentlyDue),
+        child: const Text("Recent"),
       ),
       DropdownMenuItem<SortOption>(
         value: SortOption("Oldest", sortLeastRecentlyDue),
@@ -120,6 +120,11 @@ class _AssignmentsViewState extends State<AssignmentsView> {
 
     sortBy = sorts[0].value!;
 
+    // default is by most recent
+    sortBy.sortingFunction(widget.assignments);
+    setState(() {
+      
+    });
     super.initState();
   }
 
@@ -155,7 +160,7 @@ class _AssignmentsViewState extends State<AssignmentsView> {
               
 
               // run sorting thing again
-              widget.toRender = sortBy.sortingFunction(widget.toRender.toList());
+              sortBy.sortingFunction(widget.toRender);
             });
           },
         ),
@@ -188,7 +193,7 @@ class _AssignmentsViewState extends State<AssignmentsView> {
                     }
 
                     // run sorting thing again
-                    widget.toRender = sortBy.sortingFunction(widget.toRender.toList());
+                    sortBy.sortingFunction(widget.toRender);
                   });
                 }
               )
@@ -213,7 +218,7 @@ class _AssignmentsViewState extends State<AssignmentsView> {
               onChanged: (value) {
                 setState(() {
                   sortBy = value!;
-                  widget.toRender = value.sortingFunction(widget.toRender.toList());
+                  value.sortingFunction(widget.toRender);
                 });
               }
             )

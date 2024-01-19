@@ -5,9 +5,10 @@ import 'package:jupiter_frontend/models/course.dart';
 import 'package:jupiter_frontend/pages/all_assignments/page.dart';
 import 'package:jupiter_frontend/pages/course/page.dart';
 import 'package:jupiter_frontend/services/cache.dart';
-import 'package:jupiter_frontend/pages/login_screen.dart';
+import 'package:jupiter_frontend/pages/login/page.dart';
 import 'package:jupiter_frontend/pages/home/page.dart';
 import 'package:jupiter_frontend/pages/settings/page.dart';
+import 'package:jupiter_frontend/services/shared_preferences.dart';
 import 'package:jupiter_frontend/widgets/general/divider.dart';
 import 'package:jupiter_frontend/widgets/scaffold_components/drawer_tile.dart';
 
@@ -74,8 +75,12 @@ class CDrawer extends StatelessWidget {
             icon: const Icon(Icons.keyboard_arrow_left),
             splashColor: Theme.of(context).colorScheme.error,
             hoverColor: Theme.of(context).colorScheme.error,
-            redirectPage: LoginScreen(),
+            redirectPage: LoginPage(),
             text: "Logout",
+            onTapCallback: () {
+              CSharedPrefs().autoLogIn = false;
+              CSharedPrefs().save();
+            },
           ),
         ],
       ),
