@@ -1,4 +1,5 @@
-# Callisto
+# Yet Another Jupiter Frontend
+## becauseapparentlythiswasdonebefore.oops
 
 A sane, native, open-source frontend for jupiter written in flutter.
 
