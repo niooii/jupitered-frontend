@@ -21,7 +21,7 @@ class CApiManager {
     return _instance!;
   }
 
-  Future<Response> getAssignments(String user, String pass) async {
+  Future<Response> getJupiterData(String user, String pass) async {
     // JsonDecoder decoder = const JsonDecoder();
     var response = await http.get(Uri.http(
         "96.246.237.185:9090", "/jupiter", {"osis": user, "password": pass}));

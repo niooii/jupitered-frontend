@@ -9,15 +9,17 @@ class CDrawerTile extends StatelessWidget {
   final String text;
   // if not, then u can press back etc
   final bool isCorePage;
+  Function? onTapCallback;
 
-  const CDrawerTile({
+  CDrawerTile({
     super.key,
     required this.icon,
     required this.splashColor,
     this.hoverColor,
     required this.redirectPage,
     required this.text,
-    this.isCorePage = true
+    this.isCorePage = true,
+    this.onTapCallback
   });
 
   @override
@@ -28,6 +30,9 @@ class CDrawerTile extends StatelessWidget {
       leading: icon,
       title: CallistoText(text, size: 17),
       onTap: () {
+        if(onTapCallback != null) {
+          onTapCallback!();
+        }
         if(isCorePage) {
           Navigator.pushAndRemoveUntil(context,
             MaterialPageRoute(builder: (BuildContext context) {

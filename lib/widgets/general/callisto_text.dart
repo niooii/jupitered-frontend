@@ -21,7 +21,7 @@ class CallistoText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       text,
-      style: GoogleFonts.openSans(
+      style: GoogleFonts.poppins(
         color: color ?? Theme.of(context).colorScheme.onSurface,
         fontSize: size,
         fontWeight: weight

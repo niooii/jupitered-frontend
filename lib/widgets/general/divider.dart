@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class CDrawerDivider extends StatelessWidget {
-  const CDrawerDivider({super.key});
+class CDivider extends StatelessWidget {
+  const CDivider({super.key});
 
   @override
   Widget build(BuildContext context) {

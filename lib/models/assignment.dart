@@ -1,25 +1,42 @@
+import 'package:flutter/material.dart';
+
+enum AssignmentStatus {
+  graded,
+  ungraded,
+  missing,
+  thiswillneverhappenbutitsfine
+}
+
 class Assignment {
   String name;
+  String courseName;
   DateTime? duedate;
+  AssignmentStatus status;
 
   String score;
+  double percentScore;
 
-  double impact;
+  String impact;
 
   String cat;
-  double weight;
+  int weight;
 
-  Assignment(this.name, this.duedate, this.score, this.impact,
-      this.cat, this.weight);
+  Assignment(this.name, this.duedate, this.score, this.status, this.percentScore, this.impact,
+      this.cat, this.weight, this.courseName);
 
   factory Assignment.fromMap(Map<String, dynamic> map) {
+    AssignmentStatus status = parseStatus(map["status"]);
     return Assignment(
         map["name"],
         parseDate(map["date_due"]),
         map["score"],
-        double.tryParse(map["impact"]) ?? 0,
+        status,
+        parseScore(status, map["score"]),
+        map["impact"],
         map["category"],
-        double.parse(map["weight"] ?? "0"));
+        // its called worth from jupiter but weiht makes more sense L OLOL
+        map["worth"],
+        map["course_name"]);
   }
   // {
   // 	"name": "Midyear Project (Source Code and Video)",
@@ -44,44 +61,58 @@ class Assignment {
   //   return double.parse(split[split.length == 1 ? 0 : 1]);
   // }
 
-  // static double parseScore(String score) {
-  //   if (score == "absent") {
-  //     return 0;
-  //   }
-  //   if (score == "zero") {
-  //     return 0;
-  //   }
-  //   return double.tryParse(score.split("/")[0]) ?? 0;
-  // }
-
-  static DateTime parseDate(String dd) {
-    var da = dd.split("/");
-    // print(da);
-    // print(da.length);
-    if (da.length != 2) {
-      return DateTime.now();
+  static double parseScore(AssignmentStatus status, String score) {
+    if(status == AssignmentStatus.ungraded || status == AssignmentStatus.missing) {
+      return 0;
     }
-    if (da[1].contains("-")) {
-      da[1] = da[1].split("-")[0];
-    }
-    // print("we made it pass the guard case boys");
-    int month = int.parse(da[0]);
-    int day = int.parse(da[1]);
-    int year;
 
-    if (DateTime.now().month > 9) {
-      if (month < 9) {
-        year = DateTime.now().year + 1;
+    // status is handled by api call already, this should never fail. 
+    var splitString = score.split("/");
+
+    // if(splitString.length != 2) {
+      
+    // }
+
+    double dividend = double.parse(splitString[0]);
+    double divisor = double.parse(splitString[1]);
+
+    return (dividend/divisor) * 100;
+  }
+
+  static AssignmentStatus parseStatus(String status) {
+    switch(status) {
+      case "GRADED":
+        return AssignmentStatus.graded;
+      case "UNGRADED":
+        return AssignmentStatus.ungraded;
+      case "MISSING":
+        return AssignmentStatus.missing;
+      default:
+        return AssignmentStatus.thiswillneverhappenbutitsfine;
+    }
+  }
+
+  static DateTime? parseDate(String dd) {
+    if(dd.isEmpty) {
+      return null;
+    }
+
+    int month = int.parse(dd.split("/")[0]);
+    int day = int.parse(dd.split("/")[1]);
+
+    late int year; 
+    int currentMonth = DateTime.now().month;
+    int currentYear = DateTime.now().year;
+    if (month >= 9) {
+      if (currentMonth < 9) {
+        year = currentYear - 1;
       } else {
-        year = DateTime.now().year;
+        year = currentYear;
       }
     } else {
-      if (month > 9) {
-        year = DateTime.now().year - 1;
-      } else {
-        year = DateTime.now().year;
-      }
+      year = currentYear;
     }
+
     return DateTime(year, month, day);
   }
 

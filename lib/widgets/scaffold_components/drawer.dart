@@ -5,10 +5,11 @@ import 'package:jupiter_frontend/models/course.dart';
 import 'package:jupiter_frontend/pages/all_assignments/page.dart';
 import 'package:jupiter_frontend/pages/course/page.dart';
 import 'package:jupiter_frontend/services/cache.dart';
-import 'package:jupiter_frontend/pages/login_screen.dart';
+import 'package:jupiter_frontend/pages/login/page.dart';
 import 'package:jupiter_frontend/pages/home/page.dart';
 import 'package:jupiter_frontend/pages/settings/page.dart';
-import 'package:jupiter_frontend/widgets/scaffold_components/drawer_divider.dart';
+import 'package:jupiter_frontend/services/shared_preferences.dart';
+import 'package:jupiter_frontend/widgets/general/divider.dart';
 import 'package:jupiter_frontend/widgets/scaffold_components/drawer_tile.dart';
 
 class CDrawer extends StatelessWidget {
@@ -24,10 +25,11 @@ class CDrawer extends StatelessWidget {
       courseTiles.add(Column(
         children: [
           CDrawerTile(
-              icon: const Icon(CupertinoIcons.add),
-              splashColor: Theme.of(context).colorScheme.surface,
-              redirectPage: CoursePage(course: c),
-              text: c.name),
+            isCorePage: false,
+            icon: const Icon(CupertinoIcons.chevron_forward ),
+            splashColor: Theme.of(context).colorScheme.surface,
+            redirectPage: CoursePage(course: c),
+            text: c.name),
           const Gap(gap),
         ],
       ));
@@ -44,7 +46,7 @@ class CDrawer extends StatelessWidget {
               height: 200,
             )),
           ),
-          const CDrawerDivider(),
+          const CDivider(),
           const Gap(gap),
           CDrawerTile(
               icon: const Icon(CupertinoIcons.home),
@@ -58,10 +60,10 @@ class CDrawer extends StatelessWidget {
               redirectPage:
                   AllAssignmentsPage(allCourses: CCache().cachedCourses),
               text: "All Assignments"),
-          const CDrawerDivider(),
+          const CDivider(),
           // GENERATED COURSE TILES DYNAMICALLY
           ...courseTiles,
-          const CDrawerDivider(),
+          const CDivider(),
           CDrawerTile(
             icon: const Icon(Icons.settings_outlined),
             splashColor: Theme.of(context).colorScheme.surface,
@@ -70,11 +72,15 @@ class CDrawer extends StatelessWidget {
             isCorePage: false,
           ),
           CDrawerTile(
-            icon: const Icon(Icons.keyboard_arrow_left),
+            icon: const Icon(CupertinoIcons.square_arrow_left),
             splashColor: Theme.of(context).colorScheme.error,
             hoverColor: Theme.of(context).colorScheme.error,
-            redirectPage: LoginScreen(),
+            redirectPage: LoginPage(),
             text: "Logout",
+            onTapCallback: () {
+              CSharedPrefs().autoLogIn = false;
+              CSharedPrefs().save();
+            },
           ),
         ],
       ),

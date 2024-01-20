@@ -5,7 +5,10 @@ import 'package:gap/gap.dart';
 import 'package:jupiter_frontend/models/course.dart';
 import 'package:jupiter_frontend/services/cache.dart';
 import 'package:jupiter_frontend/pages/home/courses_view.dart';
+import 'package:jupiter_frontend/services/db_manager.dart';
+import 'package:jupiter_frontend/services/shared_preferences.dart';
 import 'package:jupiter_frontend/widgets/general/callisto_clickable.dart';
+import 'package:jupiter_frontend/widgets/general/callisto_refresher.dart';
 import 'package:jupiter_frontend/widgets/general/callisto_text.dart';
 import 'package:jupiter_frontend/widgets/scaffold_components/appbar.dart';
 import 'package:jupiter_frontend/widgets/scaffold_components/drawer.dart';
@@ -20,16 +23,35 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   List<Course> courses = List.empty(growable: true);
   
-  int total = 0;
-  int totalMissing = 0;
-  int totalUngraded = 0;
-  int totalGraded = 0;
   double uwAvg = 0;
+
+  @override
+  void initState() {
+    super.initState();
+
+    // gather course data stuff
+    courses = CCache().cachedCourses;
+
+    double gradeSum = 0.0;
+
+    for(Course c in courses) {
+
+      gradeSum += c.average;
+
+      avgIncludedCourses[c] = true;
+    }
+
+    uwAvg = gradeSum/courses.length;
+  }
 
   // Course is hashable?? this worked???? wtf
   HashMap<Course, bool> avgIncludedCourses = HashMap();
 
   void _showCustomPopup(BuildContext context) {
+  List<Course> keysList = avgIncludedCourses.keys.toList();
+  keysList.sort((a, b) {
+    return a.name.compareTo(b.name);
+  });
   showDialog(
     context: context,
     builder: (BuildContext context) {
@@ -38,12 +60,12 @@ class _HomePageState extends State<HomePage> {
           return AlertDialog(
             scrollable: true,
             title: const FittedBox(
-              child: CallistoText("Edit average calculation", size: 30),
+              child: CallistoText("Select courses to include", size: 30),
             ),
             content: Column(
               children: [
-                const CallistoText("Select courses to include:", size: 18),
-                ...avgIncludedCourses.keys.map((Course course) {
+                // const CallistoText("Select courses to include:", size: 18),
+                ...keysList.map((Course course) {
                   return Row(
                     children: [
                       Checkbox(
@@ -51,7 +73,6 @@ class _HomePageState extends State<HomePage> {
                         onChanged: (val) {
                           setState(() {
                             avgIncludedCourses[course] = val!;
-                            print(val);
                           });
                         },
                       ),
@@ -65,10 +86,9 @@ class _HomePageState extends State<HomePage> {
               TextButton(
                 onPressed: () {
                   _updateAvg();
-                  print("redoing avg");
                   Navigator.of(context).pop();
                 },
-                child: const CallistoText("Save", size: 18),
+                child: const CallistoText("Finish", size: 18),
               ),
             ],
           );
@@ -97,68 +117,46 @@ class _HomePageState extends State<HomePage> {
   }
 
   @override
-  void initState() {
-    super.initState();
-
-    // gather course data stuff
-    courses = CCache().cachedCourses;
-
-    total = 0;
-    totalMissing = 0;
-    totalUngraded = 0;
-    totalGraded = 0;
-    double gradeSum = 0.0;
-
-    for(Course c in courses) {
-      total += c.totalAssignments;
-      totalMissing += c.missingAssignments;
-      totalUngraded += c.ungradedAssignments;
-      totalGraded += c.gradedAssignments;
-
-      gradeSum += c.average;
-
-      avgIncludedCourses[c] = true;
-    }
-
-    uwAvg = gradeSum/courses.length;
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const CAppBar(title: "Callisto"),
+      appBar: const CAppBar(title: "Yet Another Jupiter Frontend"),
       drawer: const CDrawer(),
-      body: ListView(
-        children: [
-          const Gap(15),
-          const CallistoText("Welcome back,", size: 20, weight: FontWeight.bold, textAlign: TextAlign.center),
-          CallistoText(CCache().name, size: 35, weight: FontWeight.bold, textAlign: TextAlign.center),
-          CallistoText("Total: ${total}", size: 20, textAlign: TextAlign.center),
-          CallistoText("Graded: ${totalGraded}", size: 20, textAlign: TextAlign.center),
-          CallistoText("Ungraded: ${totalUngraded}", size: 20, textAlign: TextAlign.center),
-          CallistoText("Missing: ${totalMissing}", size: 20, textAlign: TextAlign.center),
-          Padding(
-              padding: const EdgeInsets.all(16),
-              child: CClickable(
-                onPressed: () {
-                  _showCustomPopup(context);
-                },
-                child: Container(
-                  decoration: BoxDecoration(
-                    // color: ,
-                    borderRadius: BorderRadius.circular(10.0),
-                    border: Border.all(color: Theme.of(context).colorScheme.tertiary)
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(20),
-                    child: CallistoText("Your unweighted average: ${uwAvg.toStringAsFixed(2)}", size: 20)
-                  ),
-                ),
-              )
+      body: CPullDownRefresh(
+        child: ListView(
+          children: [
+            const Gap(15),
+            const Padding(
+              padding: EdgeInsets.fromLTRB(15.0, 0, 0, 0),
+              child: CallistoText("Welcome back,", size: 20, weight: FontWeight.bold, textAlign: TextAlign.left),
             ),
-          const CoursesView(),
-        ],
-      ),
+            Padding(
+              padding: EdgeInsets.fromLTRB(15.0, 0, 0, 0),
+              child: CallistoText(CSharedPrefs().name!, size: 35, weight: FontWeight.bold, textAlign: TextAlign.left),
+            ),
+              Padding(
+                padding: const EdgeInsets.all(16),
+                child: CClickable(
+                  onPressed: () {
+                    _showCustomPopup(context);
+                  },
+                  child: Container(
+                    alignment: Alignment.centerLeft,
+                    decoration: BoxDecoration(
+                      // color: ,
+                      borderRadius: BorderRadius.circular(10.0),
+                      border: Border.all(color: Theme.of(context).colorScheme.tertiary)
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(20),
+                      child: CallistoText("Unweighted Average: ${uwAvg.toStringAsFixed(2)}", size: 20, weight: FontWeight.w600,)
+                    ),
+                  ),
+                )
+              ),
+            const CoursesView(),
+          ],
+        ),
+      )
     );
     // return PersistentTabView(
     //     context,

@@ -14,7 +14,7 @@ class CourseTile extends StatelessWidget {
   Widget build(BuildContext context) {
     var courseInfoChildren = [
       CallistoText(course.placeAndTime, size: 13),
-      CallistoText(course.name, size: 22, textAlign: TextAlign.left),
+      CallistoText(course.name, size: 22, textAlign: TextAlign.left, weight: FontWeight.w500,),
       CallistoText(course.teacher, size: 15),
     ];
 
@@ -29,7 +29,7 @@ class CourseTile extends StatelessWidget {
           Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
             return CoursePage(course: course);
           }));
-        },
+        }, 
         child: Container(
           decoration: BoxDecoration(
             // color: Theme.of(context).colorScheme.tertiary,
@@ -38,10 +38,11 @@ class CourseTile extends StatelessWidget {
             gradient: const LinearGradient(colors: [
               Colors.transparent,
               // TODO! change color for diff grades
-              Color.fromARGB(164, 33, 149, 243)
+              // Color.fromARGB(164, 33, 149, 243)
+              Colors.transparent
             ],
             stops: [
-              0.42,
+              0.6,
               1.0
             ],
             )

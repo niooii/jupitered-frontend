@@ -1,46 +1,87 @@
 import 'package:flutter/material.dart';
 
-import 'package:jupiter_frontend/pages/login_screen.dart';
+import 'package:jupiter_frontend/pages/login/page.dart';
 import 'package:jupiter_frontend/pages/home/page.dart';
 import 'package:jupiter_frontend/services/cache.dart';
 import 'package:jupiter_frontend/services/db_manager.dart';
+import 'package:jupiter_frontend/widgets/general/callisto_text.dart';
 import 'package:lottie/lottie.dart';
 
-class LoadingPage extends StatelessWidget {
-  LoadingPage(this.login, this.errorCallback, this.successCallback, {super.key});
+class LoadingPage extends StatefulWidget {
+  LoadingPage(this.login, this.exceptionCallback, this.errorCallback, this.successCallback, {super.key});
   Future login;
+  Function exceptionCallback;
   Function errorCallback;
   Function successCallback;
 
   @override
-  Widget build(BuildContext context) {
-    final Color color = Theme.of(context).colorScheme.primary;
+  State<LoadingPage> createState() => _LoadingPageState();
+}
 
-    Future<void> handleLogin() async {
-      final value = await login;
+class _LoadingPageState extends State<LoadingPage> {
+  String loadingMessage = "Logging in...";
+
+  @override
+  void initState() {
+    super.initState();
+    handleLogin();
+  }
+
+  Future<void> handleLogin() async {
+    try {
+        final value = await widget.login;
       if (value.statusCode != 200) {
-        errorCallback(value.body);
-        Navigator.pop(context);
+        widget.errorCallback(value.body);
+        if (mounted) {
+          Navigator.pop(context);
+        }
       } else {
-        await successCallback(); // Wait for successCallback to complete
+        setState(() {
+          loadingMessage = "Fetching data...";
+        });
 
-        // grab the data and put it into global cache
+        await widget.successCallback(); // wait for successCallback to complete
+
+        // grab the data and shove it into global cache
         final courseList = await CDbManager.getInstance().getCourses();
+        setState(() {
+          loadingMessage = "Caching data...";
+        });
         CCache().cacheCourses(courseList);
 
         // main screen
-        Navigator.pushReplacement(
+        if (mounted) {
+        Navigator.pushAndRemoveUntil(
           context,
-          MaterialPageRoute(builder: (context) => const HomePage()),
+          MaterialPageRoute(builder: (BuildContext context) {
+            return HomePage();
+          }),
+          (r) {
+            return false;
+          },
         );
       }
+
+      }
+    } catch (e) {
+      widget.exceptionCallback(e);
+      if (mounted) {
+        Navigator.pop(context);
+      }
     }
+  }
 
-    handleLogin();
-
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Lottie.asset("assets/lottiefiles/paperplane.json"),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Lottie.asset("assets/lottiefiles/paperplane.json"),
+            CallistoText(loadingMessage, size: 20, weight: FontWeight.bold,)
+          ],
+        ),
       ),
     );
   }
