@@ -51,7 +51,8 @@ class AllAssignmentsPage extends StatefulWidget {
 class _AllAssignmentsPageState extends State<AllAssignmentsPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return SafeArea(
+        child: Scaffold(
       appBar: const CAppBar(title: "Assignments"),
       drawer: const CDrawer(),
       body: CPullDownRefresh(
@@ -82,6 +83,6 @@ class _AllAssignmentsPageState extends State<AllAssignmentsPage> {
           ],
         ),
       ),
-    );
+    ));
   }
 }

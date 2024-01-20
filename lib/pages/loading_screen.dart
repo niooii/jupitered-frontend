@@ -8,7 +8,9 @@ import 'package:jupiter_frontend/widgets/general/callisto_text.dart';
 import 'package:lottie/lottie.dart';
 
 class LoadingPage extends StatefulWidget {
-  LoadingPage(this.login, this.exceptionCallback, this.errorCallback, this.successCallback, {super.key});
+  LoadingPage(this.login, this.exceptionCallback, this.errorCallback,
+      this.successCallback,
+      {super.key});
   Future login;
   Function exceptionCallback;
   Function errorCallback;
@@ -29,7 +31,7 @@ class _LoadingPageState extends State<LoadingPage> {
 
   Future<void> handleLogin() async {
     try {
-        final value = await widget.login;
+      final value = await widget.login;
       if (value.statusCode != 200) {
         widget.errorCallback(value.body);
         if (mounted) {
@@ -51,17 +53,16 @@ class _LoadingPageState extends State<LoadingPage> {
 
         // main screen
         if (mounted) {
-        Navigator.pushAndRemoveUntil(
-          context,
-          MaterialPageRoute(builder: (BuildContext context) {
-            return HomePage();
-          }),
-          (r) {
-            return false;
-          },
-        );
-      }
-
+          Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(builder: (BuildContext context) {
+              return HomePage();
+            }),
+            (r) {
+              return false;
+            },
+          );
+        }
       }
     } catch (e) {
       widget.exceptionCallback(e);
@@ -73,16 +74,21 @@ class _LoadingPageState extends State<LoadingPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return SafeArea(
+        child: Scaffold(
       body: Center(
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             Lottie.asset("assets/lottiefiles/paperplane.json"),
-            CallistoText(loadingMessage, size: 20, weight: FontWeight.bold,)
+            CallistoText(
+              loadingMessage,
+              size: 20,
+              weight: FontWeight.bold,
+            )
           ],
         ),
       ),
-    );
+    ));
   }
 }

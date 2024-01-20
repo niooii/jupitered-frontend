@@ -22,7 +22,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   List<Course> courses = List.empty(growable: true);
-  
+
   double uwAvg = 0;
 
   @override
@@ -34,130 +34,137 @@ class _HomePageState extends State<HomePage> {
 
     double gradeSum = 0.0;
 
-    for(Course c in courses) {
-
+    for (Course c in courses) {
       gradeSum += c.average;
 
       avgIncludedCourses[c] = true;
     }
 
-    uwAvg = gradeSum/courses.length;
+    uwAvg = gradeSum / courses.length;
   }
 
   // Course is hashable?? this worked???? wtf
   HashMap<Course, bool> avgIncludedCourses = HashMap();
 
   void _showCustomPopup(BuildContext context) {
-  List<Course> keysList = avgIncludedCourses.keys.toList();
-  keysList.sort((a, b) {
-    return a.name.compareTo(b.name);
-  });
-  showDialog(
-    context: context,
-    builder: (BuildContext context) {
-      return StatefulBuilder(
-        builder: (BuildContext context, StateSetter setState) {
-          return AlertDialog(
-            scrollable: true,
-            title: const FittedBox(
-              child: CallistoText("Select courses to include", size: 30),
-            ),
-            content: Column(
-              children: [
-                // const CallistoText("Select courses to include:", size: 18),
-                ...keysList.map((Course course) {
-                  return Row(
-                    children: [
-                      Checkbox(
-                        value: avgIncludedCourses[course],
-                        onChanged: (val) {
-                          setState(() {
-                            avgIncludedCourses[course] = val!;
-                          });
-                        },
-                      ),
-                      CallistoText(course.name, size: 15),
-                    ],
-                  );
-                }),
-              ],
-            ),
-            actions: [
-              TextButton(
-                onPressed: () {
-                  _updateAvg();
-                  Navigator.of(context).pop();
-                },
-                child: const CallistoText("Finish", size: 18),
+    List<Course> keysList = avgIncludedCourses.keys.toList();
+    keysList.sort((a, b) {
+      return a.name.compareTo(b.name);
+    });
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return StatefulBuilder(
+          builder: (BuildContext context, StateSetter setState) {
+            return AlertDialog(
+              scrollable: true,
+              title: const FittedBox(
+                child: CallistoText("Select courses to include", size: 30),
               ),
-            ],
-          );
-        },
-      );
-    },
-  );
-}
-
+              content: Column(
+                children: [
+                  // const CallistoText("Select courses to include:", size: 18),
+                  ...keysList.map((Course course) {
+                    return Row(
+                      children: [
+                        Checkbox(
+                          value: avgIncludedCourses[course],
+                          onChanged: (val) {
+                            setState(() {
+                              avgIncludedCourses[course] = val!;
+                            });
+                          },
+                        ),
+                        CallistoText(course.name, size: 15),
+                      ],
+                    );
+                  }),
+                ],
+              ),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    _updateAvg();
+                    Navigator.of(context).pop();
+                  },
+                  child: const CallistoText("Finish", size: 18),
+                ),
+              ],
+            );
+          },
+        );
+      },
+    );
+  }
 
   void _updateAvg() {
     int count = 0;
     double gradeSum = 0.0;
-    for(var entry in avgIncludedCourses.entries) {
-      if(!entry.value) {
+    for (var entry in avgIncludedCourses.entries) {
+      if (!entry.value) {
         continue;
       }
 
       count++;
       gradeSum += entry.key.average;
     }
-    
+
     setState(() {
-      uwAvg = gradeSum/count;
+      uwAvg = gradeSum / count;
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: const CAppBar(title: "Yet Another Jupiter Frontend"),
-      drawer: const CDrawer(),
-      body: CPullDownRefresh(
-        child: ListView(
-          children: [
-            const Gap(15),
-            const Padding(
-              padding: EdgeInsets.fromLTRB(15.0, 0, 0, 0),
-              child: CallistoText("Welcome back,", size: 20, weight: FontWeight.bold, textAlign: TextAlign.left),
-            ),
-            Padding(
-              padding: EdgeInsets.fromLTRB(15.0, 0, 0, 0),
-              child: CallistoText(CSharedPrefs().name!, size: 35, weight: FontWeight.bold, textAlign: TextAlign.left),
-            ),
-              Padding(
-                padding: const EdgeInsets.all(16),
-                child: CClickable(
-                  onPressed: () {
-                    _showCustomPopup(context);
-                  },
-                  child: Container(
-                    alignment: Alignment.centerLeft,
-                    decoration: BoxDecoration(
-                      // color: ,
-                      borderRadius: BorderRadius.circular(10.0),
-                      border: Border.all(color: Theme.of(context).colorScheme.tertiary)
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(20),
-                      child: CallistoText("Unweighted Average: ${uwAvg.toStringAsFixed(2)}", size: 20, weight: FontWeight.w600,)
-                    ),
+    return SafeArea(
+        child: Scaffold(
+            appBar: const CAppBar(title: "Yet Another Jupiter Frontend"),
+            drawer: const CDrawer(),
+            body: CPullDownRefresh(
+              child: ListView(
+                children: [
+                  const Gap(15),
+                  const Padding(
+                    padding: EdgeInsets.fromLTRB(15.0, 0, 0, 0),
+                    child: CallistoText("Welcome back,",
+                        size: 20,
+                        weight: FontWeight.bold,
+                        textAlign: TextAlign.left),
                   ),
-                )
+                  Padding(
+                    padding: EdgeInsets.fromLTRB(15.0, 0, 0, 0),
+                    child: CallistoText(CSharedPrefs().name!,
+                        size: 35,
+                        weight: FontWeight.bold,
+                        textAlign: TextAlign.left),
+                  ),
+                  Padding(
+                      padding: const EdgeInsets.all(16),
+                      child: CClickable(
+                        onPressed: () {
+                          _showCustomPopup(context);
+                        },
+                        child: Container(
+                          alignment: Alignment.centerLeft,
+                          decoration: BoxDecoration(
+                              // color: ,
+                              borderRadius: BorderRadius.circular(10.0),
+                              border: Border.all(
+                                  color:
+                                      Theme.of(context).colorScheme.tertiary)),
+                          child: Padding(
+                              padding: const EdgeInsets.all(20),
+                              child: CallistoText(
+                                "Unweighted Average: ${uwAvg.toStringAsFixed(2)}",
+                                size: 20,
+                                weight: FontWeight.w600,
+                              )),
+                        ),
+                      )),
+                  const CoursesView(),
+                ],
               ),
-            const CoursesView(),
-          ],
-        ),
-      )
-    );
+            )));
     // return PersistentTabView(
     //     context,
     //     controller: _controller,

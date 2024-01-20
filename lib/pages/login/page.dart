@@ -20,7 +20,8 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   final TextEditingController _osisController = TextEditingController();
-  final TextEditingController _passwordController = ObscuringTextEditingController();
+  final TextEditingController _passwordController =
+      ObscuringTextEditingController();
 
   bool _invalidOsis = false;
   bool _wrongPassword = false;
@@ -42,30 +43,25 @@ class _LoginPageState extends State<LoginPage> {
     _wrongPassword = false;
 
     try {
-      var res = CApiManager.getInstance().then(
-      (value) =>
-        value.validateInfo(
-            _osisController.text, _passwordController.text)
-          );
+      var res = CApiManager.getInstance().then((value) =>
+          value.validateInfo(_osisController.text, _passwordController.text));
 
       exceptionCallback(Exception e) {
         setState(() {
-        _invalidOsis = true;
-        osisError = "Check your internet and try again.";
-        print(e);
-        print("intenret error possibly");
-      });
+          _invalidOsis = true;
+          osisError = "Check your internet and try again.";
+          print(e);
+          print("intenret error possibly");
+        });
       }
 
       errorCallback(String responseString) {
-        if (responseString
-            .contains("Could not find that student ID")) {
+        if (responseString.contains("Could not find that student ID")) {
           setState(() {
             _invalidOsis = true;
             osisError = "Could not find osis.";
           });
-        } else if (responseString
-            .contains("That password is wrong")) {
+        } else if (responseString.contains("That password is wrong")) {
           setState(() {
             _wrongPassword = true;
           });
@@ -74,31 +70,30 @@ class _LoginPageState extends State<LoginPage> {
 
       successCallback() async {
         // if (CSharedPrefs().rememberMe) {
-          
+
         // }
-        // need to save anyways for refetching data. 
+        // need to save anyways for refetching data.
         // TODO! maybe make it so when rememberme is on, yea nevermind.
         CSharedPrefs().osis = _osisController.text;
         CSharedPrefs().password = _passwordController.text;
         CSharedPrefs().save();
         // TODO! absolutely demonic
-        await CApiManager.getInstance().then((APIval) => APIval
-                .getJupiterData(
-                    _osisController.text, _passwordController.text)
+        await CApiManager.getInstance().then((APIval) => APIval.getJupiterData(
+                _osisController.text, _passwordController.text)
             .then((responseval) async => {
                   await CDbManager.getInstance()
                       .storeApiResponse(responseval.body)
-                      .then((value) =>
-                          print("response saved?: ${value == 1}")),
+                      .then((value) => print("response saved?: ${value == 1}")),
                 }));
       }
 
       Navigator.push(context, MaterialPageRoute(
         builder: (context) {
-          return LoadingPage(res, exceptionCallback, errorCallback, successCallback);
+          return LoadingPage(
+              res, exceptionCallback, errorCallback, successCallback);
         },
       ));
-    } catch(e) {
+    } catch (e) {
       setState(() {
         _invalidOsis = true;
         osisError = "Check your internet and try again.";
@@ -106,19 +101,20 @@ class _LoginPageState extends State<LoginPage> {
         print("intenret error possibly");
       });
     }
-
   }
 
   @override
   void initState() {
     String? osis;
-    if(CSharedPrefs().rememberMe && CSharedPrefs().osis != null && CSharedPrefs().password != null) {
+    if (CSharedPrefs().rememberMe &&
+        CSharedPrefs().osis != null &&
+        CSharedPrefs().password != null) {
       _osisController.text = CSharedPrefs().osis!;
       _passwordController.text = CSharedPrefs().password!;
     }
     super.initState();
   }
-  
+
   @override
   Widget build(BuildContext context) {
     // print(CSharedPrefs().triedAutoLogIn);
@@ -133,7 +129,9 @@ class _LoginPageState extends State<LoginPage> {
         appBar: AppBar(
           title: Text(
             "Yet Another Jupiter Frontend",
-            style: GoogleFonts.poppins(color: Theme.of(context).colorScheme.onPrimary,),
+            style: GoogleFonts.poppins(
+              color: Theme.of(context).colorScheme.onPrimary,
+            ),
           ),
           backgroundColor: Theme.of(context).colorScheme.primary,
         ),
@@ -146,7 +144,8 @@ class _LoginPageState extends State<LoginPage> {
                   child: Container(
                       width: 300,
                       height: 200,
-                      child: Image.asset('assets/images/jupiter-transparent.png')),
+                      child:
+                          Image.asset('assets/images/jupiter-transparent.png')),
                 ),
               ),
               Padding(
@@ -161,8 +160,8 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ),
               Padding(
-                padding:
-                    EdgeInsets.only(left: 15.0, right: 15.0, top: 15, bottom: 0),
+                padding: EdgeInsets.only(
+                    left: 15.0, right: 15.0, top: 15, bottom: 0),
                 child: TextField(
                   decoration: InputDecoration(
                       errorText: _wrongPassword ? "Incorrect password." : null,
@@ -190,11 +189,9 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   Text("Remember Me",
                       style: GoogleFonts.poppins(
-                        fontSize: 15,
-                        fontWeight: FontWeight.bold,
-                        color: Theme.of(context).colorScheme.onBackground
-                      )
-                    )
+                          fontSize: 15,
+                          fontWeight: FontWeight.bold,
+                          color: Theme.of(context).colorScheme.onBackground))
                 ],
               ),
               const Gap(10),

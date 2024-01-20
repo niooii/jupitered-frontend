@@ -12,7 +12,8 @@ class CoursePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return SafeArea(
+        child: Scaffold(
       appBar: CAppBar(title: course.name),
       body: ListView(
         children: [
@@ -23,10 +24,13 @@ class CoursePage extends StatelessWidget {
               return Padding(
                 padding: EdgeInsets.all(15),
                 child: Center(
-                  child: FittedBox(
-                    child: CallistoText("Course average: ${category.percentGrade == null ? "N/A" : "${category.percentGrade}%"}", size: 30, weight: FontWeight.w600,),
-                  )
-                ),
+                    child: FittedBox(
+                  child: CallistoText(
+                    "Course average: ${category.percentGrade == null ? "N/A" : "${category.percentGrade}%"}",
+                    size: 30,
+                    weight: FontWeight.w600,
+                  ),
+                )),
               );
             }
             return Column(
@@ -34,11 +38,21 @@ class CoursePage extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    CallistoText("${category.category}: ", size: 18, weight: FontWeight.w500,), 
-                    CallistoText("${category.percentGrade ?? "N/A"} ${category.fractionGrade == null ? "(${category.fractionGrade})" : ""}", size: 18),
+                    CallistoText(
+                      "${category.category}: ",
+                      size: 18,
+                      weight: FontWeight.w500,
+                    ),
+                    CallistoText(
+                        "${category.percentGrade ?? "N/A"} ${category.fractionGrade == null ? "(${category.fractionGrade})" : ""}",
+                        size: 18),
                   ],
                 ),
-                CallistoText("${category.additionalInfo}", size: 15, weight: FontWeight.w200,),
+                CallistoText(
+                  "${category.additionalInfo}",
+                  size: 15,
+                  weight: FontWeight.w200,
+                ),
                 Gap(10),
               ],
             );
@@ -47,6 +61,6 @@ class CoursePage extends StatelessWidget {
           AssignmentsView(assignments: course.assignments)
         ],
       ),
-    );
+    ));
   }
 }
