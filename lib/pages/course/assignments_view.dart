@@ -105,7 +105,9 @@ class _AssignmentsViewState extends State<AssignmentsView> {
     ]);
   }
 
+  // TODO! SORTING BY GRADES DOESN'T WORK
   sortGradeHigh(List<Assignment> assignments) {
+    // parse the score as a double, if it fails, return 0
     assignments.sort((a, b) => (double.tryParse(a.score) ?? 0)
         .compareTo(double.tryParse(b.score) ?? 0));
     return assignments.map((e) => AssignmentTile(assignment: e)).toList();

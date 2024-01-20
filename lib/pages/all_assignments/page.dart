@@ -8,7 +8,7 @@ class AllAssignmentsPage extends StatefulWidget {
   late List<Assignment> allAssignments = List.empty(growable: true);
   late List<Assignment> toRender = List.empty(growable: true);
   AllAssignmentsPage({super.key, required this.allCourses}) {
-    for(Course c in allCourses) {
+    for (Course c in allCourses) {
       allAssignments.addAll(c.assignments);
     }
     toRender.addAll(allAssignments);
